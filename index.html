@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menswear BQ</title>
+    <link rel="icon" href="./img/logo.png">
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
+</head>
+
+<body>
+    <header class="cabeza">
+        <section class="cabeza__logo">
+            <a href="./index.html">
+                <img src="./img/logo.png" alt="Logo PortalGames" id="cabeza__logo--img">
+            </a>
+        </section>
+        <section class="cabeza__busq">
+            <input type="search" name="busqueda" id="cabeza__busq--sea" placeholder="Busqueda">
+        </section>
+        <section class="cabeza__regis">
+            <button type="button" name="inicio" class="btn btn-secondary mt-4" onclick="showDialog()">Inicio
+                Sesi&oacute;n</button>
+        </section>
+
+        <dialog class="sesion">
+            <h1 id="sesion--h1">Iniciar Sesi&oacute;n</h1>
+            <form action="./registered.html" name="sesion__f1" class="sesion__f1" method="post">
+                <label for="usuario" id="sesion__f1--usuLab">Nombre de usuario:</label>
+                <input type="text" id="sesion__f1--usu" name="usuario" class="sesion" maxlength="20" required><br><br>
+                <label for="pwdContraseña" id="sesion__f1--pwdLab">Contrase&ntilde;a:</label>
+                <input type="password" name="pwdContraseña" id="sesion__f1--pwd" minlength="8" maxlength="20" required
+                    data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="hover focus"
+                    data-bs-content="Introduzca letras minusculas
+                     y mayusculas (al menos una), números y caracteres especiales.La longitud minima es de 8 y la máxima de 20." class="text-black">
+                <br>
+                <br>
+                <a href="#" id="sesion__f1--olv">Olvid&eacute; la contrase&ntilde;a</a>
+                <a href="#" id="sesion__f1--cre" onclick="crearCuenta(); closeDialog()">Crear cuenta</a>
+                <br>
+                <br>
+                <section class="sesion__f1__btn">
+                    <input type="submit" value="Enviar" name="enviar" id="sesion__f1__btn--sub">
+                    <button onclick="closeDialog()" id="sesion__f1__btn--cer">Cerrar</button>
+                </section>
+            </form>
+        </dialog>
+
+        <dialog class="sesion2 w-50">
+            <h3 class="text-center">Crear Cuenta</h3>
+            <form action="./registered.html" method="post" class="was-validated">
+                <div class="form-group row mt-4">
+                    <div class="input-group mb-2 me-sm-2 col">
+                        <label class="sr-only form-check-label me-3 mt-1" for="form-check-label">Nombre</label>
+                        <input type="text" class="form-control is-invalid" placeholder="Introduzca el nombre" required
+                            minlength="3" maxlength="20" autofocus>
+                        <div class="invalid-feedback">
+                            Campo Obligatorio
+                        </div>
+                    </div>
+                    <div class="input-group mb-2 me-sm-0 col">
+                        <label class="sr-only form-check-label me-4 mt-1" for="form-check-label">Apellidos</label>
+                        <input type="text" class="form-control is-invalid" placeholder="Introduzca los apellidos"
+                            required minlength="1" maxlength="40">
+                        <div class="invalid-feedback">
+                            Campo Obligatorio
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row mt-2">
+                    <div class="input-group mb-2 me-sm-2 col">
+                        <label class="sr-only form-check-label me-3 mt-1" for="form-check-label">Contraseña</label>
+                        <input type="password" class="form-control is-invalid" placeholder="Introduzca la contraseña"
+                            required minlength="8" maxlength="20">
+                        <div class="invalid-feedback">
+                            Campo Obligatorio
+                        </div>
+                    </div>
+                    <div class="input-group mb-2 me-sm-0 col">
+                        <label class="sr-only form-check-label me-4 mt-1" for="form-check-label">Direccion</label>
+                        <input type="text" class="form-control" placeholder="Introduzca la direccion">
+                        <div class="valid-feedback">
+                            Campo Opcional
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row mt-2">
+                    <div class="input-group mb-2 me-sm-2 col">
+                        <label class="sr-only form-check-label me-3 mt-1" for="form-check-label">Correo
+                            electrónico</label>
+                        <input type="email" class="form-control is-invalid"
+                            placeholder="Introduzca su correo electrónico" required>
+                        <div class="invalid-feedback">
+                            Campo Obligatorio
+                        </div>
+                    </div>
+                    <div class="input-group mb-2 me-sm-0 col">
+                        <label class="sr-only form-check-label me-4 mt-1" for="form-check-label">Número de
+                            Teléfono</label>
+                        <input type="text" class="form-control is-invalid" placeholder="Introduzca su teléfono"
+                            required>
+                        <div class="invalid-feedback">
+                            Campo Obligatorio
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row mt-2">
+                    <div class="input-group mb-2 me-sm-2 col">
+                        <label class="sr-only form-check-label me-3 mt-1"
+                            for="form-check-label validationCustom01">Localidad</label>
+                        <input type="text" class="form-control is-invalid" placeholder="Localidad" required>
+                        <div class="invalid-feedback">
+                            Campo Obligatorio
+                        </div>
+                    </div>
+                    <div class="input-group mb-2 me-sm-0 col">
+                        <label class="sr-only form-check-label me-4 mt-1" for="form-check-label">Código Postal</label>
+                        <input type="number" class="form-control is-invalid" placeholder="Código Postal" min="9999"
+                            max="99999" required>
+                        <div class="invalid-feedback">
+                            Campo Obligatorio
+                        </div>
+                    </div>
+                    <div class="input-group mb-2 col">
+                        <select name="selOpt" class="form-select is-invalid" required>
+                            <option value="1" class="text-black">Femenino</option>
+                            <option value="2" class="text-black">Masculino</option>
+                            <option value="3" class="text-black">Otro</option>
+                            <option></option>
+                        </select>
+                        <div class="invalid-feedback">
+                            Campo Obligatorio
+                        </div>
+                    </div>
+                </div>
+                <section class="text-center">
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                    <button onclick="cerrarCuenta(); showDialog()" class="btn btn-secondary ms-2">Cerrar</button>
+                </section>
+            </form>
+        </dialog>
+    </header>
+
+    <nav class="navegacion">
+        <div class="btn-group">
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='./index.html'">
+                Novedades
+            </button>
+        </div>
+        <br>
+        <br>
+        <div class="btn-group dropend">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Ropa
+            </button>
+            <ul class="dropdown-menu ms-4 text-center">
+                <li><a href="#">Sudaderas & Jerséis</a></li>
+                <li><a href="#">Traje</a></li>
+                <li><a href="#">Abrigos</a></li>
+                <li><a href="#">Deporte</a></li>
+                <li><a href="#">Camisetas & Camisas</a></li>
+                <li><a href="#">Pantalones</a></li>
+                <li><a href="#">Ver todo</a></li>
+            </ul>
+        </div>
+        <br>
+        <br>
+        <div class="btn-group dropend">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Zapatos
+            </button>
+            <ul class="dropdown-menu ms-3 text-center">
+                <li><a href="#">Botas</a></li>
+                <li><a href="#">Deportivos</a></li>
+                <li><a href="#">Sandalias</a></li>
+                <li><a href="#">Zapatos</a></li>
+                <li><a href="./playstation/playstation.html">Ver todo</a></li>
+            </ul>
+        </div>
+        <br>
+        <br>
+        <div class="btn-group dropend">
+            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
+                aria-expanded="false">
+                Rebajas
+            </button>
+            <ul class="dropdown-menu ms-3 text-center">
+                <li><a href="#">Invierno</a></li>
+                <li><a href="#">Verano</a></li>
+                <li><a href="./xbox/xbox.html">Ver todo</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="main__noregis">
+        <nav aria-label="breadcrumb" id="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="./index.html" class="text-white">Inicio</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Novedades</li>
+            </ol>
+        </nav>
+        <div class="row row-cols-1 row-cols-sm-2 g-4" id="main_noregis">
+            <div class="col">
+                <figure class="figure card text-center">
+                    <h5 class="card-title">Traje Azul Marino</h5>
+                    <img src="./img/traje-1.png" class="card-img-top figure-img" alt="Traje Azul Marino" tabindex="0"
+                        data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="hover focus"
+                        data-bs-content="149.99€" onclick="mostEspe()">
+                    <figcaption class="figure-caption card-body text-center">
+                        <button type="button" class="btn btn-primary mt-2" data-bs-container="body"
+                            data-bs-toggle="popover" data-bs-trigger="hover focus"
+                            data-bs-content="Para añadir al carrito, necesitas estar registrado">Añadir al
+                            carrito</button>
+                    </figcaption>
+                </figure>
+            </div>
+            <div class="col">
+                <figure class="figure card" id="card2">
+                    <h5 class="card-title text-center">Abrigo Cruzado largo gris</h5>
+                    <a href="#">
+                        <img src="./img/abrigo-largo-gris.png" class="card-img-top figure-img"
+                            alt="Abrigo Cruzado largo gris" tabindex="0" data-bs-container="body"
+                            data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="89.99€">
+                        <figcaption class="figcaption card-body text-center">
+                            <button type="button" class="btn btn-primary mt-2" data-bs-container="body"
+                                data-bs-toggle="popover" data-bs-trigger="hover focus"
+                                data-bs-content="Para añadir al carrito, necesitas estar registrado"
+                                data-bs-placement="left">Añadir al
+                                carrito</button>
+                        </figcaption>
+                    </a>
+                </figure>
+            </div>
+            <div class="col">
+                <figure class="figure card">
+                    <h5 class="card-title text-center" class="d-inline-block">Chaquetón Azul</h5>
+                    <a href="#">
+                        <img src="./img/chaqueton-azul.png" class="card-img-top figure-img" alt="Chaquetón Azul"
+                            data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="hover focus"
+                            data-bs-content="49.99€">
+                    </a>
+                    <figcaption class="figcaption card-body text-center">
+                        <button type="button" class="btn btn-primary" data-bs-container="body" data-bs-toggle="popover"
+                            data-bs-trigger="hover focus"
+                            data-bs-content="Para añadir al carrito, necesitas estar registrado">Añadir al
+                            carrito</button>
+                    </figcaption>
+                </figure>
+            </div>
+
+            <div class="col">
+                <figure class="figure card">
+                    <h5 class="card-title text-center mb-5">Zapatillas altas</h5>
+                    <a href="#">
+                        <img src="./img/depors-dest.png" class="card-img-top figure-img" alt="Zapatillas Altas"
+                            class="mt-2" tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus"
+                            data-bs-content="35.90€">
+                    </a>
+                    <figcaption class="figcaption card-body text-center">
+                        <button type="button" class="btn btn-primary mt-2" data-bs-container="body"
+                            data-bs-toggle="popover" data-bs-trigger="hover focus"
+                            data-bs-content="Para añadir al carrito, necesitas estar registrado"
+                            data-bs-placement="left">Añadir al
+                            carrito</button>
+                    </figcaption>
+                </figure>
+            </div>
+        </div>
+
+        <section id="especificaciones" class="espe">
+            <div class="card">
+                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                        data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="./img/traje-1.png" class="d-block w-50" alt="Traje Completo" id="traje">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./img/traje-2.png" class="d-block w-25" alt="Traje Completo Hombre Delante"
+                                id="traje">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="./img/traje-3.png" class="d-block w-25" alt="Traje Completo Hombre Detrás"
+                                id="traje">
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title text-center">Traje Azul Marino</h5>
+                    <p class="card-text text-danger fs-3 text-center">149.99€</p>
+                    <p class="justify-content">
+                        Línea Tailored. Diseño corto. Super slim fit. Diseño de cuadros. Solapas con muesca. Manga larga
+                        con puños abotonados. Bolsillo de ribete en el pecho. Dos bolsillos de solapa en la parte
+                        frontal. Aberturas posteriores. Cierre de botones. Forro interior. Bolsillo interior. Etiqueta
+                        interior personalizable. El modelo mide 185 cm y lleva una talla 50.
+                        <br><br>
+                        El fit más ajustado que encontrarás en nuestra colección de trajes. Con la solapa más estrecha,
+                        el modelo Super Slim Fit se ha diseñado en diferentes colores para vestir distintos momentos del
+                        día. Escoge el estilo que vaya mejor con tu personalidad.
+                    <ul>
+                        <li><strong>Tono: </strong>Azul.</li>
+                        <li><strong>Tejido: </strong>Yves Klein Light.</li>
+                        <li><strong>Tipo: </strong>Mezcla Lana, Limited edition.</li>
+                        <li><strong>Temporada: </strong>Entretiempo.</li>
+                    </ul>
+                    </p>
+                    <div class="text-center">
+                        <button type="button" class="btn btn-primary mt-2" data-bs-container="body"
+                            data-bs-toggle="popover" data-bs-trigger="hover focus"
+                            data-bs-content="Para añadir al carrito, necesitas estar registrado"
+                            data-bs-placement="left">Añadir al
+                            carrito</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <aside class="publicidad">
+        <a href="#"><img src="./img/publi-2.gif" alt="Sale" id="publicidad--sale"></a>
+    </aside>
+    <footer class="pie">
+        <section class="arriba">
+            <section class="information mt-2 text-center">
+                <h3 class="ms-5">Información</h3>
+                <ul>
+                    <li>
+                        <a class="text ms-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Terminos de uso</a>
+                    </li>
+                    <li>
+                        <a class="text ms-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                            Política de Privacidad
+                        </a>
+                    </li>
+                    <li>
+                        <a class="text ms-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">
+                            Política de Cookies
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-black" id="staticBackdropLabel">Terminos de uso</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-black">
+                                Menswear-BQ considerará como dueño de una Cuenta de Usuario, Plataforma de Usuario o
+                                Contenido de Usuario creado o subido a los Servicios de Menswear-BQ correspondientes,
+                                a la persona o entidad que tiene acceso a la dirección de correo electrónico consignada
+                                en los registros de Menswear-BQ para dicha Cuenta de Usuario bajo la cual se ha creado
+                                dicha Plataforma de Usuario o Contenido de Usuario.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <a href="#" class="btn btn-primary text-white">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-black" id="staticBackdropLabel">Política de Privacidad</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-black">
+                                La Política de Privacidad establece los términos en que usa y protege la
+                                información que es proporcionada por sus usuarios al momento de utilizar su sitio web.
+                                Esta
+                                compañía está comprometida con la seguridad de los datos de sus usuarios. Cuando le
+                                pedimos
+                                llenar los campos de información personal con la cual usted pueda ser identificado, lo
+                                hacemos asegurando que sólo se empleará de acuerdo con los términos de este documento.
+                                Sin
+                                embargo esta Política de Privacidad puede cambiar con el tiempo o ser actualizada por lo
+                                que
+                                le recomendamos y enfatizamos revisar continuamente esta página para asegurarse que está
+                                de
+                                acuerdo con dichos cambios.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <a href="#" class="btn btn-primary text-white">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-black" id="staticBackdropLabel">Política de Cookies</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-black">Una cookie se refiere a un fichero que es enviado con la finalidad
+                                    de
+                                    solicitar
+                                    permiso para almacenarse en su ordenador, al aceptar dicho fichero se crea y la
+                                    cookie sirve entonces para tener información respecto al tráfico web, y también
+                                    facilita las futuras visitas a una web recurrente. Otra función que tienen las
+                                    cookies es que con ellas las web pueden reconocerte individualmente y por tanto
+                                    brindarte el mejor servicio personalizado de su web.</p>
+
+                                <p class="text-black">Nuestro sitio web emplea las cookies para poder identificar las
+                                    páginas que son
+                                    visitadas y su frecuencia. Esta información es empleada únicamente para análisis
+                                    estadístico y después la información se elimina de forma permanente. Usted puede
+                                    eliminar las cookies en cualquier momento desde su ordenador. Sin embargo las
+                                    cookies ayudan a proporcionar un mejor servicio de los sitios web, estás no dan
+                                    acceso a información de su ordenador ni de usted, a menos de que usted así lo quiera
+                                    y la proporcione directamente noticias. Usted puede aceptar o negar el uso de
+                                    cookies, sin embargo la mayoría de navegadores aceptan cookies automáticamente pues
+                                    sirve para tener un mejor servicio web. También usted puede cambiar la configuración
+                                    de su ordenador para declinar las cookies. Si se declinan es posible que no pueda
+                                    utilizar algunos de nuestros servicios.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <a href="#" class="btn btn-primary text-white">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="contact text-center me-5 mt-2">
+                <h3>Contacto</h3>
+                <ul>
+                    <li>
+                        <i class="fa fa-envelope"></i><span class="ms-2">blasladero12@gmail.com</span>
+                    </li>
+                    <li class="me-4">
+                        <i class="fa fa-phone"></i><span class="ms-2">926 63 45 15</span>
+                    </li>
+                </ul>
+                <h5>¿Necesitas ayuda?</h5>
+                <p class="text-center ms-3">¡Póngase en contacto con nosotros!</p>
+            </section>
+        </section>
+        <p class="text-center">&copy; Menswear-BQ | Blas Quiñones Ladero</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+    <script src="./js/index.js"></script>
+
+</body>
+
+</html>

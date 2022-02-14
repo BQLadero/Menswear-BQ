@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menswear BQ | Perfil</title>
+    <link rel="icon" href="./img/logo.png">
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
+</head>
+
+<body class="perfil">
+    <header class="cabeza__perfil">
+        <section class="cabezaper__logo">
+            <a href="./registered.html">
+                <img src="./img/logo.png" alt="Logo PortalGames" id="cabezaper__logo--img">
+            </a>
+        </section>
+        <section class="cabezaper__cuenta">
+            <h1 id="cabezaper__cuenta--h1">Mi Cuenta</h1>
+        </section>
+        <section class="cabezaper__cierre">
+            <button type="button" name="cierre" class="btn btn-light mt-3">
+                <a href="./index.html">Cerrar Sesi&oacute;n</a></button>
+        </section>
+    </header>
+
+    <nav class="navegacion__perfil">
+        <div class="btn-group">
+            <button type="button" class="btn btn-secondary" onclick="mostPed()">
+                Mis pedidos
+            </button>
+        </div>
+        <br>
+        <br>
+        <div class="btn-group">
+            <button type="button" class="btn btn-secondary" onclick="mostFav()">
+                Mis favoritos
+            </button>
+        </div>
+        <br>
+        <br>
+        <div class="btn-group">
+            <button type="button" class="btn btn-secondary" onclick="mostDat()">
+                Mis datos
+            </button>
+        </div>
+        <br>
+        <br>
+        <div class="btn-group">
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='./shopping.html'">
+                Carrito
+            </button>
+        </div>
+    </nav>
+
+    <main class="cuenta">
+        <section class="pedidos" id="pedidos">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="./registrado.html" class="text-white">Inicio</a></li>
+                    <li class="breadcrumb-item"><a href="./perfil.html" class="text-white">Mi Cuenta</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Mis pedidos</li>
+                </ol>
+            </nav>
+            <article class="pedidos__art">
+                <h5 class="text-center">Mis Pedidos</h5>
+                <p id="pedidos__art--real">Realizado: <span>15/12/2021</span> | 1 art&iacute;culos</p>
+                <p id="pedidos__art--pedi">Nº Pedido: <span>658</span></p>
+                <section class="pedidos__art__ent">
+                    <p id="pedidos__art__ent--p">Entrega Prevista:
+                        <span id="pedidos__art__ent--p--spa">18/12/2021</span>
+                    </p>
+                    <p id="pedidos__art__ent--p2">Estado:
+                        <span id="pedidos__art__ent--p2--spa2">Entregado</span>
+                    </p>
+                </section>
+                <section class="pedidos__art__ped1">
+                    <a href="./especificaciones/Farming.html">
+                        <img src="./img/depors-dest.png" alt="Farming Simulator 22" id="pedidos__art__ped1--img">
+                    </a>
+                    <article class="pedidos__art__ped1__espec">
+                        <p>Zapatillas altas</p>
+                        <p>35.90€ x 1 Unidad</p>
+                    </article>
+                    <button type="button" class="btn btn-primary w-100 ms-4 mt-4" onclick="comprar()">
+                        Comprar de nuevo
+                    </button>
+                    <button type="button" class="btn btn-primary ms-5 mt-4" onclick="devolver()">
+                        Devolver
+                    </button>
+                </section>
+            </article>
+        </section>
+        <section class="favoritos" id="favoritos">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="./registrado.html" class="text-white">Inicio</a></li>
+                    <li class="breadcrumb-item"><a href="./perfil.html" class="text-white">Mi Cuenta</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Mis favoritos</li>
+                </ol>
+            </nav>
+            <h5 class="text-center">Mis Favoritos</h5>
+            <div class="row row-cols-1 row-cols-sm-2 g-4">
+                <div class="col">
+                    <div class="card text-center">
+                        <h5 class="card-title">Traje Azul Marino</h5>
+                        <img src="./img/traje-1.png" class="card-img-top" alt="Traje Azul Marino" tabindex="0"
+                            data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="149.99€">
+                        <div class="card-body text-center">
+                            <button type="button" class="btn btn-primary mt-2">Quitar de favoritos</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card text-center">
+                        <h5 class="card-title">Abrigo Cruzado largo gris</h5>
+                        <img src="./img/abrigo-largo-gris.png" class="card-img-top" alt="Abrigo Cruzado largo gris" tabindex="0"
+                            data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="89.99€">
+                        <div class="card-body text-center">
+                            <button type="button" class="btn btn-primary mt-2">Quitar de favoritos</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="cuenta__datos" id="datos">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="./registrado.html" class="text-white">Inicio</a></li>
+                    <li class="breadcrumb-item"><a href="./perfil.html" class="text-white">Mi Cuenta</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Mis datos</li>
+                </ol>
+            </nav>
+            <article class="cuenta__datos__art">
+                <h5 class="text-center">Mis Datos</h5>
+                <p class="text-center">
+                    Nombre completo: <input class="w-50" type="text" name="nombre"
+                        placeholder=" Pedro Antonio Rodríguez Pérez">
+                </p>
+                <p class="text-center">
+                    Correo electr&oacute;nico: <input class="w-50" type="email" name="correo"
+                        placeholder="pedranrp@gmail.com">
+                </p>
+                <p class="text-center">
+                    Direcci&oacute;n: <input class="w-50" type="text" name="direcccion"
+                        placeholder=" C/Calatrava, 32 3ºA">
+                </p>
+                <p class="text-center">
+                    Localidad: <input class="w-50" type="text" name="localidad" placeholder="Ciudad Real (Ciudad Real)">
+                </p>
+                <p class="text-center">
+                    G&eacute;nero:
+                    <select name="genero">
+                        <option value="masculino" selected>Masculino</option>
+                        <option value="femenino">Femenino</option>
+                        <option value="otro">otro</option>
+                    </select>
+                </p>
+                <button type="button" class="cuenta__datos__art--btn" id="modificar" onclick="modificar()">
+                    Modificar
+                </button>
+                <button type="button" class="cuenta__datos__art--btn" id="confirmar" onclick="confirmar()">
+                    Confirmar
+                </button>
+            </article>
+        </section>
+    </main>
+
+    <footer class="pie">
+        <section class="arriba">
+            <section class="information mt-2 text-center">
+                <h3 class="ms-5">Información</h3>
+                <ul>
+                    <li>
+                        <a class="text ms-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Terminos de uso</a>
+                    </li>
+                    <li>
+                        <a class="text ms-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                            Política de Privacidad
+                        </a>
+                    </li>
+                    <li>
+                        <a class="text ms-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">
+                            Política de Cookies
+                        </a>
+                    </li>
+                </ul>
+
+                <!-- Modal -->
+                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-black" id="staticBackdropLabel">Terminos de uso</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-black">
+                                Menswear-BQ considerará como dueño de una Cuenta de Usuario, Plataforma de Usuario o
+                                Contenido de Usuario creado o subido a los Servicios de Menswear-BQ correspondientes,
+                                a la persona o entidad que tiene acceso a la dirección de correo electrónico consignada
+                                en los registros de Menswear-BQ para dicha Cuenta de Usuario bajo la cual se ha creado
+                                dicha Plataforma de Usuario o Contenido de Usuario.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <a href="#" class="btn btn-primary text-white">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-black" id="staticBackdropLabel">Política de Privacidad</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-black">
+                                La Política de Privacidad establece los términos en que usa y protege la
+                                información que es proporcionada por sus usuarios al momento de utilizar su sitio web.
+                                Esta
+                                compañía está comprometida con la seguridad de los datos de sus usuarios. Cuando le
+                                pedimos
+                                llenar los campos de información personal con la cual usted pueda ser identificado, lo
+                                hacemos asegurando que sólo se empleará de acuerdo con los términos de este documento.
+                                Sin
+                                embargo esta Política de Privacidad puede cambiar con el tiempo o ser actualizada por lo
+                                que
+                                le recomendamos y enfatizamos revisar continuamente esta página para asegurarse que está
+                                de
+                                acuerdo con dichos cambios.
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <a href="#" class="btn btn-primary text-white">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false"
+                    tabindex="1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-scrollable">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-black" id="staticBackdropLabel">Política de Cookies</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p class="text-black">Una cookie se refiere a un fichero que es enviado con la finalidad
+                                    de
+                                    solicitar
+                                    permiso para almacenarse en su ordenador, al aceptar dicho fichero se crea y la
+                                    cookie sirve entonces para tener información respecto al tráfico web, y también
+                                    facilita las futuras visitas a una web recurrente. Otra función que tienen las
+                                    cookies es que con ellas las web pueden reconocerte individualmente y por tanto
+                                    brindarte el mejor servicio personalizado de su web.</p>
+
+                                <p class="text-black">Nuestro sitio web emplea las cookies para poder identificar las
+                                    páginas que son
+                                    visitadas y su frecuencia. Esta información es empleada únicamente para análisis
+                                    estadístico y después la información se elimina de forma permanente. Usted puede
+                                    eliminar las cookies en cualquier momento desde su ordenador. Sin embargo las
+                                    cookies ayudan a proporcionar un mejor servicio de los sitios web, estás no dan
+                                    acceso a información de su ordenador ni de usted, a menos de que usted así lo quiera
+                                    y la proporcione directamente noticias. Usted puede aceptar o negar el uso de
+                                    cookies, sin embargo la mayoría de navegadores aceptan cookies automáticamente pues
+                                    sirve para tener un mejor servicio web. También usted puede cambiar la configuración
+                                    de su ordenador para declinar las cookies. Si se declinan es posible que no pueda
+                                    utilizar algunos de nuestros servicios.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                <a href="#" class="btn btn-primary text-white">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="contact text-center me-5 mt-2">
+                <h3>Contacto</h3>
+                <ul>
+                    <li>
+                        <i class="fa fa-envelope"></i><span class="ms-2">blasladero12@gmail.com</span>
+                    </li>
+                    <li class="me-4">
+                        <i class="fa fa-phone"></i><span class="ms-2">926 63 45 15</span>
+                    </li>
+                </ul>
+            </section>
+        </section>
+        <p class="text-center">&copy; Menswear-BQ | Blas Quiñones Ladero</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
+        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+        crossorigin="anonymous"></script>
+    <script src="./js/profile.js"></script>
+</body>
+
+</html>

@@ -2,7 +2,7 @@
 import {
     InvalidAccessConstructorException,
     EmptyValueException,
-} from './exceptions.js';
+} from '../shoppingCart/exceptions.js';
 
 class Category {
     #title;

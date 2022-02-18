@@ -12,53 +12,37 @@ body{
     background-image: url("../img/dark-canvas.gif");
     display: grid;
     grid-template-areas: "head head head head head"
-                         "nav nav main main aside"
+                         "nav main main main aside"
                          "footer footer footer footer footer";  
 }
 
 /* INDEX */
+
 .cabeza{
+    position: -webkit-sticky;
     position: sticky;
     top: 10px;
-    display: flex;
-    background-color: rgba(212, 209, 209, 0.144);
-    border-radius: 10px;
     width: 98%;
     margin-left: 1%;
+    margin-top: 1%;
+    border-radius: 10px;
+    background-color: rgba(212, 209, 209, 0.445);
     z-index: 1;
+}
+
+#logo{
+    width: 5%;
 }
 
 #cabeza__logo--img{
     margin-top: 1.5%;
-    width: 35%;
+    width: 95%;
 }
 
-.cabeza__logo{
-    flex: 1 1 20%;
-    margin-left: 5%;
+.breadcrumb{
+    background-color: transparent;
 }
 
-.cabeza__busq{
-    flex: 1 1 60%;
-    margin-top: 2%;
-}
-
-#cabeza__busq--sea{
-    width: 80%;
-    height: 30px;
-    border-radius: 10px;
-}
-
-.cabeza__regis{
-    flex: 1 1 20%;
-}
-
-#cabeza__regis--btn{
-    color: black;
-    width: 50%;
-    height: 50px;
-    margin-top: 7%;
-}
 
 .cabezareg{grid-area: headreg;}
 
@@ -66,7 +50,7 @@ body{
     background-image: url("../img/dark-canvas.gif");
     display: grid;
     grid-template-areas: "headreg headreg headreg"
-                         "nav nav main"
+                         "main main main"
                          "footer footer footer";
     width: 99%;      
 }
@@ -199,11 +183,11 @@ body{
 
 .main__noregis{
     margin-top: 7%;
-    margin-left: 18%;
 }
 
-.main_regis{
+#main_regis{
     margin-top: 7%;
+    z-index: -1;
 }
 
 .card{
@@ -281,13 +265,21 @@ a,a:link, a:visited{color: black; text-decoration: none;}
     color: white;
 }
 
+.agrandar{
+    width: 160%;
+}
+
 #sesion__f1--cre{
     margin-left: 32.5%;
 }
 
 .sesion, .sesion2{
+    z-index: 1;
     margin-top: 8%;
     background-color: rgb(0, 13, 130);
+}
+select > option{
+    color: black;
 }
 
 #sesion__f1--usu{
@@ -323,12 +315,12 @@ a,a:link, a:visited{color: black; text-decoration: none;}
 }
 
 .publicidad{
-    margin-top: 85%;
+    margin-top: 25%;
     margin-left: 15%;
 }
 
 #publicidad--sale{
-    width: 70%;
+    width: 60%;
 }
 
 .minijuego{
@@ -525,4 +517,27 @@ a,a:link, a:visited{color: black; text-decoration: none;}
 .espe > .card{
     margin-left: 5%;
     text-align: justify;
+}
+
+.card-product-grid .info-wrap {
+    overflow: hidden;
+    padding: 18px 20px
+}
+
+.act-price {
+    color:  #faa541;
+    font-weight: 700
+}
+
+.dis-price {
+    text-decoration: line-through
+}
+
+.mlf--shops{
+    margin-top: 6%;
+    margin-left: 2.5%;
+}
+
+.ajustar{
+    margin-left: 0.5%;
 }

@@ -7,107 +7,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Menswear BQ | Registrado</title>
     <link rel="icon" href="./img/logo.png">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+        integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 </head>
 
 <body class="regis">
     <header class="cabezareg">
-        <section class="cabezareg__logo">
-            <a href="./registered.html">
-                <img src="./img/logo.png" alt="Logo PortalGames" id="cabezareg__logo--img">
-            </a>
-        </section>
-        <section class="cabeza__busreg">
-            <input type="search" name="busqueda" id="cabeza__busqreg--sea" placeholder="Busqueda">
-        </section>
-        <section class="cabeza__cierre mt-4">
-            <button type="button" name="cierre" class="btn btn-light">
-                <a href="./index.html">Cerrar Sesi&oacute;n</a></button>
-        </section>
-        <section class="cabeza__carri">
-            <a href="./shopping.html"><img src="./img/carrito.png" alt="Carrito" class="w-50"></a>
-        </section>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <a href="./registered.html" id="logo" class="navbar-brand">
+                    <img src="./img/logo.png" alt="Logo PortalGames" id="cabeza__logo--img">
+                </a>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="./registered.html" id="init">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a role="button" name="inicio" class="nav-link active" href="./index.html">Cerrar
+                                Sesi&oacute;n</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="type-product" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Productos
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="type-product">
+                                <a data-category="Traje" class="dropdown-item" href="#product-list">Traje</a>
+                                <a data-category="Bota" class="dropdown-item" href="#product-list">Bota</a>
+                                <a data-category="Pantalon" class="dropdown-item" href="#product-list">Pantalon</a>
+                                <a data-category="Calcetin" class="dropdown-item" href="#product-list">Calcetin</a>
+                            </div>
+                        </li>
+                    </ul>
+                    <form class="d-flex w-50 ms-2">
+                        <input class="form-control me-4" type="search" placeholder="Search" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
     </header>
-
-    <nav class="navegacion__regis">
-        <div class="btn-group">
-            <button type="button" class="btn btn-secondary" onclick="window.location.href='./profile.html'">
-                Perfil
-            </button>
-        </div><br>
-        <br>
-        <div class="btn-group" id="btn--nov">
-            <button type="button" class="btn btn-secondary" onclick="window.location.href='./registered.html'">
-                Novedades
-            </button>
-        </div>
-        <br>
-        <br>
-        <div class="btn-group dropend">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Ropa
-            </button>
-            <ul class="dropdown-menu ms-4 text-center">
-                <li><a href="#">Sudaderas & Jerséis</a></li>
-                <li><a href="#">Traje</a></li>
-                <li><a href="#">Abrigos</a></li>
-                <li><a href="#">Deporte</a></li>
-                <li><a href="#">Camisetas & Camisas</a></li>
-                <li><a href="#">Pantalones</a></li>
-                <li><a href="#">Ver todo</a></li>
-            </ul>
-        </div>
-        <br>
-        <br>
-        <div class="btn-group dropend">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Zapatos
-            </button>
-            <ul class="dropdown-menu ms-3 text-center">
-                <li><a href="#">Botas</a></li>
-                <li><a href="#">Deportivos</a></li>
-                <li><a href="#">Sandalias</a></li>
-                <li><a href="#">Zapatos</a></li>
-                <li><a href="#">Ver todo</a></li>
-            </ul>
-        </div>
-        <br>
-        <br>
-        <div class="btn-group dropend">
-            <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown"
-                aria-expanded="false">
-                Rebajas
-            </button>
-            <ul class="dropdown-menu ms-3 text-center">
-                <li><a href="#">Invierno</a></li>
-                <li><a href="#">Verano</a></li>
-                <li><a href="#">Ver todo</a></li>
-            </ul>
-        </div>
-        <br>
-        <br>
-        <div class="btn-group">
-            <button type="button" class="btn btn-secondary" onclick="mostCam()">
-                MiniJuego
-            </button>
-        </div>
-    </nav>
-
-    <main class="main_regis">
+    <main class="main" id="main_regis">
         <nav aria-label="breadcrumb" id="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="#" class="text-white">Inicio</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Novedades</li>
             </ol>
         </nav>
-        <div class="row row-cols-1 row-cols-sm-2 g-4" id="main_regis">
+        <div class="row row-cols-1 row-cols-sm-2 g-4">
             <div class="col">
                 <figure class="figure card text-center card__regis">
                     <h5 class="card-title">Traje Azul Marino</h5>
@@ -360,13 +313,14 @@
         </section>
         <p class="text-center">&copy; Menswear-BQ | Blas Quiñones Ladero</p>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
-        integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"
-        integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13"
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
+        integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
     <script src="./js/registered.js"></script>
+    <script src="/js/manager/managerApp.js" type="module"></script>
 </body>
 
 </html>

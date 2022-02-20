@@ -35,19 +35,21 @@ class ManagerController {
         storeHouse.addShop(store3);
 
         /*TRAJES*/
-        let product1 = new Traje(1, 'JPRFRANCO SUIT', 74.99, 188, 'Botón', 'Lavar en seco', 'Hombrera', "Traje de gala", 5, './img/traje-zalando-1.png');
+        let product1 = new Traje(1, 'JPRFanco Suit', 74.99, 188, 'Botón', 'Lavar en seco', 'Hombrera', "Traje de gala", 5, './img/traje-zalando-1.png');
         storeHouse.addProduct(product1, category5);
         storeHouse.addProductInShop(product1, store1, 7);
+        storeHouse.addProductInShop(product1, store2, 7);
 
-        let product2 = new Traje(2, 'TROPICAL ACTIVE ', 159.99, 189, 'Botón', 'Lavar en seco', 'no', "Traje de gala", 5, './img/traje-zalando-2.png');
+        let product2 = new Traje(2, 'Tropical Active', 159.99, 189, 'Botón', 'Lavar en seco', 'no', "Traje de gala", 5, './img/traje-zalando-2.png');
         storeHouse.addProduct(product2, category5);
         storeHouse.addProductInShop(product2, store1, 2);
 
-        let product3 = new Traje(3, 'PLAIN MENS SUIT', 149.95, 192, 'Botón', 'Lavar en seco', 'Tira de botones, hombrera', "Traje de gala", 5, './img/traje-zalando-3.png');
+        let product3 = new Traje(3, 'Plain mens suit', 149.95, 192, 'Botón', 'Lavar en seco', 'Tira de botones, hombrera', "Traje de gala", 5, './img/traje-zalando-3.png');
         storeHouse.addProduct(product3, category5);
         storeHouse.addProductInShop(product3, store2, 3);
+        storeHouse.addProductInShop(product3, store3, 3);
 
-        let product4 = new Traje(4, 'BLAZER CONJUNTO RELAXED', 79.95, 188, 'Botón', 'No usar secadora', 'Bolsillo interior', "Traje de gala", 5, './img/traje-zara.png');
+        let product4 = new Traje(4, 'Blazer Conjunto Relaxed', 79.95, 188, 'Botón', 'No usar secadora', 'Bolsillo interior', "Traje de gala", 5, './img/traje-zara.png');
         storeHouse.addProduct(product4, category2);
         storeHouse.addProductInShop(product4, store3, 1);
 
@@ -56,23 +58,23 @@ class ManagerController {
         storeHouse.addProductInShop(product5, store2, 4);
 
         /*BOTAS*/
-        let product6 = new Bota(6, 'BOTA ACORDONADA PISO TRACK', 39.99, 39, 'Cordones y Cremallera', 'Track', 'Termica', "Zapato tipo bota acordonada disponible en varios colores"
+        let product6 = new Bota(6, 'Bota acordonada piso Track', 39.99, 39, 'Cordones y Cremallera', 'Track', 'Termica', "Zapato tipo bota acordonada disponible en varios colores"
             , 0, './img/botas-p&b-1.png');
         storeHouse.addProduct(product6, category1);
         storeHouse.addProductInShop(product6, store1, 7);
 
-        let product7 = new Bota(7, 'BOTA ACORDONADA SUELA TRACK', 25.99, 44, 'Cordones', 'Track', 'Bioeco', "Zapato tipo bota acordonada disponible en varios colores"
+        let product7 = new Bota(7, 'Bota acordonada suela track', 25.99, 44, 'Cordones', 'Track', 'Bioeco', "Zapato tipo bota acordonada disponible en varios colores"
             , 0, './img/botas-p&b-2.png');
         storeHouse.addProduct(product7, category1);
         storeHouse.addProductInShop(product7, store2, 4);
         storeHouse.addProductInShop(product7, store3, 3);
 
-        let product8 = new Bota(8, 'BOTA CORDONES SUELA VOLUMEN', 39.95, 41, 'Cordones', 'Volumen', 'Poliuretano', "Bota de cordones. Disponible en color burdeos y en marrón."
+        let product8 = new Bota(8, 'Bota cordones', 39.95, 41, 'Cordones', 'Volumen', 'Poliuretano', "Bota de cordones. Disponible en color burdeos y en marrón."
             , 0, './img/botas-zara-1.png');
         storeHouse.addProduct(product8, category2);
         storeHouse.addProductInShop(product8, store2, 2);
 
-        let product9 = new Bota(9, 'BOTA CORDONES ENGOMADA', 49.95, 40, 'Cordones', 'Track', 'Poliéster', "Bota con cordones. Corte liso con acabado engomado."
+        let product9 = new Bota(9, 'Bota cordones engomada', 49.95, 40, 'Cordones', 'Track', 'Poliéster', "Bota con cordones. Corte liso con acabado engomado."
             , 0, './img/botas-zara-2.png');
         storeHouse.addProduct(product9, category2);
         storeHouse.addProductInShop(product9, store1, 8);
@@ -97,7 +99,7 @@ class ManagerController {
         storeHouse.addProductInShop(product12, store3, 7);
         storeHouse.addProductInShop(product12, store2, 7);
 
-        let product13 = new Pantalon(13, 'Chinos - slim fit - Flex', 49.99, 'Elástica', 'Botón', 'Al bies por delante y un bolsillo pequeño, dos bolsillos ribeteados por detrás.', "Algodón y Elastano",
+        let product13 = new Pantalon(13, 'Chinos slim fit', 49.99, 'Elástica', 'Botón', 'Al bies por delante y un bolsillo pequeño, dos bolsillos ribeteados por detrás.', "Algodón y Elastano",
             "Chinos ceñidos de tejido elástico. Con dos bolsillos al bies por delante y un bolsillo pequeño, dos bolsillos ribeteados por detrás.", 0, './img/pantalones-c&a-1.png');
         storeHouse.addProduct(product13, category4);
         storeHouse.addProductInShop(product13, store1, 4);
@@ -110,13 +112,13 @@ class ManagerController {
         storeHouse.addProductInShop(product14, store1, 11);
         storeHouse.addProductInShop(product14, store3, 14);
 
-        let product15 = new Pantalon(15, 'PANTALÓN CONFORT PLIEGUE', 29.95, 'Elástica y confortable', 'Botón y Cremallera', 'En delantero y detalle de bolsillos de vivo en espalda', "Poliéster, viscosa y elastano", 
+        let product15 = new Pantalon(15, 'Pantalón Confort Pliegue', 29.95, 'Elástica y confortable', 'Botón y Cremallera', 'En delantero y detalle de bolsillos de vivo en espalda', "Poliéster, viscosa y elastano", 
             "Pantalón confeccionado en tejido de estructura elástica y confortable. Detalle de pliegues frontales en cintura.", 0, './img/pantalones-zara.png');
         storeHouse.addProduct(product15, category2);
         storeHouse.addProductInShop(product15, store2, 1);
 
         /*CALCETINES*/
-        let product16 = new Calcetin(16, 'HEATGEAR LOCUT 3 PACK - Calcetines de deporte', 7.95, "Deporte", 'Tobileros', 'Punto', 3, "Calcetines de deporte", 0, './img/calcetines-zalando.png');
+        let product16 = new Calcetin(16, 'Heatgear Locut', 7.95, "Deporte", 'Tobileros', 'Punto', 3, "Calcetines de deporte", 0, './img/calcetines-zalando.png');
         storeHouse.addProduct(product16, category5);
         storeHouse.addProductInShop(product16, store1, 3);
         storeHouse.addProductInShop(product16, store3, 2);
@@ -130,12 +132,12 @@ class ManagerController {
         storeHouse.addProduct(product18, category3);
         storeHouse.addProductInShop(product18, store1, 12);
 
-        let product19 = new Calcetin(19, 'CALCETINES JACQUARD THE BEATLES PACK 2', 12.95, "THE BEATLES", 'Largos', 'Algodón, Poliamida y Elastano', 2, "Pack de calcetines con jacquard The Beatles. Acabados en rib.",
+        let product19 = new Calcetin(19, 'Calcetines Jacquard The Beathles', 12.95, "THE BEATLES", 'Largos', 'Algodón, Poliamida y Elastano', 2, "Pack de calcetines con jacquard The Beatles. Acabados en rib.",
             0, './img/calcetines-zara.png');
-        storeHouse.addProduct(product19, category2);
+        storeHouse.addProduct(product19, category1);
         storeHouse.addProductInShop(product19, store2, 10);
 
-        let product20 = new Calcetin(20, 'PACK TRES CALCETINES ALTOS', 7.99, "Tela", 'Largos', 'Algodón, Poliamida y Elastano', 3, "JOIN LIFE Care for fiber & Care for water: At least 75% of Ecologically Grown Cotton.",
+        let product20 = new Calcetin(20, 'Calcetines Altos', 7.99, "Tela", 'Largos', 'Algodón, Poliamida y Elastano', 3, "JOIN LIFE Care for fiber & Care for water: At least 75% of Ecologically Grown Cotton.",
              0, './img/calcetines-p&b.png');
         storeHouse.addProduct(product20, category1);
         storeHouse.addProductInShop(product20, store1, 70);

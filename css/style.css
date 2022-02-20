@@ -11,9 +11,9 @@ main{grid-area: main;}
 body{
     background-image: url("../img/dark-canvas.gif");
     display: grid;
-    grid-template-areas: "head head head head head"
-                         "nav main main main aside"
-                         "footer footer footer footer footer";  
+    grid-template-areas: "head head head head"
+                         "main main main aside"
+                         "footer footer footer footer";  
 }
 
 /* INDEX */
@@ -70,33 +70,6 @@ body{
     margin-top: 1.75%;
     width: 45%;
     margin-left: 15%;
-}
-
-.cabezareg__logo{
-    flex: 1 1 15%;
-}
-
-.cabeza__busreg{
-    flex: 1 1 55%;
-}
-
-#cabeza__busqreg--sea{
-    width: 80%;
-    height: 30px;
-    border-radius: 10px;
-    margin-top: 4%;
-}
-
-.cabeza__cierre{
-    flex: 1 1 15%;
-}
-
-#cabeza__cierre--btn{
-    margin-top: 15%;
-}
-
-.cabeza__carri{
-    flex: 1 1 15%;
 }
 
 /* PERFIL & CARRITO */
@@ -314,15 +287,6 @@ select > option{
     background-color: rgba(61, 197, 174, 0.527);
 }
 
-.publicidad{
-    margin-top: 25%;
-    margin-left: 15%;
-}
-
-#publicidad--sale{
-    width: 60%;
-}
-
 .minijuego{
     height: 600px;
     width: 800px;
@@ -538,6 +502,113 @@ select > option{
     margin-left: 2.5%;
 }
 
+#main-image{
+    width: 120%;
+    margin-top: 20%;
+}
+
+.publicidad__2{
+    display: none;
+}
+
 .ajustar{
-    margin-left: 0.5%;
+    padding: 10px;
+    width: 120%;
+    margin-left: 15%;  
+    border: 5px solid red;
+}
+
+@media screen and (min-width:2400px){
+    .cuerpo__espe{
+        margin-top: 5%;
+    }
+
+    .publicidad{
+        margin-top: 15%;
+        margin-left: 5%;
+        width: 60%;
+    }
+}
+
+@media screen and (min-width:1701px){
+    .cuerpo__espe{
+        margin-top: 5%;
+    }
+
+    .publicidad{
+        margin-top: 15%;
+        margin-left: 5%;
+        width: 60%;
+    }
+}
+
+@media screen and (min-width:1300px){
+    .cuerpo__espe{
+        margin-top: 5%;
+        width: 90%;
+    }
+
+    .publicidad{
+        width: 280px;
+        position: relative;
+        top: 17px;
+        left: -80px;
+    }
+}
+
+@media screen and (min-width:1000px){
+    .publicidad{
+        width: 260px;
+    }
+
+    .cuerpo__espe{
+        margin-top: 5%;
+        width: 80%;
+    }
+
+    .busqueda{
+        width: 40%
+    }
+
+    footer{
+        margin-top: 25%;
+    }
+}
+
+@media screen and (min-width:701px){
+    .publicidad{
+        width: 260px;
+    }
+
+    .cuerpo__espe{
+        margin-top: 5%;
+        width: 80%;
+    }
+}
+
+@media screen and (max-width:700px){
+    .publicidad{
+        display: none;
+    }
+
+    #category-list{
+        margin-left: 2%;
+    }
+
+    .publicidad__2{
+        display: block;
+        width: 20%;
+        margin-top: 5%;
+        margin-left: 0.5%;
+        margin-bottom: 5%;
+    }
+
+    body{
+        display: grid;
+        grid-template-areas: "head head head head"
+                             "main main main main"
+                             "aside aside aside aside"
+                             "footer footer footer footer";  
+    }
+    
 }

@@ -23,7 +23,7 @@
                 <a href="./index.html" id="logo" class="navbar-brand">
                     <img src="./img/logo.png" alt="Logo PortalGames" id="cabeza__logo--img">
                 </a>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="./index.html" id="init">Inicio</a>
@@ -45,12 +45,18 @@
                             </div>
                         </li>
                     </ul>
-                    <form class="d-flex w-50 ms-2">
+                    <form class="d-flex ms-2 busqueda">
                         <input class="form-control me-4" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
                 </div>
             </div>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </nav>
 
         <dialog class="sesion">
@@ -152,7 +158,8 @@
                             Campo Obligatorio
                         </div>
                     </div>
-                    <div class="input-group mb-2 col w-25"><!--Poner en negro, mirar en la pagina de bootstrap-->
+                    <div class="input-group mb-2 col w-25">
+                        <!--Poner en negro, mirar en la pagina de bootstrap-->
                         <select name="selOpt" class="form-control is-invalid" required>
                             <option value="1">Femenino</option>
                             <option value="2">Masculino</option>
@@ -172,146 +179,26 @@
         </dialog>
     </header>
 
-    <main class="main" >
-        <nav aria-label="breadcrumb" id="breadcrumb">
+    <main class="cuerpo">
+        <!--<nav aria-label="breadcrumb" id="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="./index.html" class="text-white">Inicio</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Novedades</li>
             </ol>
-        </nav>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm">
-                    <figure class="figure card text-center">
-                        <h5 class="card-title">Traje Azul Marino</h5>
-                        <img src="./img/traje-1.png" class="card-img-top figure-img" alt="Traje Azul Marino"
-                            tabindex="0" data-toggle="popover" data-placement="right" data-content="149.99€"
-                            data-trigger="hover focus">
-                        <figcaption class="figure-caption card-body text-center">
-                            <button type="button" class="btn btn-primary mt-2" data-container="body"
-                                data-toggle="popover" data-trigger="hover focus"
-                                data-content="Para añadir al carrito, necesitas estar registrado">Añadir al
-                                carrito</button>
-                        </figcaption>
-                    </figure>
-                </div>
-                <div class="col">
-                    <figure class="figure card" id="card2">
-                        <h5 class="card-title text-center">Abrigo Cruzado largo gris</h5>
-                        <a href="#">
-                            <img src="./img/abrigo-largo-gris.png" class="card-img-top figure-img"
-                                alt="Abrigo Cruzado largo gris" tabindex="0" data-container="body" data-toggle="popover"
-                                data-trigger="hover focus" data-content="89.99€" data-placement="left">
-                            <figcaption class="figcaption card-body text-center">
-                                <button type="button" class="btn btn-primary mt-2" data-container="body"
-                                    data-toggle="popover" data-trigger="hover focus"
-                                    data-content="Para añadir al carrito, necesitas estar registrado"
-                                    data-placement="left">Añadir al
-                                    carrito</button>
-                            </figcaption>
-                        </a>
-                    </figure>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <figure class="figure card">
-                        <h5 class="card-title text-center" class="d-inline-block">Chaquetón Azul</h5>
-                        <a href="#">
-                            <img src="./img/chaqueton-azul.png" class="card-img-top figure-img" alt="Chaquetón Azul"
-                                data-container="body" data-toggle="popover" data-trigger="hover focus"
-                                data-content="49.99€">
-                        </a>
-                        <figcaption class="figcaption card-body text-center">
-                            <button type="button" class="btn btn-primary" data-container="body" data-toggle="popover"
-                                data-trigger="hover focus"
-                                data-content="Para añadir al carrito, necesitas estar registrado">Añadir al
-                                carrito</button>
-                        </figcaption>
-                    </figure>
-                </div>
+        </nav>-->
+        <div class="cuerpo__espe">
 
-                <div class="col">
-                    <figure class="figure card">
-                        <h5 class="card-title text-center mb-5">Zapatillas altas</h5>
-                        <a href="#">
-                            <img src="./img/depors-dest.png" class="card-img-top figure-img" alt="Zapatillas Altas"
-                                class="mt-2" tabindex="0" data-toggle="popover" data-trigger="hover focus"
-                                data-content="35.90€">
-                        </a>
-                        <figcaption class="figcaption card-body text-center">
-                            <button type="button" class="btn btn-primary mt-2" data-container="body"
-                                data-toggle="popover" data-trigger="hover focus"
-                                data-content="Para añadir al carrito, necesitas estar registrado"
-                                data-placement="left">Añadir al
-                                carrito</button>
-                        </figcaption>
-                    </figure>
-                </div>
-            </div>
         </div>
-        </div>
-
-        <!--<section id="especificaciones" class="espe">
-            <div class="card">
-                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="./img/traje-1.png" class="d-block w-50" alt="Traje Completo" id="traje">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="./img/traje-2.png" class="d-block w-25" alt="Traje Completo Hombre Delante"
-                                id="traje">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="./img/traje-3.png" class="d-block w-25" alt="Traje Completo Hombre Detrás"
-                                id="traje">
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title text-center">Traje Azul Marino</h5>
-                    <p class="card-text text-danger fs-3 text-center">149.99€</p>
-                    <p class="justify-content">
-                        Línea Tailored. Diseño corto. Super slim fit. Diseño de cuadros. Solapas con muesca. Manga larga
-                        con puños abotonados. Bolsillo de ribete en el pecho. Dos bolsillos de solapa en la parte
-                        frontal. Aberturas posteriores. Cierre de botones. Forro interior. Bolsillo interior. Etiqueta
-                        interior personalizable. El modelo mide 185 cm y lleva una talla 50.
-                        <br><br>
-                        El fit más ajustado que encontrarás en nuestra colección de trajes. Con la solapa más estrecha,
-                        el modelo Super Slim Fit se ha diseñado en diferentes colores para vestir distintos momentos del
-                        día. Escoge el estilo que vaya mejor con tu personalidad.
-                    <ul>
-                        <li><strong>Tono: </strong>Azul.</li>
-                        <li><strong>Tejido: </strong>Yves Klein Light.</li>
-                        <li><strong>Tipo: </strong>Mezcla Lana, Limited edition.</li>
-                        <li><strong>Temporada: </strong>Entretiempo.</li>
-                    </ul>
-                    </p>
-                    <div class="text-center">
-                        <button type="button" class="btn btn-primary mt-2" data-bs-container="body"
-                            data-bs-toggle="popover" data-bs-trigger="hover focus"
-                            data-bs-content="Para añadir al carrito, necesitas estar registrado"
-                            data-bs-placement="left">Añadir al
-                            carrito</button>
-                    </div>
-                </div>
-            </div>
-        </section>-->
     </main>
 
     <aside class="publicidad">
-        <a href="#"><img src="./img/publi-2.gif" alt="Sale" id="publicidad--sale"></a>
+        <a href="#"><img src="./img/publi.jpg"
+                alt="Vende tu completamente gratis. Sin Comisiones. Sin letra pequeña. Infórmate"
+                id="publicidad--sale"></a>
+    </aside>
+    <aside class="publicidad__2">
+        <a href="#"><img src="./img/publi-2.jpg"
+                alt="Vende tu completamente gratis. Sin Comisiones. Sin letra pequeña. Infórmate"
+                id="publicidad--sale"></a>
     </aside>
     <footer class="pie">
         <section class="arriba">
@@ -434,10 +321,10 @@
                 <h3>Contacto</h3>
                 <ul>
                     <li>
-                        <i class="fa fa-envelope"></i><span class="ms-2">blasladero12@gmail.com</span>
+                        <i class="fa fa-envelope"></i> <span>blasladero12@gmail.com</span>
                     </li>
                     <li class="me-4">
-                        <i class="fa fa-phone"></i><span class="ms-2">926 63 45 15</span>
+                        <i class="fa fa-phone"></i> <span class="ms-2">926 63 45 15</span>
                     </li>
                 </ul>
                 <h5>¿Necesitas ayuda?</h5>

@@ -3,7 +3,7 @@ import {
     InvalidAccessConstructorException,
     EmptyValueException,
     InvalidValueException
-} from '../shoppingCart/exceptions.js';
+} from '../exceptions.js';
 import { Coords } from './coords.js';
 
 class Store {

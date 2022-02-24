@@ -23,7 +23,7 @@
                 <a href="./registered.html" id="logo" class="navbar-brand">
                     <img src="./img/logo.png" alt="Logo PortalGames" id="cabeza__logo--img">
                 </a>
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="./registered.html" id="init">Inicio</a>
@@ -37,7 +37,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Productos
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="type-product">
+                            <div class="dropdown-menu reducir" aria-labelledby="type-product">
                                 <a data-category="Traje" class="dropdown-item" href="#product-list">Traje</a>
                                 <a data-category="Bota" class="dropdown-item" href="#product-list">Bota</a>
                                 <a data-category="Pantalon" class="dropdown-item" href="#product-list">Pantalon</a>
@@ -45,127 +45,23 @@
                             </div>
                         </li>
                     </ul>
-                    <form class="d-flex w-50 ms-2">
+                    <form class="d-flex w-50 ms-2 busqueda">
                         <input class="form-control me-4" type="search" placeholder="Search" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
                 </div>
             </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse"
+                data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
         </nav>
     </header>
-    <main class="main" id="main_regis">
-        <nav aria-label="breadcrumb" id="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="#" class="text-white">Inicio</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Novedades</li>
-            </ol>
-        </nav>
-        <div class="row row-cols-1 row-cols-sm-2 g-4">
-            <div class="col">
-                <figure class="figure card text-center card__regis">
-                    <h5 class="card-title">Traje Azul Marino</h5>
-                    <img src="./img/traje-1.png" class="card-img-top" alt="..." tabindex="0" data-bs-toggle="popover"
-                        data-bs-trigger="hover focus" data-bs-content="149.99€" onclick="mostEspeRegis()">
-                    <figcaption class="figure-caption card-body text-center">
-                        <button type="button" class="btn btn-primary mt-2">Añadir al
-                            carrito</button>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col">
-                <figure class="figure card card__regis">
-                    <h5 class="card-title text-center">Abrigo Cruzado largo gris</h5>
-                    <img src="./img/abrigo-largo-gris.png" class="card-img-top" alt="..." tabindex="0"
-                        data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="89.99€"
-                        data-bs-placement="left">
-                    <figcaption class="figure-caption card-body text-center">
-                        <button type="button" class="btn btn-primary mt-2">Añadir al
-                            carrito</button>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col">
-                <figure class="figure card card__regis">
-                    <h5 class="card-title text-center" class="d-inline-block">Chaquetón Azul</h5>
-                    <img src="./img/chaqueton-azul.png" class="card-img-top" alt="..." data-bs-toggle="popover"
-                        data-bs-trigger="hover focus" data-bs-content="49.99€">
-                    <figcaption class="figure-caption card-body text-center">
-                        <button type="button" class="btn btn-primary">Añadir al
-                            carrito</button>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col">
-                <figure class="figure card card__regis">
-                    <h5 class="card-title text-center mb-5">Zapatillas altas</h5>
-                    <img src="./img/depors-dest.png" class="card-img-top" alt="..." class="mt-2" tabindex="0"
-                        data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="35.90€"
-                        data-bs-placement="left">
-                    <figcaption class="figcaption card-body text-center">
-                        <button type="button" class="btn btn-primary mt-2">Añadir al
-                            carrito</button>
-                    </figcaption>
-                </figure>
-            </div>
-        </div>
+    <main class="cuerpo">
+        <div class="cuerpo__espe" id="main_regis">
 
-        <section id="especificaciones" class="espe">
-            <div class="card">
-                <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                        data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                        data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="./img/traje-1.png" class="d-block w-50" alt="Traje Completo" id="traje">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="./img/traje-2.png" class="d-block w-25" alt="Traje Completo Hombre Delante"
-                                id="traje">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="./img/traje-3.png" class="d-block w-25" alt="Traje Completo Hombre Detrás"
-                                id="traje">
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <h5 class="card-title text-center">Traje Azul Marino</h5>
-                    <p class="card-text text-danger fs-3 text-center">149.99€</p>
-                    <p class="justify-content">
-                        Un Traje Azul Cobalto de Mezcla Lana con pañuelo se va a convertir en tu traje preferido. Todos
-                        los Trajes Menswear-BQ son confeccionados a medida. Mídete en tu casa y confeccionaremos un
-                        traje
-                        Azul Cobalto artesanal desde cero.
-                        <br><br>
-                        El traje con solapa estándar es la elección más segura, sin sacrificar elegancia. Nuestros
-                        sastres están preparados para cortar los metros de tejido de Mezcla Lana necesarios para empezar
-                        a confeccionar tu traje con todos los detalles que has elegido: chaqueta Simple, solapa standard
-                        y 2 bolsillos, entre otros.
-                    <ul>
-                        <li><strong>Tono: </strong>Azul.</li>
-                        <li><strong>Tejido: </strong>Yves Klein Light.</li>
-                        <li><strong>Tipo: </strong>Mezcla Lana, Limited edition.</li>
-                        <li><strong>Temporada: </strong>Entretiempo.</li>
-                    </ul>
-                    </p>
-                    <div class="text-center">
-                        <button type="button" class="btn btn-primary mt-2" data-bs-container="body"
-                            data-bs-toggle="popover" data-bs-trigger="hover focus"
-                            data-bs-content="Para añadir al carrito, necesitas estar registrado"
-                            data-bs-placement="left">Añadir al
-                            carrito</button>
-                    </div>
-                </div>
-            </div>
-        </section>
+        </div>
     </main>
 
     <script src="./js/minigame.js"></script>

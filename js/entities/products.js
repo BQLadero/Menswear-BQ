@@ -4,7 +4,7 @@ import {
     InvalidAccessConstructorException,
     EmptyValueException,
     InvalidValueException
-} from '../shoppingCart/exceptions.js';
+} from '../exceptions.js';
 
 class Product {
     //Creación de los atributos

@@ -5,183 +5,28 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Menswear BQ | Mi Carrito</title>
-    <link rel="icon" href="img/dragon-icono.png">
-    <link rel="stylesheet" href="./normalize.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Menswear BQ || Producto específico</title>
+    <link rel="icon" href="./img/logo.png">
+    <link rel="stylesheet" href="./css/normalize.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+        integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 </head>
 
-<body class="carrito">
-    <header class="cabeza__carrito">
-        <section class="cabezacarr__logo">
-            <a href="./registered.html">
-                <img src="./img/logo.png" alt="Logo PortalGames" id="cabezacarr__logo--img">
-            </a>
-        </section>
-        <section class="cabezacarr__productos">
-            <h1 id="cabezacarr__productos--h1">Mi carrito</h1>
-        </section>
-        <section class="cabezacarr__cierre">
-            <button type="button" name="cierre" class="btn btn-light mt-4">
-                <a href="./index.html">Cerrar Sesi&oacute;n</a></button>
-        </section>
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        </nav>
     </header>
 
-    <!--<nav class="navegacion__carrito">
-        <div class="btn-group" id="btn--nov">
-            <button type="button" class="btn btn-secondary" onclick="window.location.href='./registered.html'">
-                Inicio
-            </button>
-        </div>
-        <br>
-        <br>
-        <div class="btn-group">
-            <button type="button" class="btn btn-secondary" onclick="window.location.href='./profile.html'">
-                Perfil
-            </button>
-        </div><br>
-        <br>
-    </nav>-->
+    <main>
 
-    <main class="cuerpo__carrito" id="cesta">
-        <!--<nav aria-label="breadcrumb">
-            <ol class="breadcrumb ms-2">
-                <li class="breadcrumb-item"><a href="#" class="text-white">Inicio</a></li>
-                <li class="breadcrumb-item"><a href="#" class="text-white">Perfil</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Mi Carrito</li>
-            </ol>
-        </nav>-->
-
-        <div class="container">
-            <div class="row">
-                <div class="col text-center">
-                    <a href="#">
-                        <img src="./img/depors-dest.png" alt="Zapatillas altas" id="cuerpo__producto__portada--img">
-                    </a>
-                    <article class="p-3">
-                        <h4>Zapatillas altas</h4>
-                        <p id="cuerpo__producto__descripcion--p">
-                            Precio: 35.90€
-                            <input type="number" name="aniadir" value="1" max="20" min="1" class="aniadir">
-                        </p>
-                        <button type="button" class="btn btn-secondary">
-                            Eliminar
-                        </button>
-                    </article>
-                </div>
-                <div class="col text-center">
-                    <a href="#">
-                        <img src="./img/chaqueton-azul.png" alt="Chaquetón Azul" id="cuerpo__producto__portada--img">
-                    </a>
-                    <article class="p-3">
-                        <h4>Chaquetón Azul</h4>
-                        <p id="cuerpo__producto__descripcion--p">
-                            Precio: 49.99€
-                            <input type="number" name="aniadir" value="1" min="1" max="20" class="aniadir">
-                        </p>
-                        <button type="button" class="btn btn-secondary">
-                            Eliminar
-                        </button>
-                    </article>
-                </div>
-            </div>
-        </div>
-
-        <section class="text-center">
-            <span class="placeholder col-12 placeholder-xs"></span>
-            <h4>Subtotal</h4>
-            <p>Precio sin IVA -> 67.93€</p>
-            <p>Precio con IVA -> 85.89€</p>
-            <button type="button" class="btn btn-secondary mb-2" data-toggle="modal"
-                data-target="#exampleModalLong">Comprar</button>
-        </section>
-
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog"
-            aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content text-black">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLongTitle">Método de Pago</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="text-center">
-                            <button type="button" class="btn btn-secondary">
-                                Tarjeta de Crédito
-                            </button>
-                            <button type="button" class="btn btn-secondary">
-                                PayPal
-                            </button>
-                            <button type="button" class="btn btn-secondary">
-                                Transferencia bancaria
-                            </button>
-                            <span class="placeholder col-12 placeholder-xs"></span>
-                        </div>
-
-                        <section class="tarjeta">
-                            <div class="row">
-                                <div class="col">
-                                    <label for="nmbTar" class="izquierda">Número de tarjeta</label>
-                                    <input type="number" name="nmbTar" id="nmbTar">
-                                    <div>
-                                        <div>
-                                            <p id="nmbTarText">Introduzca los 16 números</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label for="txtTit" class="derecha">Nombre del Titular</label>
-                                    <input type="txt" name="txtTit" id="txtTit">
-                                    <div>
-                                        <p id="txtTitText"></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mt-4">
-                                <div class="col">
-                                    <label for="monFC">Fecha de Caducidad</label>
-                                    <input type="month" id="monFC">
-                                    <div>
-                                        <p id="monFCText"></p>
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <label for="nbmCvv" class="derecha">Código de verificación (CVV)</label>
-                                    <input type="number" name="nbmCvc" min="100" max="999" placeholder="142" size="3" id="nbmCvv">
-                                    <div>
-                                        <p id="nbmCvvText"></p>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col text-center mt-3">
-                                <input type="submit" class="enviar" value="Enviar" name="enviar3" id="enviar3" onsubmit="cargaForm3()">
-                            </div>
-                        </section>
-
-                        <section class="paypal">
-
-                        </section>
-
-                        <section class="trans">
-
-                        </section>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                        <button type="button" class="btn btn-primary">Aceptar</button>
-                    </div>
-                </div>
-            </div>
-        </div>
     </main>
-
     <footer class="pie">
         <section class="arriba">
             <section class="information mt-2 text-center">
@@ -303,12 +148,14 @@
                 <h3>Contacto</h3>
                 <ul>
                     <li>
-                        <i class="fa fa-envelope"></i><span class="ms-2">blasladero12@gmail.com</span>
+                        <i class="fa fa-envelope"></i> <span>blasladero12@gmail.com</span>
                     </li>
                     <li class="me-4">
-                        <i class="fa fa-phone"></i><span class="ms-2">926 63 45 15</span>
+                        <i class="fa fa-phone"></i> <span class="ms-2">926 63 45 15</span>
                     </li>
                 </ul>
+                <h5>¿Necesitas ayuda?</h5>
+                <p class="text-center ms-3">¡Póngase en contacto con nosotros!</p>
             </section>
         </section>
         <p class="text-center">&copy; Menswear-BQ | Blas Quiñones Ladero</p>
@@ -320,7 +167,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
         integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
-    <script src="./js/shopping.js"></script>
+
 </body>
 
 </html>

@@ -20,28 +20,33 @@
     <header class="cabeza">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a href="./index.html" id="logo" class="navbar-brand">
+                <a href="#" id="logo" class="navbar-brand">
                     <img src="./img/logo.png" alt="Logo PortalGames" id="cabeza__logo--img">
                 </a>
                 <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="./index.html" id="init">Inicio</a>
+                            <a class="nav-link active" aria-current="page" href="#" id="init">Inicio</a>
                         </li>
                         <li class="nav-item">
                             <a role="button" name="inicio" class="nav-link active" onclick="showDialog()">Iniciar
                                 Sesi&oacute;n</a>
                         </li>
+                        <li class="nav-item" id="close">
+                            <a class="nav-link active" role="button" aria-pressed="true" href="#" id="closeWindows">
+                                Cerrar ventanas abiertas
+                            </a>
+                        </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="type-product" role="button"
+                            <a class="nav-link dropdown-toggle" href="#" id="type-list" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Productos
                             </a>
                             <div class="dropdown-menu" aria-labelledby="type-product">
-                                <a data-category="Traje" class="dropdown-item" href="#product-list">Traje</a>
-                                <a data-category="Bota" class="dropdown-item" href="#product-list">Bota</a>
-                                <a data-category="Pantalon" class="dropdown-item" href="#product-list">Pantalon</a>
-                                <a data-category="Calcetin" class="dropdown-item" href="#product-list">Calcetin</a>
+                                <a data-category="Traje" class="dropdown-item" href="#productlist">Traje</a>
+                                <a data-category="Bota" class="dropdown-item" href="#productlist">Bota</a>
+                                <a data-category="Pantalon" class="dropdown-item" href="#productlist">Pantalon</a>
+                                <a data-category="Calcetin" class="dropdown-item" href="#productlist">Calcetin</a>
                             </div>
                         </li>
                     </ul>
@@ -63,7 +68,7 @@
             <h1 id="sesion--h1">Iniciar Sesi&oacute;n</h1>
             <form action="./registered.html" name="sesion__f1" class="sesion__f1" method="post">
                 <label for="usuario" id="sesion__f1--usuLab">Nombre de usuario:</label>
-                <input type="text" id="sesion__f1--usu" name="usuario" class="sesion" maxlength="20" required><br><br>
+                <input type="text" id="sesion__f1--usu" name="usuario" maxlength="20" required><br><br>
                 <label for="pwdContraseña" id="sesion__f1--pwdLab">Contrase&ntilde;a:</label>
                 <input type="password" name="pwdContraseña" id="sesion__f1--pwd" minlength="8" maxlength="20" required
                     data-bs-container="body" data-bs-toggle="popover" data-bs-trigger="hover focus"
@@ -71,7 +76,7 @@
                      y mayusculas (al menos una), números y caracteres especiales.La longitud minima es de 8 y la máxima de 20." class="text-black">
                 <br>
                 <br>
-                <a href="#" id="sesion__f1--olv">Olvid&eacute; la contrase&ntilde;a</a>
+                <a href="#">Olvid&eacute; la contrase&ntilde;a</a>
                 <a href="#" id="sesion__f1--cre" onclick="crearCuenta(); closeDialog()">Crear cuenta</a>
                 <br>
                 <br>
@@ -340,8 +345,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
         integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
+
     <script src="./js/index.js"></script>
-    <script src="/js/manager/managerApp.js" type="module"></script>
+    <script src="./js/shop.js" type="module"></script>
 
 </body>
 

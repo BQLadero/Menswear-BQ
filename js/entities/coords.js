@@ -2,7 +2,7 @@
 import {
     InvalidAccessConstructorException,
     EmptyValueException,
-} from '../shoppingCart/exceptions.js';
+} from '../exceptions.js';
 
 class Coords {
     #latitude;

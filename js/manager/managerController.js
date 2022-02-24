@@ -3,7 +3,7 @@ import {
     InvalidAccessConstructorException,
     EmptyValueException,
     InvalidValueException
-} from '../shoppingCart/exceptions.js';
+} from '../exceptions.js';
 import { Product, Traje, Bota, Pantalon, Calcetin } from '../entities/products.js';
 import { Category } from '../entities/category.js';
 import { Store } from '../entities/store.js';
@@ -149,30 +149,25 @@ class ManagerController {
 
         this.onLoad();
         this.onInit();
-        
         this.#storeHouseView.bindInit(this.handleInit);
+        this.#storeHouseView.closeWindows();
         //this.#storeHouseView.bindProductsTypeList(this.handleProductsTypeList);
         
     }
 
     onLoad = () => {
         this.#loadManagerObjects(); //Llamada a la funcion de creación de objectos
-        //this.#managerView.showProductTypes();
-        this.onAddShop();
         this.onAddCategory();
-
+        this.onAddShop();
     }
 
     onInit = () => {
         this.#storeHouseView.showShops(this.#storeHouse.getShops());
-        this.#storeHouseView.bindProductsCategoryList(
-            this.handleProductsCategoryList
+        this.#storeHouseView.bindTypeProductsListInMenu(
+            this.handleTypeProductsList
         );
         this.#storeHouseView.bindShopProductsList(
             this.handleShopProductsList
-        );
-        this.#storeHouseView.bindTypeProductsList(
-            this.handleTypeProductsList
         );
     }
 
@@ -182,6 +177,9 @@ class ManagerController {
 
     onAddCategory = () => { //Añadición de las categorias creadas al menú
         this.#storeHouseView.showCategoriesInMenu(this.#storeHouse.categories);
+        this.#storeHouseView.bindProductsCategoryListInMenu(
+            this.handleProductsCategoryList
+        );
     }
 
     handleInit = () => {
@@ -191,24 +189,31 @@ class ManagerController {
     handleProductsCategoryList = (title) => {
         let category = this.#storeHouse.getCategory(title);
         let products = this.#storeHouse.getCategoryProducts(category);
-        this.#storeHouseView.listProducts(products, title);
-        this.#storeHouseView.bindShowProduct(this.handleShowProduct); //Muestra el producto con sus caracteristicas
+        this.#storeHouseView.listProducts(products, category.title);
+        //this.#storeHouseView.bindShowProduct(this.handleShowProduct); //Muestra el producto con sus caracteristicas
+        //this.#storeHouseView.bindshowProductInNewWindow(this.handleShowProduct);
+        this.#storeHouseView.bindshowProductInNewWindow();
     }
 
     handleShopProductsList = (shop) => {
         this.#storeHouseView.listShopProducts((this.#storeHouse.getProductinShops(shop)), shop);
-        this.#storeHouseView.bindShowProduct(this.handleShowProduct);
+        //this.#storeHouseView.bindShowProduct(this.handleShowProduct);
+        console.log("hola");
+        this.#storeHouseView.bindshowProductInNewWindow();
     }
 
     handleTypeProductsList = (type) =>{
         this.#storeHouseView.listTypeProducts(this.#storeHouse.getTypeProduct(type), type);
-        this.#storeHouseView.bindShowProduct(this.handleShowProduct);
+        //this.#storeHouseView.bindShowProduct(this.handleShowProduct);
+        this.#storeHouseView.bindshowProductInNewWindow(this.handleShowProduct);
     }
 
-    handleShowProduct = (serialNumber) => {
+    handleShowProduct = (serial) => {
 		try {
-			let product = this.#storeHouse.getProduct(Number.parseInt(serialNumber.serial));
-			this.#storeHouseView.showProduct(product);
+			let product = this.#storeHouse.getProduct(Number.parseInt(serial));
+			//this.#storeHouseView.showProduct(product);
+            this.#storeHouseView.bindshowProductInNewWindow(product);
+            //this.handleShowProductInNewWindow esto va en el bindshowProductInNewWindow
 		} catch (error) {
 			this.#storeHouseView.showProduct(null, 'No existe este producto en la página.');
 		}

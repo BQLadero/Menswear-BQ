@@ -100,7 +100,7 @@ body{
     background-image: url("../img/dark-canvas.gif");
     display: grid;
     grid-template-areas: "headCarr headCarr headCarr"
-                         "navCarr mainCarr mainCarr"
+                         "mainCarr mainCarr mainCarr"
                          "footer footer footer";
     color: white;
 }
@@ -247,9 +247,9 @@ a,a:link, a:visited{color: black; text-decoration: none;}
 }
 
 .sesion, .sesion2{
+    text-align: center;
     z-index: 1;
-    margin-top: 8%;
-    background-color: rgb(0, 13, 130);
+    background-color: rgba(0, 78, 130, 0.726);
 }
 select > option{
     color: black;
@@ -267,12 +267,17 @@ select > option{
     color: black;
 }
 
+.invalid-feedback{
+    font-size: 18px;
+    color: rgb(255, 0, 0);
+}
+
 .sesion__f1 > a,
 .sesion__f1 > a:link, 
-.sesion__f1 > a:visited{color: red;}
+.sesion__f1 > a:visited{color: rgba(187, 255, 0, 0.685);}
 
 #sesion__f1__btn--sub{
-    margin-left: 18%;
+    margin-left: 5%;
     width: 30%;
     color: black;
 }
@@ -427,8 +432,10 @@ select > option{
 
 .cuerpo__carrito{
     background-color: rgba(212, 209, 209, 0.144);
-    width: 70%;
+    width: 80%;
+    margin: 10%;
     margin-top: 2%;
+    margin-bottom: 2%;
     display:flex;
     flex-direction: column;
 }
@@ -507,15 +514,27 @@ select > option{
     margin-top: 20%;
 }
 
+#main-image-window{
+    width: 80%;
+}
+
 .publicidad__2{
     display: none;
+}
+
+.aniadir{
+    width: 7%;
+    color: black;
 }
 
 .ajustar{
     padding: 10px;
     width: 120%;
     margin-left: 15%;  
-    border: 5px solid red;
+}
+
+.busqueda{
+    width: 35%;
 }
 
 @media screen and (min-width:2400px){
@@ -548,12 +567,19 @@ select > option{
         width: 90%;
     }
 
+
+    #main_regis{
+        margin-top: 5%;
+        width: 95%;
+    }
+
     .publicidad{
         width: 280px;
         position: relative;
         top: 17px;
         left: -80px;
     }
+
 }
 
 @media screen and (min-width:1000px){
@@ -566,9 +592,14 @@ select > option{
         width: 80%;
     }
 
-    .busqueda{
-        width: 40%
+    #main_regis{
+        margin-top: 5%;
+        width: 95%;
     }
+
+    /*.busqueda{
+        width: 35%
+    }*/
 
     footer{
         margin-top: 25%;
@@ -584,6 +615,10 @@ select > option{
         margin-top: 5%;
         width: 80%;
     }
+
+    .reducir{
+        margin-top: 5%;
+    }
 }
 
 @media screen and (max-width:700px){
@@ -593,6 +628,12 @@ select > option{
 
     #category-list{
         margin-left: 2%;
+    }
+
+    .ajustar{
+        padding: 10px;
+        width: 120%;
+        margin-left: 10%;  
     }
 
     .publicidad__2{

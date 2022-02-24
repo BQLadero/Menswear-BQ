@@ -4,7 +4,7 @@ import {
     InvalidAccessConstructorException,
     EmptyValueException,
     InvalidValueException
-} from '../shoppingCart/exceptions.js';
+} from '../exceptions.js';
 import { Product, Traje, Bota, Pantalon, Calcetin } from '../entities/products.js';
 import { Category } from '../entities/category.js';
 import { Store } from '../entities/store.js';

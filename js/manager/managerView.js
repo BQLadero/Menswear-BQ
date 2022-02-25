@@ -10,6 +10,7 @@ class ManagerView {
 		event.preventDefault();
 	}
 
+	//Función creada para mostrar los productos y no tener que crearla x veces
 	#showProductInNewWindow(window, product, message) {
 		console.log(product);
 		let main = $(window.document).find('main');
@@ -76,7 +77,7 @@ class ManagerView {
 		this.publi = $('.publicidad');
 		this.openWindows = new Map();
 		this.close = $('#close');
-		this.storeHouse = StoreHouse.getInstance();
+		this.storeHouse = StoreHouse.getInstance(); //Creo este parametro unicamente para la ventana emergente
 	}
 
 	bindInit(handler) { //Recarga la página
@@ -91,24 +92,21 @@ class ManagerView {
 
 	showShops(shops) {
 		this.main.empty();
-		let container = $('<div id="shops" class="row"></div>');
+		let container = $('<div id="shops-products" class="row"></div>');
 		for (let shop of shops) {
 			container.append(`<div class="col mt-5 text-center">
-				<a data-category="${shop.name}" href="#shops-list">
+				<a data-category="${shop.name}" href="#product-list">
 					<div class="cat-list-image">
 						<img alt="${shop.name}" src="https://via.placeholder.com/258x172.jpg?text=${shop.name}" />
 					</div>
 				</a>
-				<a data-category="${shop.name}" href="#shops-list">
-					<div class="mlf--shops">
-						<h3>${shop.name}</h3>
-						<div class="ms-5">${shop.address}</div>
-						<div class="ms-5">${shop.phone}</div>
-					</div>
-				</a>
+				<div class="mlf--shops">
+					<h3>${shop.name}</h3>
+					<div class="ms-5">${shop.address}</div>
+					<div class="ms-5">${shop.phone}</div>
+				</div>
 			</div>`);
 		}
-		//this.breadcrumb.append('<li class="breadcrumb-item active" aria-current="page">Tiendas</li>');
 		this.main.append(`<h1 class="text-center text-white">Tiendas</h1>`);
 		this.main.append(container);
 	}
@@ -124,7 +122,7 @@ class ManagerView {
 		let container = $('<div class="dropdown-menu" aria-labelledby="navShops"></div>');
 
 		for (let shop of shops) {
-			container.append(`<a data-category="${shop.name}" class="dropdown-item" href="#shoplist">${shop.name}</a>`);
+			container.append(`<a data-category="${shop.name}" class="dropdown-item" href="#product-list">${shop.name}</a>`);
 		}
 		li.append(container);
 		this.menu.append(`<br><br>`);
@@ -132,36 +130,31 @@ class ManagerView {
 	}
 
 	bindShopProductsList(handler) {
-		$('#shops').find('a').click(function (event) {
-			handler(this.dataset.category);
-		});/*
-		$('#navShops').next().children().click(function (event) {
-			handler(this.dataset.category);
-		});*/
-
-		/*$('#shops').find('a').click((event) => {
+		$('#shops-products').find('a').click((event) => {
+			console.log("hola");
 			let category = $(event.target).closest($('a')).get(0).dataset.category;
 			this.#excecuteHandler(
 				handler, [category],
-				'#shops-list',
-				{ action: 'listShopProducts', category: category },
-				'#shops-list', event
+				'#shop-list',
+				{ action: 'productsShopList', category: category },
+				'#shop-list', event
 			);
-		});*/
+		});
+
 		$('#navShops').next().children().click((event) => {
 			let category = $(event.target).closest($('a')).get(0).dataset.category;
 			this.#excecuteHandler(
 				handler, [category],
-				'#shops-list',
-				{ action: 'listShopProducts', category: category },
-				'#shops-list', event
+				'#shop-list',
+				{ action: 'productsShopList', category: category },
+				'#shop-list', event
 			);
 		});
 	}
 
 	listShopProducts(products, shop) {
 		this.main.empty();
-		let container = $(`<div id="product-shop" class="container">
+		let container = $(`<div id="shop-list" class="container">
 								<div class="row"> </div>
 							</div>`);
 		for (let product of products) {
@@ -235,8 +228,8 @@ class ManagerView {
 							<p class="text-success">Producto rebajado de precio</p>
 						</div>
 						<a href="#" data-serial="${product.serialNumber}" class="btn btn-primary">
-						Comprar 
-					</a> 
+							Comprar 
+						</a> 
 					</div>
 				</figure>
 			</div>`);
@@ -248,7 +241,7 @@ class ManagerView {
 
 	listTypeProducts(products, type) {
 		this.main.empty();
-		let container = $(`<div id="product-list" class="container my-3 w-100">
+		let container = $(`<div id="type-list" class="container my-3 w-100">
 								<div class="row"> </div>
 							</div>`);
 		for (let product of products) {
@@ -281,32 +274,24 @@ class ManagerView {
 	}
 
 	bindProductsCategoryListInMenu(handler) {
-		/*$('#navCats').next().children().click(function (event) {
-			handler(this.dataset.category);
-		});*/
-
 		$('#navCats').next().children().click((event) => {
 			let category = $(event.target).closest($('a')).get(0).dataset.category;
 			this.#excecuteHandler(
 				handler, [category],
 				'#product-list',
-				{ action: 'listProducts', category: category },
+				{ action: 'productsCategoryList', category: category },
 				'#category-list', event
 			);
 		});
 	}
 
 	bindTypeProductsListInMenu(handler) {
-		/*$('#type-list').next().children().click(function (event) {
-			handler(this.dataset.category);
-		});*/
-
-		$('#type-list').next().children().click((event) => {
+		$('#navProds').next().children().click((event) => {
 			let category = $(event.target).closest($('a')).get(0).dataset.category;
 			this.#excecuteHandler(
 				handler, [category],
-				'#product-list',
-				{ action: 'listProducts', category: category },
+				'#type-list',
+				{ action: 'productsTypeList', category: category },
 				'#type-list', event
 			);
 		});
@@ -367,12 +352,6 @@ class ManagerView {
 	}
 
 	bindShowProduct(handler) {
-		/*$('#product-list').find('a.img-wrap').click(function (event) {
-			handler(this.dataset.serial);
-		});
-		$('#product-list').find('figcaption a').click(function (event) {
-			handler(this.dataset.serial);
-		});*/
 		$('#product-list').find('a.img-wrap').click((event) => {
 			let serial = $(event.target).closest($('a')).get(0).dataset.serial;
 			this.#excecuteHandler(
@@ -499,7 +478,41 @@ class ManagerView {
 			}
 		});
 
-		$('#product-shop').find('a.img-wrap').click((event) => {
+		$('#shop-list').find('a.img-wrap').click((event) => {
+			let serial = $(event.target).closest($('a')).get(0).dataset.serial;
+			let product = this.storeHouse.getProduct(Number.parseInt(serial));
+			console.log(product);
+			if (this.openWindows.size === 0) {
+				this.close.css("display", "block");
+			}
+
+			//window.open("product.html?" + event.target.dataset.serial, "ProductWindow", "width=800, height=600, top=250, left=250, titlebar=yes, toolbar = no, menubar = no, location = no");
+			if (!this.openWindows.has(serial)) {
+				let productWindow = window.open("product.html?" + serial, "ProductWindow" + serial, "width=800, height=600, top=250, left=250, titlebar=yes, toolbar = no, menubar = no, location = no");
+				productWindow.addEventListener('DOMContentLoaded', () => {
+					this.#showProductInNewWindow(productWindow, product);
+				});
+				//this.#showProductInNewWindow(productWindow, product);
+				this.openWindows.set(serial, productWindow);
+				this.ventana = productWindow;
+				this.close.push(productWindow);
+			} else {
+				for (let [key, value] of this.openWindows) {
+					if (key === serial) {
+						if (value.closed) {
+							value = window.open("product.html?" + serial, "ProductWindow" + serial, "width=800, height=600, top=250, left=250, titlebar=yes, toolbar = no, menubar = no, location = no");
+							value.addEventListener('DOMContentLoaded', () => {
+								this.#showProductInNewWindow(value, product);
+							});
+						} else {
+							value.focus();
+						}
+					}
+				}
+			}
+		});
+
+		$('#type-list').find('a.img-wrap').click((event) => {
 			let serial = $(event.target).closest($('a')).get(0).dataset.serial;
 			let product = this.storeHouse.getProduct(Number.parseInt(serial));
 			console.log(product);

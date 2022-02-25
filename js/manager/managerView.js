@@ -129,29 +129,6 @@ class ManagerView {
 		this.menu.append(li);
 	}
 
-	bindShopProductsList(handler) {
-		$('#shops-products').find('a').click((event) => {
-			console.log("hola");
-			let category = $(event.target).closest($('a')).get(0).dataset.category;
-			this.#excecuteHandler(
-				handler, [category],
-				'#shop-list',
-				{ action: 'productsShopList', category: category },
-				'#shop-list', event
-			);
-		});
-
-		$('#navShops').next().children().click((event) => {
-			let category = $(event.target).closest($('a')).get(0).dataset.category;
-			this.#excecuteHandler(
-				handler, [category],
-				'#shop-list',
-				{ action: 'productsShopList', category: category },
-				'#shop-list', event
-			);
-		});
-	}
-
 	listShopProducts(products, shop) {
 		this.main.empty();
 		let container = $(`<div id="shop-list" class="container">
@@ -187,6 +164,29 @@ class ManagerView {
 		this.main.append(container);
 	}
 
+	bindShopProductsList(handler) {
+		$('#shops-products').find('a').click((event) => {
+			console.log("hola");
+			let category = $(event.target).closest($('a')).get(0).dataset.category;
+			this.#excecuteHandler(
+				handler, [category],
+				'#shop-list',
+				{ action: 'productsShopList', category: category },
+				'#shop-list', event
+			);
+		});
+
+		$('#navShops').next().children().click((event) => {
+			let category = $(event.target).closest($('a')).get(0).dataset.category;
+			this.#excecuteHandler(
+				handler, [category],
+				'#shop-list',
+				{ action: 'productsShopList', category: category },
+				'#shop-list', event
+			);
+		});
+	}
+
 	showCategoriesInMenu(categories) {
 		//Con boostrap 5 no funciona, es decir, no se desplega el menu
 		let li = $(`
@@ -205,7 +205,7 @@ class ManagerView {
 		this.menu.append(li);
 	}
 
-	listProducts(products, title) {
+	listCategoriesProducts(products, title) {
 		this.main.empty();
 		let container = $(`<div id="product-list" class="container my-3 w-100">
 								<div class="row"> </div>
@@ -237,6 +237,18 @@ class ManagerView {
 		}
 		container.prepend(`<h2 class="text-center">Productos de ${title}</h2>`);
 		this.main.append(container);
+	}
+
+	bindProductsCategoryListInMenu(handler) {
+		$('#navCats').next().children().click((event) => {
+			let category = $(event.target).closest($('a')).get(0).dataset.category;
+			this.#excecuteHandler(
+				handler, [category],
+				'#product-list',
+				{ action: 'productsCategoryList', category: category },
+				'#category-list', event
+			);
+		});
 	}
 
 	listTypeProducts(products, type) {
@@ -273,18 +285,6 @@ class ManagerView {
 		this.main.append(container);
 	}
 
-	bindProductsCategoryListInMenu(handler) {
-		$('#navCats').next().children().click((event) => {
-			let category = $(event.target).closest($('a')).get(0).dataset.category;
-			this.#excecuteHandler(
-				handler, [category],
-				'#product-list',
-				{ action: 'productsCategoryList', category: category },
-				'#category-list', event
-			);
-		});
-	}
-
 	bindTypeProductsListInMenu(handler) {
 		$('#navProds').next().children().click((event) => {
 			let category = $(event.target).closest($('a')).get(0).dataset.category;
@@ -293,91 +293,6 @@ class ManagerView {
 				'#type-list',
 				{ action: 'productsTypeList', category: category },
 				'#type-list', event
-			);
-		});
-	}
-
-	showProduct(product, message) { //Especficaciones
-		this.main.empty();
-		let container;
-		if (product) {
-			container = $(`<div id="single-product" class="${product.constructor.name}-style container mt-5 mb-5">
-				<div class="row">
-					<div class="col-md-10">
-						<div class="card">
-							<div class="row">
-								<div class="col-md-6">
-									<div class="images p-3">
-										<div class="text-center p-4"> <img id="main-image" src="${product.images2}"/> </div>
-									</div>
-								</div>
-								<div class="col-md-6 text-center">
-									<div class="product p-4 " id="main-image">
-										<div class="mt-4 mb-3">
-											<h5 class="text-uppercase">${product.name}</h5>
-											<div class="text-center">
-												<span class="act-price">${product.price} €</span>
-											</div>
-										</div>
-										<div class="sizes mt-5">
-											<h6 class="text-uppercase">Características</h6>
-										</div>
-										<p class="about">${product.description}</p>
-										<div class="cart mt-4 align-items-center"> 
-											<button data-serial="${product.serialNumber}" class="btn btn-primary text-uppercase mr-2 px-4">
-												Comprar
-											</button>
-											<button id="b-open" data-serial="${product.serialNumber}" class="btn btn-primary text-uppercase mt-2 mr-2 px-4">
-												Abrir en nueva ventana
-											</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>`);
-
-			container.prepend(`<h2 class="text-center">Especificaciones del producto</h2>`);
-
-		} else {
-			container = $(` <div class="container mt-5 mb-5">
-				<div class="row d-flex justify-content-center">
-					${message}
-				</div>
-			</div>`);
-		}
-		this.main.append(container);
-	}
-
-	bindShowProduct(handler) {
-		$('#product-list').find('a.img-wrap').click((event) => {
-			let serial = $(event.target).closest($('a')).get(0).dataset.serial;
-			this.#excecuteHandler(
-				handler, [serial],
-				'#single-product',
-				{ action: 'showProduct', serial: serial },
-				'#single-product', event
-			);
-		});
-		$('#product-list').find('figcaption a').click((event) => {
-			let serial = $(event.target).closest($('a')).get(0).dataset.serial;
-			this.#excecuteHandler(
-				handler, [serial],
-				'#single-product',
-				{ action: 'showProduct', serial: serial },
-				'#single-product', event
-			);
-		});
-
-		$('#product-shop').find('a.img-wrap').click((event) => {
-			let serial = $(event.target).closest($('a')).get(0).dataset.serial;
-			this.#excecuteHandler(
-				handler, [serial],
-				'#single-product',
-				{ action: 'showProduct', serial: serial },
-				'#single-product', event
 			);
 		});
 	}
@@ -444,33 +359,39 @@ class ManagerView {
 	}
 
 	bindshowProductInNewWindow(serial) {
+		//Al a ver tres opciones (categorias, productos y tiendas) creo una opcion para cada una.
 		$('#product-list').find('a.img-wrap').click((event) => {
 			let serial = $(event.target).closest($('a')).get(0).dataset.serial;
-			let product = this.storeHouse.getProduct(Number.parseInt(serial));
-			console.log(product);
+			let product = this.storeHouse.getProduct(Number.parseInt(serial)); //Sacamos el producto, através del serialNumber
 			if (this.openWindows.size === 0) {
 				this.close.css("display", "block");
 			}
 
-			//window.open("product.html?" + event.target.dataset.serial, "ProductWindow", "width=800, height=600, top=250, left=250, titlebar=yes, toolbar = no, menubar = no, location = no");
+			//Si el producto no está abierto en una ventana secundaria, se crea la nueva ventana y se le añade al mapa.
 			if (!this.openWindows.has(serial)) {
+				/*La primera opcion en el open le añado a la nueva ventana la página que va abrir (siempre open) con la ruta
+					del producto en cuestión.
+					Como se van abrir x ventanas le añado al nombre de la ventana su serialNumber para que se puedan las ventanas 
+					que queramos*/
 				let productWindow = window.open("product.html?" + serial, "ProductWindow" + serial, "width=800, height=600, top=250, left=250, titlebar=yes, toolbar = no, menubar = no, location = no");
 				productWindow.addEventListener('DOMContentLoaded', () => {
-					this.#showProductInNewWindow(productWindow, product);
+					this.#showProductInNewWindow(productWindow, product);//Llama a la función para que pinte las especificaciones
 				});
-				//this.#showProductInNewWindow(productWindow, product);
 				this.openWindows.set(serial, productWindow);
-				this.ventana = productWindow;
-				this.close.push(productWindow);
+				//Al mapa le añado como clave el serialNumber del producto en cuestión, además de la ventana creada.
 			} else {
+				//Si el producto ya está añadido al mapa, recorro el mapa
 				for (let [key, value] of this.openWindows) {
+					//Comprobamos que el serialNumber introducido al pinchar en la imagen es el mismo al que tenemos guardado en nuestro mapa
 					if (key === serial) {
 						if (value.closed) {
+							//Si la ventana estuviera cerrada la volvemos abrir
 							value = window.open("product.html?" + serial, "ProductWindow" + serial, "width=800, height=600, top=250, left=250, titlebar=yes, toolbar = no, menubar = no, location = no");
 							value.addEventListener('DOMContentLoaded', () => {
 								this.#showProductInNewWindow(value, product);
 							});
 						} else {
+							//Sino ponemos el foco en ella, es decir, como está minimizada la mostramos.
 							value.focus();
 						}
 					}
@@ -486,16 +407,12 @@ class ManagerView {
 				this.close.css("display", "block");
 			}
 
-			//window.open("product.html?" + event.target.dataset.serial, "ProductWindow", "width=800, height=600, top=250, left=250, titlebar=yes, toolbar = no, menubar = no, location = no");
 			if (!this.openWindows.has(serial)) {
 				let productWindow = window.open("product.html?" + serial, "ProductWindow" + serial, "width=800, height=600, top=250, left=250, titlebar=yes, toolbar = no, menubar = no, location = no");
 				productWindow.addEventListener('DOMContentLoaded', () => {
 					this.#showProductInNewWindow(productWindow, product);
 				});
-				//this.#showProductInNewWindow(productWindow, product);
 				this.openWindows.set(serial, productWindow);
-				this.ventana = productWindow;
-				this.close.push(productWindow);
 			} else {
 				for (let [key, value] of this.openWindows) {
 					if (key === serial) {
@@ -520,16 +437,12 @@ class ManagerView {
 				this.close.css("display", "block");
 			}
 
-			//window.open("product.html?" + event.target.dataset.serial, "ProductWindow", "width=800, height=600, top=250, left=250, titlebar=yes, toolbar = no, menubar = no, location = no");
 			if (!this.openWindows.has(serial)) {
 				let productWindow = window.open("product.html?" + serial, "ProductWindow" + serial, "width=800, height=600, top=250, left=250, titlebar=yes, toolbar = no, menubar = no, location = no");
 				productWindow.addEventListener('DOMContentLoaded', () => {
 					this.#showProductInNewWindow(productWindow, product);
 				});
-				//this.#showProductInNewWindow(productWindow, product);
 				this.openWindows.set(serial, productWindow);
-				this.ventana = productWindow;
-				this.close.push(productWindow);
 			} else {
 				for (let [key, value] of this.openWindows) {
 					if (key === serial) {
@@ -547,12 +460,13 @@ class ManagerView {
 		});
 	}
 
-	closeWindows() { //Recorrer todo el array para cerrar ventana por ventana
+	closeWindows() { //Cierra todas la ventanas secundarias abiertas que esten dentro del mapa
 		$('#closeWindows').click((event) => {
 			for (let [key, value] of this.openWindows) {
 				value.close();
 				this.openWindows.delete(key);
 			}
+			//Al no quedar ninguna ventana abierta, se vuelve a quitar la opcion del menú
 			this.close.css("display", "none");
 		});
 	}

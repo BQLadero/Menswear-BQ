@@ -151,7 +151,6 @@ class ManagerController {
         this.onInit();
         this.#storeHouseView.bindInit(this.handleInit);
         this.#storeHouseView.closeWindows();
-        //this.#storeHouseView.bindProductsTypeList(this.handleProductsTypeList);
         
     }
 
@@ -189,31 +188,24 @@ class ManagerController {
     handleProductsCategoryList = (title) => {
         let category = this.#storeHouse.getCategory(title);
         let products = this.#storeHouse.getCategoryProducts(category);
-        this.#storeHouseView.listProducts(products, category.title);
-        //this.#storeHouseView.bindShowProduct(this.handleShowProduct); //Muestra el producto con sus caracteristicas
-        //this.#storeHouseView.bindshowProductInNewWindow(this.handleShowProduct);
+        this.#storeHouseView.listCategoriesProducts(products, category.title);
         this.#storeHouseView.bindshowProductInNewWindow();
     }
 
     handleShopProductsList = (shop) => {
         this.#storeHouseView.listShopProducts((this.#storeHouse.getProductinShops(shop)), shop);
-        //this.#storeHouseView.bindShowProduct(this.handleShowProduct);
-        console.log("hola");
         this.#storeHouseView.bindshowProductInNewWindow();
     }
 
     handleTypeProductsList = (type) =>{
         this.#storeHouseView.listTypeProducts(this.#storeHouse.getTypeProduct(type), type);
-        //this.#storeHouseView.bindShowProduct(this.handleShowProduct);
         this.#storeHouseView.bindshowProductInNewWindow(this.handleShowProduct);
     }
 
     handleShowProduct = (serial) => {
 		try {
 			let product = this.#storeHouse.getProduct(Number.parseInt(serial));
-			//this.#storeHouseView.showProduct(product);
             this.#storeHouseView.bindshowProductInNewWindow(product);
-            //this.handleShowProductInNewWindow esto va en el bindshowProductInNewWindow
 		} catch (error) {
 			this.#storeHouseView.showProduct(null, 'No existe este producto en la página.');
 		}

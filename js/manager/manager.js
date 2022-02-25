@@ -17,14 +17,14 @@ let StoreHouse = (function () {
     function init() {
         class StoreHouse {
             #name = "Menswear-BQ";
-            /*He utilizado un mapa para sea más fácil el manejo de, ya que al producto le añado como clave el ProductoX 
+            /*He utilizado un mapa para sea más fácil el manejo, ya que al producto le añado como clave el ProductoX 
                 y de valor el array con las diversas categorias*/
             #products = new Map();
             #catDefault = new Category("Defecto", "Productos de Defecto"); //Categoría por defecto
             #categories = []; //Array con las categorías que tenemos en el almacen
             //He creado un mapa, para que como clave se añada la tienda, y como valor los diversos productos en forma de array.
             #shops = new Map();
-            //#stock = []; creo que no hace utilizarlo
+            //#stock = []; creo que no hace falta utilizarlo
             #shopDefault = new Map(); //Tienda por defecto
 
             constructor() {
@@ -207,7 +207,6 @@ let StoreHouse = (function () {
                 let arr = [];
                 let product;
                 this.#products.forEach(function (value, key) {
-                    //Si la categoría está en el producto, se añade el producto al array
                     arr.push(key);
                 });
 
@@ -221,7 +220,6 @@ let StoreHouse = (function () {
             getShops(){
                 let shops = [];
                 this.#shops.forEach(function (value, key) {
-                    //Si la categoría está en el producto, se añade el producto al array
                     shops.push(key);
                 });
                 return shops;
@@ -243,13 +241,8 @@ let StoreHouse = (function () {
             getTypeProduct(type){
                 let arr = [];
                 this.#products.forEach(function (value, key) {
-                    //Si la categoría está en el producto, se añade el producto al array
                     if(key.constructor.name === type) arr.push(key);;
                 });
-
-                /*for (let object of arr) {
-                    if(object.serialNumber === id) product = object;
-                }*/
                 return arr;
             }
         }

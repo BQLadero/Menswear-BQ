@@ -11,8 +11,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
         integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
-        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 </head>
 
@@ -20,24 +20,37 @@
     <header class="cabezareg">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a href="./registered.html" id="logo" class="navbar-brand">
+                <a href="#" id="logo" class="navbar-brand" onclick="ocultCam()">
                     <img src="./img/logo.png" alt="Logo PortalGames" id="cabeza__logo--img">
                 </a>
                 <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="./registered.html" id="init">Inicio</a>
+                            <a class="nav-link active" aria-current="page" href="#" id="init" onclick="ocultCam()">
+                                <i class="icon-home"></i>&nbsp;Inicio
+                            </a>
                         </li>
                         <li class="nav-item">
-                            <a role="button" name="inicio" class="nav-link active" href="./index.html">Cerrar
-                                Sesi&oacute;n</a>
+                            <a class="nav-link active" aria-current="page" href="./profile.html">Perfil</a>
+                        </li>
+                        <li class="nav-ite">
+                            <a class="nav-link active" aria-current="page" onclick="mostCam()">Minijuego</a>
+                        </li>
+                        <li class="nav-item">
+                            <a role="button" name="inicio" class="nav-link active" href="./index.html">
+                                <i class="icon-signout"></i>&nbsp;Cerrar Sesi&oacute;n</a>
+                        </li>
+                        <li class="nav-item" id="close">
+                            <a class="nav-link active" role="button" aria-pressed="true" href="#" id="closeWindows">
+                                Cerrar ventanas abiertas
+                            </a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="type-product" role="button"
+                            <a class="nav-link dropdown-toggle" href="#" id="navProds" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Productos
                             </a>
-                            <div class="dropdown-menu reducir" aria-labelledby="type-product">
+                            <div class="dropdown-menu" aria-labelledby="navProds">
                                 <a data-category="Traje" class="dropdown-item" href="#product-list">Traje</a>
                                 <a data-category="Bota" class="dropdown-item" href="#product-list">Bota</a>
                                 <a data-category="Pantalon" class="dropdown-item" href="#product-list">Pantalon</a>
@@ -45,10 +58,13 @@
                             </div>
                         </li>
                     </ul>
-                    <form class="d-flex w-50 ms-2 busqueda">
-                        <input class="form-control me-4" type="search" placeholder="Search" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    <form class="d-flex ms-2 busqueda--regis me-5">
+                        <input class="form-control me-4" type="search" placeholder="Búsqueda" aria-label="Search">
+                        <button class="btn btn-outline-success" type="submit">Buscar</button>
                     </form>
+                    <a href="./shopping.html" class="img__carrito text-right">
+                        <img src="./img/carrito.png" alt="Carrito de Compra">
+                    </a>
                 </div>
             </div>
             <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -62,53 +78,55 @@
         <div class="cuerpo__espe" id="main_regis">
 
         </div>
-    </main>
 
-    <script src="./js/minigame.js"></script>
-    <section id="minijuego">
-        <nav aria-label="breadcrumfa-border">
-            <ol class="breadcrumb mt-4 ms-5">
-                <li class="breadcrumb-item"><a href="./registrado.html" class="text-white">Inicio</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Minijuego</li>
-            </ol>
-        </nav>
-        <section class="minijuego">
-            <canvas id="minijuego--canv" class="minijuego--canv" height="650" width="850">
-            </canvas>
+        <script src="./js/minigame.js"></script>
+        <section id="minijuego">
+            <section class="minijuego">
+                <canvas id="minijuego--canv" class="minijuego--canv" height="650" width="850">
+                </canvas>
+            </section>
         </section>
-    </section>
+    </main>
 
     <footer class="pie">
         <section class="arriba">
             <section class="information mt-2 text-center">
-                <h3 class="ms-5">Información</h3>
+                <h3>Información</h3>
                 <ul>
                     <li>
-                        <a class="text ms-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Terminos de uso</a>
+                        <a class="text" data-toggle="modal" data-target="#staticBackdrop">
+                            Terminos de uso
+                        </a>
                     </li>
                     <li>
-                        <a class="text ms-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
+                        <a class="text" data-toggle="modal" data-target="#staticBackdrop2">
                             Política de Privacidad
                         </a>
                     </li>
                     <li>
-                        <a class="text ms-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">
+                        <a class="text" data-toggle="modal" data-target="#staticBackdrop3">
                             Política de Cookies
+                        </a>
+                    </li>
+                    <li>
+                        <a class="text" data-toggle="modal" data-target="#staticBackdrop4">
+                            Mapa Web
                         </a>
                     </li>
                 </ul>
 
                 <!-- Modal -->
-                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-                    tabindex="1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                <div class="modal fade" id="staticBackdrop" tabindex="1" role="dialog"
+                    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title text-black" id="staticBackdropLabel">Terminos de uso</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                            <div class="modal-header text-body">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Terminos de uso</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                            <div class="modal-body text-black">
+                            <div class="modal-body text-body">
                                 Menswear-BQ considerará como dueño de una Cuenta de Usuario, Plataforma de Usuario o
                                 Contenido de Usuario creado o subido a los Servicios de Menswear-BQ correspondientes,
                                 a la persona o entidad que tiene acceso a la dirección de correo electrónico consignada
@@ -116,23 +134,23 @@
                                 dicha Plataforma de Usuario o Contenido de Usuario.
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <a href="#" class="btn btn-primary text-white">Leer más</a>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false"
-                    tabindex="1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal fade" id="staticBackdrop2" data-backdrop="static" data-keyboard="false" tabindex="1"
+                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title text-black" id="staticBackdropLabel">Política de Privacidad</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                <h5 class="modal-title text-body" id="staticBackdropLabel">Política de Privacidad</h5>
+                                <button type="button" class="btn-close" data-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <div class="modal-body text-black">
+                            <div class="modal-body text-body">
                                 La Política de Privacidad establece los términos en que usa y protege la
                                 información que es proporcionada por sus usuarios al momento de utilizar su sitio web.
                                 Esta
@@ -148,47 +166,78 @@
                                 acuerdo con dichos cambios.
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <a href="#" class="btn btn-primary text-white">Leer más</a>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <a href="#" class="btn btn-primary text-white">Aceptar</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false"
-                    tabindex="1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+                <div class="modal fade" id="staticBackdrop3" data-backdrop="static" data-keyboard="false" tabindex="1"
+                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-scrollable">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title text-black" id="staticBackdropLabel">Política de Cookies</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                <h5 class="modal-title text-body" id="staticBackdropLabel">Política de Cookies</h5>
+                                <button type="button" class="btn-close" datas-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
-                                <p class="text-black">Una cookie se refiere a un fichero que es enviado con la finalidad
-                                    de
-                                    solicitar
-                                    permiso para almacenarse en su ordenador, al aceptar dicho fichero se crea y la
-                                    cookie sirve entonces para tener información respecto al tráfico web, y también
-                                    facilita las futuras visitas a una web recurrente. Otra función que tienen las
-                                    cookies es que con ellas las web pueden reconocerte individualmente y por tanto
-                                    brindarte el mejor servicio personalizado de su web.</p>
-
-                                <p class="text-black">Nuestro sitio web emplea las cookies para poder identificar las
-                                    páginas que son
-                                    visitadas y su frecuencia. Esta información es empleada únicamente para análisis
-                                    estadístico y después la información se elimina de forma permanente. Usted puede
-                                    eliminar las cookies en cualquier momento desde su ordenador. Sin embargo las
+                            <div class="modal-body text-body">
+                                <p class="text-body">Nuestro sitio web emplea las cookies para poder identificar las
+                                    páginas que son visitadas y su frecuencia. Esta información es empleada únicamente
+                                    para análisis estadístico y después la información se elimina de forma permanente.
+                                    Usted puede eliminar las cookies en cualquier momento desde su ordenador. Sin
+                                    embargo las
                                     cookies ayudan a proporcionar un mejor servicio de los sitios web, estás no dan
                                     acceso a información de su ordenador ni de usted, a menos de que usted así lo quiera
                                     y la proporcione directamente noticias. Usted puede aceptar o negar el uso de
                                     cookies, sin embargo la mayoría de navegadores aceptan cookies automáticamente pues
                                     sirve para tener un mejor servicio web. También usted puede cambiar la configuración
                                     de su ordenador para declinar las cookies. Si se declinan es posible que no pueda
-                                    utilizar algunos de nuestros servicios.</p>
+                                    utilizar algunos de nuestros servicios.
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <a href="#" class="btn btn-primary text-white">Leer más</a>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <a href="#" class="btn btn-primary text-white">Aceptar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="staticBackdrop4" data-backdrop="static" data-keyboard="false" tabindex="1"
+                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-body" id="staticBackdropLabel">Mapa Web</h5>
+                                <button type="button" class="btn-close" data-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body text-body text-justify">
+                                <ul class="list">
+                                    <li><a href="./index.html">Inicio</a></li>
+                                    <ul class="list">
+                                        <li>Productos</li>
+                                        <li>Categorías</li>
+                                        <li>Tiendas</li>
+                                    </ul>
+                                    <li><a href="./registered.html">Inicio | Registrado</a></li>
+                                    <ul class="list">
+                                        <li>Productos</li>
+                                        <li>Categorías</li>
+                                        <li>Tiendas</li>
+                                        <li><a href="./profile.html">Perfil</a></li>
+                                        <ul class="list">
+                                            <li>Mis Pedidos</li>
+                                            <li>Mis favoritos</li>
+                                            <li>Mis datos</li>
+                                            <li><a href="./shopping.html">Carrito</a></li>
+                                        </ul>
+                                    </ul>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                             </div>
                         </div>
                     </div>
@@ -199,24 +248,30 @@
                 <h3>Contacto</h3>
                 <ul>
                     <li>
-                        <i class="fa fa-envelope"></i><span class="ms-2">blasladero12@gmail.com</span>
+                        <i class="icon-envelope"></i> <span>blasladero12@gmail.com</span>
                     </li>
-                    <li class="me-4">
-                        <i class="fa fa-phone"></i><span class="ms-2">926 63 45 15</span>
+                    <li>
+                        <i class="icon-phone"></i> <span class="ms-2">926 63 45 15</span>
+                    </li>
+                    <li>
+                        <h5>¿Necesita ayuda?</h5>
+                        <p class="text-center"><i class="icon-question"></i> ¡Contacte con nosotros!</p>
                     </li>
                 </ul>
             </section>
         </section>
-        <p class="text-center">&copy; Menswear-BQ | Blas Quiñones Ladero</p>
+        <p class="text-center">&copy; Menswear-BQ | Blas Qui&ntilde;ones Ladero</p>
     </footer>
+
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
         integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
+
     <script src="./js/registered.js"></script>
-    <script src="/js/manager/managerApp.js" type="module"></script>
+    <script src="./js/shop.js" type="module"></script>
 </body>
 
 </html>

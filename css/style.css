@@ -132,6 +132,7 @@ body{
     margin-top: 1.5%;
 }
 
+
 #cabezaper__cuenta--h1,
 #cabezacarr__productos--h1{
     width: 40%;
@@ -233,6 +234,14 @@ a,a:link, a:visited{color: black; text-decoration: none;}
     margin-top: 5%;
 }
 
+.list > li{
+    list-style: circle;
+    color: black;
+    margin-top: 1%;
+}
+
+.list > li > a,.list > li > a:link, .list > li > a:visited{color: blue;}
+
 .pie .text {
     text-decoration: underline;
     color: white;
@@ -297,6 +306,8 @@ select > option{
     width: 800px;
     background-image: url("../img/campodefutbol_2.jpg");
     background-size: cover;
+    margin: auto;
+    margin-top: 2%;
 }
 
 .canvas--carrito{
@@ -534,7 +545,15 @@ select > option{
 }
 
 .busqueda{
-    width: 35%;
+    width: 50%;
+}
+
+.busqueda--regis{
+    width: 28%;
+}
+
+.img__carrito > img{
+    width: 50%;
 }
 
 @media screen and (min-width:2400px){

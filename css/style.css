@@ -52,7 +52,6 @@ body{
     grid-template-areas: "headreg headreg headreg"
                          "main main main"
                          "footer footer footer";
-    width: 99%;      
 }
 
 /* REGISTRADO */
@@ -62,8 +61,8 @@ body{
     display: flex;
     background-color: rgba(212, 209, 209, 0.144);
     border-radius: 10px;
-    width: 99%;
-    margin-left: 1%;
+    margin: 1%;
+    z-index: 1;
 }
 
 #cabezareg__logo--img{
@@ -260,6 +259,12 @@ a,a:link, a:visited{color: black; text-decoration: none;}
     z-index: 1;
     background-color: rgba(0, 78, 130, 0.726);
 }
+
+.paying{
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.479);  
+}
+
 select > option{
     color: black;
 }
@@ -534,7 +539,7 @@ select > option{
 }
 
 .aniadir{
-    width: 7%;
+    width: 10%;
     color: black;
 }
 

@@ -30,34 +30,42 @@
     <footer class="pie">
         <section class="arriba">
             <section class="information mt-2 text-center">
-                <h3 class="ms-5">Información</h3>
                 <ul>
+                    <h3>Información</h3>
                     <li>
-                        <a class="text ms-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop">Terminos de uso</a>
-                    </li>
-                    <li>
-                        <a class="text ms-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop2">
-                            Política de Privacidad
+                        <a class="text" data-toggle="modal" data-target="#staticBackdrop">
+                            <i class="icon-legal"></i>&nbsp;Terminos de uso
                         </a>
                     </li>
                     <li>
-                        <a class="text ms-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">
-                            Política de Cookies
+                        <a class="text" data-toggle="modal" data-target="#staticBackdrop2">
+                            <i class="icon-legal"></i>&nbsp;Política de Privacidad
+                        </a>
+                    </li>
+                    <li>
+                        <a class="text" data-toggle="modal" data-target="#staticBackdrop3">
+                            <i class="icon-legal"></i>&nbsp;Política de Cookies
+                        </a>
+                    </li>
+                    <li>
+                        <a class="text" data-toggle="modal" data-target="#staticBackdrop4">
+                            <i class="icon-sitemap"></i>&nbsp;Mapa Web
                         </a>
                     </li>
                 </ul>
 
                 <!-- Modal -->
-                <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false"
-                    tabindex="1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog">
+                <div class="modal fade" id="staticBackdrop" tabindex="1" role="dialog"
+                    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
                         <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title text-black" id="staticBackdropLabel">Terminos de uso</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                            <div class="modal-header text-body">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Terminos de uso</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span class="text-body h3" aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                            <div class="modal-body text-black">
+                            <div class="modal-body text-body">
                                 Menswear-BQ considerará como dueño de una Cuenta de Usuario, Plataforma de Usuario o
                                 Contenido de Usuario creado o subido a los Servicios de Menswear-BQ correspondientes,
                                 a la persona o entidad que tiene acceso a la dirección de correo electrónico consignada
@@ -65,23 +73,24 @@
                                 dicha Plataforma de Usuario o Contenido de Usuario.
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <a href="#" class="btn btn-primary text-white">Leer más</a>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="modal fade" id="staticBackdrop2" data-bs-backdrop="static" data-bs-keyboard="false"
-                    tabindex="1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal fade" id="staticBackdrop2" data-backdrop="static" data-keyboard="false" tabindex="1"
+                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title text-black" id="staticBackdropLabel">Política de Privacidad</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                                <h5 class="modal-title text-body" id="staticBackdropLabel">Política de Privacidad</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span class="text-body h3" aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                            <div class="modal-body text-black">
+                            <div class="modal-body text-body">
                                 La Política de Privacidad establece los términos en que usa y protege la
                                 información que es proporcionada por sus usuarios al momento de utilizar su sitio web.
                                 Esta
@@ -97,47 +106,80 @@
                                 acuerdo con dichos cambios.
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <a href="#" class="btn btn-primary text-white">Leer más</a>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <a href="#" class="btn btn-primary text-white">Aceptar</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="modal fade" id="staticBackdrop3" data-bs-backdrop="static" data-bs-keyboard="false"
-                    tabindex="1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+
+                <div class="modal fade" id="staticBackdrop3" data-backdrop="static" data-keyboard="false" tabindex="1"
+                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-scrollable">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title text-black" id="staticBackdropLabel">Política de Cookies</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
+                                <h5 class="modal-title text-body" id="staticBackdropLabel">Política de Cookies</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span class="text-body h3" aria-hidden="true">&times;</span>
+                                </button>
                             </div>
-                            <div class="modal-body">
-                                <p class="text-black">Una cookie se refiere a un fichero que es enviado con la finalidad
-                                    de
-                                    solicitar
-                                    permiso para almacenarse en su ordenador, al aceptar dicho fichero se crea y la
-                                    cookie sirve entonces para tener información respecto al tráfico web, y también
-                                    facilita las futuras visitas a una web recurrente. Otra función que tienen las
-                                    cookies es que con ellas las web pueden reconocerte individualmente y por tanto
-                                    brindarte el mejor servicio personalizado de su web.</p>
-
-                                <p class="text-black">Nuestro sitio web emplea las cookies para poder identificar las
-                                    páginas que son
-                                    visitadas y su frecuencia. Esta información es empleada únicamente para análisis
-                                    estadístico y después la información se elimina de forma permanente. Usted puede
-                                    eliminar las cookies en cualquier momento desde su ordenador. Sin embargo las
+                            <div class="modal-body text-body">
+                                <p class="text-body">Nuestro sitio web emplea las cookies para poder identificar las
+                                    páginas que son visitadas y su frecuencia. Esta información es empleada únicamente
+                                    para análisis estadístico y después la información se elimina de forma permanente.
+                                    Usted puede eliminar las cookies en cualquier momento desde su ordenador. Sin
+                                    embargo las
                                     cookies ayudan a proporcionar un mejor servicio de los sitios web, estás no dan
                                     acceso a información de su ordenador ni de usted, a menos de que usted así lo quiera
                                     y la proporcione directamente noticias. Usted puede aceptar o negar el uso de
                                     cookies, sin embargo la mayoría de navegadores aceptan cookies automáticamente pues
                                     sirve para tener un mejor servicio web. También usted puede cambiar la configuración
                                     de su ordenador para declinar las cookies. Si se declinan es posible que no pueda
-                                    utilizar algunos de nuestros servicios.</p>
+                                    utilizar algunos de nuestros servicios.
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                                <a href="#" class="btn btn-primary text-white">Leer más</a>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <a href="#" class="btn btn-primary text-white">Aceptar</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="staticBackdrop4" data-backdrop="static" data-keyboard="false" tabindex="1"
+                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-body" id="staticBackdropLabel">Mapa Web</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span class="text-body h3" aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body text-body text-justify">
+                                <ul class="list">
+                                    <li><a href="./index.html">Inicio</a></li>
+                                    <ul class="list">
+                                        <li>Productos</li>
+                                        <li>Categorías</li>
+                                        <li>Tiendas</li>
+                                    </ul>
+                                    <li><a href="./registered.html">Inicio | Registrado</a></li>
+                                    <ul class="list">
+                                        <li>Productos</li>
+                                        <li>Categorías</li>
+                                        <li>Tiendas</li>
+                                        <li><a href="./profile.html">Perfil</a></li>
+                                        <ul class="list">
+                                            <li>Mis Pedidos</li>
+                                            <li>Mis favoritos</li>
+                                            <li>Mis datos</li>
+                                            <li><a href="./shopping.html">Carrito</a></li>
+                                        </ul>
+                                    </ul>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
                             </div>
                         </div>
                     </div>
@@ -145,20 +187,22 @@
             </section>
 
             <section class="contact text-center me-5 mt-2">
-                <h3>Contacto</h3>
                 <ul>
+                    <h3>Contacto</h3>
                     <li>
-                        <i class="fa fa-envelope"></i> <span>blasladero12@gmail.com</span>
+                        <i class="icon-envelope"></i><span>&nbsp;blasladero12@gmail.com</span>
                     </li>
-                    <li class="me-4">
-                        <i class="fa fa-phone"></i> <span class="ms-2">926 63 45 15</span>
+                    <li>
+                        <i class="icon-phone"></i><span>&nbsp;926 63 45 15</span>
+                    </li>
+                    <li>
+                        <h5>¿Necesita ayuda?</h5>
+                        <i class="icon-question"></i><span>&nbsp;¡Contacte con nosotros!</span>
                     </li>
                 </ul>
-                <h5>¿Necesitas ayuda?</h5>
-                <p class="text-center ms-3">¡Póngase en contacto con nosotros!</p>
             </section>
         </section>
-        <p class="text-center">&copy; Menswear-BQ | Blas Quiñones Ladero</p>
+        <p class="text-center">&copy; Menswear-BQ | Blas Qui&ntilde;ones Ladero</p>
     </footer>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

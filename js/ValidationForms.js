@@ -14,12 +14,17 @@ function validarName(params) {
     'use strict';
     window.addEventListener('load', function () {
         let forms = document.getElementsByClassName('needs-validation form1');
-
+        var progreso = 0;
         let validation = Array.prototype.filter.call(forms, function (form) {
             form.addEventListener('submit', function (event) {
                 if (form.checkValidity() === false) {
                     event.preventDefault();
                     event.stopPropagation();
+                    var idIterval = setInterval(function () {
+                        // Aumento en 10 el progeso
+                        progreso += 50;
+                        $('#bar').css('width', progreso + '%');
+                    }, 1000);
                 }
                 form.classList.add('was-validated');
             }, false);

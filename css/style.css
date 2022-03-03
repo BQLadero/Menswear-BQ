@@ -13,7 +13,8 @@ body{
     display: grid;
     grid-template-areas: "head head head head"
                          "main main main aside"
-                         "footer footer footer footer";  
+                         "footer footer footer footer";
+    color: white;
 }
 
 /* INDEX */
@@ -23,8 +24,7 @@ body{
     position: sticky;
     top: 10px;
     width: 98%;
-    margin-left: 1%;
-    margin-top: 1%;
+    margin: 1%;
     border-radius: 10px;
     background-color: rgba(212, 209, 209, 0.445);
     z-index: 1;
@@ -56,12 +56,13 @@ body{
 
 /* REGISTRADO */
 .cabezareg{
+    position: -webkit-sticky;
     position: sticky;
     top: 10px;
-    display: flex;
-    background-color: rgba(212, 209, 209, 0.144);
-    border-radius: 10px;
+    width: 98%;
     margin: 1%;
+    border-radius: 10px;
+    background-color: rgba(212, 209, 209, 0.445);
     z-index: 1;
 }
 
@@ -230,7 +231,7 @@ a,a:link, a:visited{color: black; text-decoration: none;}
 
 .pie li{
     list-style: none;
-    margin-top: 5%;
+    margin-top: 2%;
 }
 
 .list > li{
@@ -255,10 +256,13 @@ a,a:link, a:visited{color: black; text-decoration: none;}
 }
 
 .sesion, .sesion2{
+    width: 60%;
     text-align: center;
     z-index: 1;
     background-color: rgba(0, 78, 130, 0.726);
+    color: white;
 }
+
 
 .paying{
     z-index: 1;
@@ -554,8 +558,10 @@ select > option{
 }
 
 .busqueda--regis{
-    width: 28%;
+    width: 25%;
 }
+
+.img__carrito {margin-left: 2%;}
 
 .img__carrito > img{
     width: 50%;

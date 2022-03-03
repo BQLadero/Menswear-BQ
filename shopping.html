@@ -72,27 +72,28 @@
             <h4>Subtotal</h4>
             <p>Precio sin IVA <i class="icon-arrow-right"></i> 67.93€</p>
             <p>Precio con IVA <i class="icon-arrow-right"></i> 85.89€</p>
-            <button type="button" class="btn btn-secondary mb-2" onclick="showDialog()"><i class="icon-shopping-cart"></i>&nbsp;Comprar</button>
+            <button type="button" class="btn btn-secondary mb-2" onclick="showDialog()"><i
+                    class="icon-shopping-cart"></i>&nbsp;Comprar</button>
         </section>
 
         <dialog class="paying w-50 text-white text-center">
             <h4 class="text-center">Introduzca los datos bancarios</h4>
-            <form action="#" method="post" class="was-validated" id="form">
-                <div class="text-center">
-                    <button class="btn btn-secondary" type="button" name="card" id="card" onclick="mtdCard();">Tarjeta
-                        de Credito</button>
-                    <button class="btn btn-secondary" type="button" name="paypal" id="paypal"
-                        onclick="mtdPaypal();">Paypal</button>
-                </div>
-                <section id="card__cred">
+            <div class="text-center">
+                <button class="btn btn-secondary" type="button" name="card" id="card" onclick="mtdCard();">Tarjeta
+                    de Credito</button>
+                <button class="btn btn-secondary" type="button" name="paypal" id="paypal"
+                    onclick="mtdPaypal();">Paypal</button>
+            </div>
+            <section id="card__cred">
+                <form method="post" class="was-validated form3" id="form">
                     <div class="form-group row mt-4">
                         <div class="input-group mb-2 me-sm-2 col">
                             <label class="sr-only me-3 mt-1" for="form-check-label">Tarjeta de Crédito</label>
                             <div class="input-group-prepend m-2">
                                 <i class="icon-credit-card"></i>
                             </div>
-                            <input type="text" class="form-control is-invalid" placeholder="xxxx - xxxx - xxxx - xxxx"
-                                required maxlength="16">
+                            <input type="text" class="form-control is-invalid" placeholder="xxxx xxxx xxxx xxxx"
+                                pattern="^[0-9]{4} [0-9]{4} [0-9]{4} [0-9]{4}$" required>
                             <div class="invalid-feedback">
                                 Campo Obligatorio
                             </div>
@@ -127,32 +128,40 @@
                             <div class="input-group-prepend m-2">
                                 <span>CVC</span>
                             </div>
-                            <input type="text" class="form-control is-invalid" placeholder="xxx" maxlength="3" required>
+                            <input type="text" class="form-control is-invalid" placeholder="xxx" minlength="3"
+                                maxlength="3" required>
                             <div class="invalid-feedback ms-3">
                                 Campo Obligatorio
                             </div>
                         </div>
                     </div>
-                </section>
+                    <section class="text-center">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                        <button onclick="closeDialog()" class="btn btn-secondary ms-2">Cerrar</button>
+                    </section>
+                </form>
+            </section>
 
-                <section id="card__paypal">
+            <section id="card__paypal">
+                <form method="post" class="was-validated form4" id="form">
                     <div class="input-group mt-2 mb-2 me-sm-0">
-                        <label class="sr-only form-check-label me-4 mt-1" for="form-check-label">Correo Electrónico</label>
+                        <label class="sr-only form-check-label me-4 mt-1" for="form-check-label">Correo
+                            Electrónico</label>
                         <div class="input-group-prepend m-2">
-                            <i class="icon-envelope"></i><span>
+                            <i class="icon-envelope"></i>
                         </div>
                         <input type="email" class="form-control is-invalid" placeholder="ejemplo@ejemplo.com" required>
                         <div class="invalid-feedback ms-3">
                             Campo Obligatorio
                         </div>
                     </div>
-                </section>
 
-                <section class="text-center">
-                    <button type="submit" class="btn btn-primary">Enviar</button>
-                    <button onclick="closeDialog()" class="btn btn-secondary ms-2">Cerrar</button>
-                </section>
-            </form>
+                    <section class="text-center">
+                        <button type="submit" class="btn btn-primary">Enviar</button>
+                        <button onclick="closeDialog()" class="btn btn-secondary ms-2">Cerrar</button>
+                    </section>
+                </form>
+            </section>
         </dialog>
     </main>
 
@@ -325,6 +334,10 @@
                         <i class="icon-phone"></i><span>&nbsp;926 63 45 15</span>
                     </li>
                     <li>
+                        <h5>Idioma</h5>
+                        <div id="google_translate_element" class="google"></div>
+                    </li>
+                    <li>
                         <h5>¿Necesita ayuda?</h5>
                         <i class="icon-question"></i><span>&nbsp;¡Contacte con nosotros!</span>
                     </li>
@@ -341,6 +354,11 @@
         integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
     <script src="./js/shopping.js"></script>
+    <script src="./js/translate.js"></script>
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script src="./js/ValidationForms.js"></script>
+
 </body>
 
 </html>

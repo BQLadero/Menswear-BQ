@@ -36,7 +36,7 @@
                         </li>
                         <li class="nav-item" id="close">
                             <a class="nav-link active" role="button" aria-pressed="true" href="#" id="closeWindows">
-                                <i class="icon-remove"></i>&nbsp;Cerrar ventanas abiertas
+                                <i class="icon-remove"></i>&nbsp;Cerrar ventanas
                             </a>
                         </li>
                         <li class="nav-item dropdown">
@@ -54,7 +54,8 @@
                     </ul>
                     <form class="d-flex ms-2 busqueda">
                         <input class="form-control me-4" type="search" placeholder="Búsqueda" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit"><i class="icon-search"></i>&nbsp;Buscar</button>
+                        <button class="btn btn-outline-success" type="submit"><i
+                                class="icon-search"></i>&nbsp;Buscar</button>
                     </form>
                 </div>
             </div>
@@ -67,131 +68,143 @@
         </nav>
 
         <dialog class="sesion">
-            <h1 id="sesion--h1">Iniciar Sesi&oacute;n</h1>
-            <form action="./registered.html" name="sesion__f1" class="sesion__f1" method="post">
-                <label for="usuario" id="sesion__f1--usuLab">Nombre de usuario:</label>
-                <input type="text" id="sesion__f1--usu" name="usuario" maxlength="20" required><br><br>
-                <label for="pwdContraseña" id="sesion__f1--pwdLab">Contrase&ntilde;a:</label>
-                <input type="password" name="pwdContraseña" id="sesion__f1--pwd" minlength="8" maxlength="20" required
-                    data--container="body" data-toggle="popover" data-trigger="hover focus"
-                    data-content="Introduzca letras minusculas
-                     y mayusculas (al menos una), números y caracteres especiales.La longitud minima es de 8 y la máxima de 20." class="text-black">
-                <br>
-                <br>
-                <a href="#">Olvid&eacute; la contrase&ntilde;a</a>
-                <a href="#" id="sesion__f1--cre" onclick="crearCuenta(); closeDialog()">Crear cuenta</a>
-                <br>
-                <br>
-                <section>
-                    <button class="text-body text-center w-25" type="submit" name="enviar"><i class="icon-signin text-body"></i>&nbsp;Enviar</button>
-                    <button class="text-body" onclick="closeDialog()"><i class="icon-remove text-body"></i>&nbsp;Cerrar</button>
-                </section>
-            </form>
-        </dialog>
+            <div class="text-center">
+                <button class="btn btn-secondary" type="button" name="iniciarSesion" id="iniciarSesion"
+                    onclick="mtdIniciar();">
+                    Iniciar Sesión</button>
+                <button class="btn btn-secondary" type="button" name="crearCuenta" id="crearCuenta"
+                    onclick="mtdCrear();">Crear Cuenta</button>
+            </div>
+            <section id="iniciar" class="mt-2">
+                <h3 id="sesion--h1">Iniciar Sesi&oacute;n</h3>
+                <form method="post" class="was-validated form1" id="form">
+                    <div class="form-group row mt-4">
+                        <div class="input-group">
+                            <label class="sr-only form-check-label me-4 mt-1" for="sesion__f1--usu">Usuario</label>
+                            <div class="input-group-prepend m-2">
+                                <i class="icon-user"></i>
+                            </div>
+                            <input class="form-control" type="text" id="sesion__f1--usu" name="sesion__f1--usu"
+                                minlength="2" maxlength="20" placeholder="Usuario" value="" required>
+                            <div class="invalid-feedback text-white">
+                                Campo Obligatorio
+                            </div>
+                        </div>
+                        <div class="input-group mt-3">
+                            <label class="sr-only form-check-label me-4 mt-1"
+                                for="sesion__f1--Key">Contrase&ntilde;a</label>
+                            <div class="input-group-prepend m-2">
+                                <i class="icon-key"></i>
+                            </div>
+                            <input type="password" name="sesion__f1--Key" id="sesion__f1--Key" minlength="8"
+                                maxlength="20" required data--container="body" data-toggle="popover"
+                                data-trigger="hover focus" data-content="La longitud minima es de 8 y la máxima de 20."
+                                class="form-control text-black" placeholder="Contraseña">
+                            <div class="invalid-feedback text-white">
+                                Campo Obligatorio
+                            </div>
+                        </div>
+                    </div>
+                    <section class="text-center">
+                        <button type="submit" class="btn btn-primary"><i
+                                class="icon-signin text-body"></i>&nbsp;Enviar</button>
+                        <button onclick="closeDialog()" class="btn btn-secondary ms-2"><i
+                                class="icon-remove text-body"></i>&nbsp;Cerrar</button>
+                    </section>
+                </form>
+            </section>
 
-        <dialog class="sesion2 w-50">
-            <h3 class="text-center">Crear Cuenta</h3>
-            <form action="./registered.html" method="post" class="was-validated">
-                <div class="form-group row mt-4">
-                    <div class="input-group mb-2 me-sm-2 col">
-                        <label class="sr-only form-check-label me-3 mt-1" for="form-check-label">Nombre</label>
-                        <input type="text" class="form-control is-invalid" placeholder="Introduzca el nombre" required
-                            minlength="3" maxlength="20" autofocus>
-                        <div class="invalid-feedback">
-                            Campo Obligatorio
+            <section id="crear" class="sesion__f2 mt-2">
+                <h3 class="text-center">Crear Cuenta</h3>
+                <form method="post" class="was-validated form2" id="form">
+                    <div class="form-group row">
+                        <div class="input-group mb-2 me-sm-2 col">
+                            <label class="sr-only form-check-label me-3" for="form-check-label">Nombre</label>
+                            <div class="input-group-prepend m-2">
+                                <i class="icon-user"></i>
+                            </div>
+                            <input type="text" class="form-control is-invalid" placeholder="Introduzca el nombre"
+                                minlength="3" maxlength="20" autofocus required>
+                            <div class="invalid-feedback text-white">
+                                Campo Obligatorio
+                            </div>
+                        </div>
+                        <div class="input-group mb-2 me-sm-0 col">
+                            <label class="sr-only form-check-label me-4" for="form-check-label">Apellidos</label>
+                            <div class="input-group-prepend m-2">
+                                <i class="icon-user"></i>
+                            </div>
+                            <input type="text" class="form-control is-invalid" placeholder="Introduzca los apellidos"
+                                minlength="4" maxlength="40" required>
+                            <div class="invalid-feedback text-white">
+                                Campo Obligatorio
+                            </div>
                         </div>
                     </div>
-                    <div class="input-group mb-2 me-sm-0 col">
-                        <label class="sr-only form-check-label me-4 mt-1" for="form-check-label">Apellidos</label>
-                        <input type="text" class="form-control is-invalid" placeholder="Introduzca los apellidos"
-                            required minlength="1" maxlength="40">
-                        <div class="invalid-feedback">
-                            Campo Obligatorio
+                    <div class="form-group row">
+                        <div class="input-group mb-2 me-sm-2 col">
+                            <label class="sr-only form-check-label me-3" for="form-check-label">Contraseña</label>
+                            <div class="input-group-prepend m-2">
+                                <i class="icon-key"></i>
+                            </div>
+                            <input type="password" class="form-control is-invalid"
+                                placeholder="Introduzca la contraseña" minlength="8" maxlength="20" required>
+                            <div class="invalid-feedback text-white">
+                                Campo Obligatorio
+                            </div>
+                        </div>
+                        <div class="input-group mb-2 me-sm-0 col">
+                            <label class="sr-only form-check-label me-4" for="form-check-label">Direccion</label>
+                            <div class="input-group-prepend m-2">
+                                <i class="icon-map-marker"></i>
+                            </div>
+                            <input type="text" class="form-control is-invalid" placeholder="Introduzca la direccion"
+                                minlength="10" required>
+                            <div class="invalid-feedback text-white">
+                                Campo Obligatorio
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="form-group row mt-2">
-                    <div class="input-group mb-2 me-sm-2 col">
-                        <label class="sr-only form-check-label me-3 mt-1" for="form-check-label">Contraseña</label>
-                        <input type="password" class="form-control is-invalid" placeholder="Introduzca la contraseña"
-                            required minlength="8" maxlength="20">
-                        <div class="invalid-feedback">
-                            Campo Obligatorio
+                    <div class="form-group row">
+                        <div class="input-group mb-2 me-sm-2 col">
+                            <label class="sr-only form-check-label me-3" for="form-check-label">Correo
+                                electrónico</label>
+                            <div class="input-group-prepend m-2">
+                                <i class="icon-envelope"></i>
+                            </div>
+                            <input type="email" class="form-control is-invalid"
+                                placeholder="Introduzca su correo electrónico" required>
+                            <div class="invalid-feedback text-white">
+                                Campo Obligatorio
+                            </div>
+                        </div>
+                        <div class="input-group mb-2 me-sm-0 col">
+                            <label class="sr-only form-check-label me-4" for="form-check-label">Número de
+                                Teléfono</label>
+                            <div class="input-group-prepend m-2">
+                                <i class="icon-mobile-phone"></i>
+                            </div>
+                            <input type="text" class="form-control is-invalid" placeholder="Introduzca su teléfono"
+                                minlength="9" maxlength="9" required>
+                            <div class="invalid-feedback text-white">
+                                Campo Obligatorio
+                            </div>
                         </div>
                     </div>
-                    <div class="input-group mb-2 me-sm-0 col">
-                        <label class="sr-only form-check-label me-4 mt-1" for="form-check-label">Direccion</label>
-                        <input type="text" class="form-control" placeholder="Introduzca la direccion">
-                        <div class="valid-feedback">
-                            Campo Opcional
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row mt-2">
-                    <div class="input-group mb-2 me-sm-2 col">
-                        <label class="sr-only form-check-label me-3 mt-1" for="form-check-label">Correo
-                            electrónico</label>
-                        <input type="email" class="form-control is-invalid"
-                            placeholder="Introduzca su correo electrónico" required>
-                        <div class="invalid-feedback">
-                            Campo Obligatorio
-                        </div>
-                    </div>
-                    <div class="input-group mb-2 me-sm-0 col">
-                        <label class="sr-only form-check-label me-4 mt-1" for="form-check-label">Número de
-                            Teléfono</label>
-                        <input type="text" class="form-control is-invalid" placeholder="Introduzca su teléfono"
-                            required>
-                        <div class="invalid-feedback">
-                            Campo Obligatorio
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group row mt-2">
-                    <div class="input-group mb-2 me-sm-2 col">
-                        <label class="sr-only form-check-label me-3 mt-1"
-                            for="form-check-label validationCustom01">Localidad</label>
-                        <input type="text" class="form-control is-invalid" placeholder="Localidad" required>
-                        <div class="invalid-feedback">
-                            Campo Obligatorio
-                        </div>
-                    </div>
-                    <div class="input-group mb-2 me-sm-0 col">
-                        <label class="sr-only form-check-label me-4 mt-1" for="form-check-label">Código Postal</label>
-                        <input type="number" class="form-control is-invalid" placeholder="Código Postal" min="9999"
-                            max="99999" required>
-                        <div class="invalid-feedback">
-                            Campo Obligatorio
-                        </div>
-                    </div>
-                    <div class="input-group mb-2 col w-25">
-                        <!--Poner en negro, mirar en la pagina de bootstrap-->
-                        <select name="selOpt" class="form-control is-invalid" required>
-                            <option value="1">Femenino</option>
-                            <option value="2">Masculino</option>
-                            <option value="3">Otro</option>
-                            <option></option>
-                        </select>
-                        <div class="invalid-feedback">
-                            Campo Obligatorio
-                        </div>
-                    </div>
-                </div>
-                <section class="text-center">
-                    <button type="submit" class="btn btn-primary">Enviar</button>
-                    <button onclick="cerrarCuenta(); showDialog()" class="btn btn-secondary ms-2">Cerrar</button>
-                </section>
-            </form>
+
+                    <section class="text-center">
+                        <button type="submit" class="btn btn-primary"><i
+                                class="icon-signin text-body"></i>&nbsp;Enviar</button>
+                        <button onclick="closeDialog()" class="btn btn-secondary ms-2"><i
+                                class="icon-remove text-body"></i>&nbsp;Cerrar</button>
+                    </section>
+                </form>
+            </section>
         </dialog>
     </header>
 
     <main class="cuerpo">
-        <!--<nav aria-label="breadcrumb" id="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="./index.html" class="text-white">Inicio</a></li>
-            </ol>
-        </nav>-->
         <div class="cuerpo__espe">
 
         </div>
@@ -376,6 +389,10 @@
                         <i class="icon-phone"></i><span>&nbsp;926 63 45 15</span>
                     </li>
                     <li>
+                        <h5>Idioma</h5>
+                        <div id="google_translate_element" class="google"></div>
+                    </li>
+                    <li>
                         <h5>¿Necesita ayuda?</h5>
                         <i class="icon-question"></i><span>&nbsp;¡Contacte con nosotros!</span>
                     </li>
@@ -394,6 +411,10 @@
 
     <script src="./js/shop.js" type="module"></script>
     <script src="./js/index.js"></script>
+    <script src="./js/translate.js"></script>
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    <script src="./js/ValidationForms.js"></script>
 </body>
 
 </html>

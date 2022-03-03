@@ -12,7 +12,6 @@ class ManagerView {
 
 	//Función creada para mostrar los productos y no tener que crearla x veces
 	#showProductInNewWindow(window, product, message) {
-		console.log(product);
 		let main = $(window.document).find('main');
 		let header = $(window.document).find('header nav');
 		let container;
@@ -79,6 +78,7 @@ class ManagerView {
 		this.close = $('#close');
 		this.search = $('.busqueda');
 		this.search2 = $('.busqueda--regis');
+		this.shopping = $('busqueda--regis > button');
 		this.storeHouse = StoreHouse.getInstance(); //Creo este parametro unicamente para la ventana emergente
 	}
 
@@ -168,7 +168,6 @@ class ManagerView {
 
 	bindShopProductsList(handler) {
 		$('#shops-products').find('a').click((event) => {
-			console.log("hola");
 			let category = $(event.target).closest($('a')).get(0).dataset.category;
 			this.#excecuteHandler(
 				handler, [category],
@@ -300,7 +299,6 @@ class ManagerView {
 	}
 
 	showProductInNewWindow(window, product, message) {
-		console.log(product);
 		let main = $(this.ventana.document).find('main');
 		let header = $(this.ventana.document).find('header nav');
 		main.empty();
@@ -406,11 +404,12 @@ class ManagerView {
 		$('#shop-list').find('a.img-wrap').click((event) => {
 			let serial = $(event.target).closest($('a')).get(0).dataset.serial;
 			let product = this.storeHouse.getProduct(Number.parseInt(serial));
-			console.log(product);
 			if (this.openWindows.size === 0) {
 				this.close.css("display", "block");
-				this.search.css("width", "40%");
+				this.search.css("width", "35%");
 				this.search2.css("width", "15%");
+				//this.search2.css("margin-left", "5%");
+				//this.shopping.css("width", "40%");
 			}
 
 			if (!this.openWindows.has(serial)) {
@@ -438,11 +437,11 @@ class ManagerView {
 		$('#type-list').find('a.img-wrap').click((event) => {
 			let serial = $(event.target).closest($('a')).get(0).dataset.serial;
 			let product = this.storeHouse.getProduct(Number.parseInt(serial));
-			console.log(product);
 			if (this.openWindows.size === 0) {
 				this.close.css("display", "block");
 				this.search.css("width", "40%");
-				this.search2.css("width", "25%");
+				this.search2.css("width", "20%");
+				this.shopping.css("width", "50%");
 			}
 
 			if (!this.openWindows.has(serial)) {
@@ -476,8 +475,9 @@ class ManagerView {
 			}
 			//Al no quedar ninguna ventana abierta, se vuelve a quitar la opcion del menú
 			this.close.css("display", "none");
-			this.search.css("width", "55%");
-			this.search2.css("width", "32%");
+			this.search.css("width", "50%");
+			this.search2.css("width", "25%");
+			this.shopping.css("width", "50%");
 		});
 	}
 }

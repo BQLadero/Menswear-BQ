@@ -42,7 +42,7 @@
                         </li>
                         <li class="nav-item" id="close">
                             <a class="nav-link active" role="button" aria-pressed="true" href="#" id="closeWindows">
-                                Cerrar ventanas abiertas
+                                Cerrar ventanas
                             </a>
                         </li>
                         <li class="nav-item dropdown">
@@ -58,7 +58,7 @@
                             </div>
                         </li>
                     </ul>
-                    <form class="d-flex ms-2 busqueda--regis me-5">
+                    <form class="d-flex ms-2 busqueda--regis me-2">
                         <input class="form-control me-4" type="search" placeholder="Búsqueda" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit">Buscar</button>
                     </form>
@@ -248,14 +248,18 @@
                 <ul>
                     <h3>Contacto</h3>
                     <li>
-                        <i class="icon-envelope"></i> <span>blasladero12@gmail.com</span>
+                        <i class="icon-envelope"></i><span>&nbsp;blasladero12@gmail.com</span>
                     </li>
                     <li>
                         <i class="icon-phone"></i><span>&nbsp;926 63 45 15</span>
                     </li>
                     <li>
+                        <h5>Idioma</h5>
+                        <div id="google_translate_element" class="google"></div>
+                    </li>
+                    <li>
                         <h5>¿Necesita ayuda?</h5>
-                        <i class="icon-question"></i> <span> ¡Contacte con nosotros!</span>
+                        <i class="icon-question"></i><span>&nbsp;¡Contacte con nosotros!</span>
                     </li>
                 </ul>
             </section>
@@ -272,6 +276,9 @@
 
     <script src="./js/registered.js"></script>
     <script src="./js/shop.js" type="module"></script>
+    <script src="./js/translate.js"></script>
+    <script type="text/javascript"
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 
 </html>

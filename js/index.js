@@ -45,12 +45,12 @@ function barraProgress() {
     let password = document.getElementById("sesion__f1--Key");
 
     if(usuario.value.length>1 && usuario.value.length<21 ){
-        pixeles+=400;
-        progreso.style.width=pixeles+"px";
+        pixeles+=50;
+        progreso.style.width=pixeles+"%";
     }
     if(password.value.length>7 && password.value.length<21){
-        pixeles+=400;
-        progreso.style.width=pixeles+"px";
+        pixeles+=50;
+        progreso.style.width=pixeles+"%";
     }
 }
 
@@ -65,29 +65,29 @@ function barraProgress2() {
     let tlf = document.getElementById("sesion__f2--tlf");
 
     if(nombre.value.length>2 && nombre.value.length<21 ){
-        pixeles+=125;
-        progreso.style.width=pixeles+"px";
+        pixeles+=16.666;
+        progreso.style.width=pixeles+"%";
     }
     if(apellidos.value.length>4 && apellidos.value.length<41){
-        pixeles+=125;
-        progreso.style.width=pixeles+"px";
+        pixeles+=16.666;
+        progreso.style.width=pixeles+"%";
     }
     if(pwd.value.length>7 && pwd.value.length<21){
-        pixeles+=125;
-        progreso.style.width=pixeles+"px";
+        pixeles+=16.666;
+        progreso.style.width=pixeles+"%";
     }
     if(direccion.value.length>9){
-        pixeles+=125;
-        progreso.style.width=pixeles+"px";
+        pixeles+=16.666;
+        progreso.style.width=pixeles+"%";
     }
 
     let pattern = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
     if(pattern.test(email.value)){
-        pixeles+=125;
-        progreso.style.width=pixeles+"px";
+        pixeles+=16.666;
+        progreso.style.width=pixeles+"%";
     }
     if(tlf.value.length>8 && tlf.value.length<10){
-        pixeles+=125;
-        progreso.style.width=pixeles+"px";
+        pixeles+=16.666;
+        progreso.style.width=pixeles+"%";
     }
 }

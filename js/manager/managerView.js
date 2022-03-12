@@ -127,7 +127,6 @@ class ManagerView {
 			container.append(`<a data-category="${shop.name}" class="dropdown-item" href="#product-list">${shop.name}</a>`);
 		}
 		li.append(container);
-		this.menu.append(`<br><br>`);
 		this.menu.append(li);
 	}
 
@@ -259,7 +258,7 @@ class ManagerView {
 							</div>`);
 		for (let product of products) {
 			let div = $(`
-			<div class="col"">
+			<div class="col">
 				<figure class="card text-center"> 
 					<a data-serial="${product.serialNumber}" href="#single-product" class="img-wrap text-center">
                         <img class="w-100" src="${product.images2}">

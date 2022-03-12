@@ -22,6 +22,13 @@
                 <a href="#" id="logo" class="navbar-brand">
                     <img src="./img/logo.png" alt="Logo PortalGames" id="cabeza__logo--img">
                 </a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse"
+                    data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <p id="menuP">Desplega/Oculta el menú para ver/quitar las diversas opciones</p>
                 <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
@@ -40,6 +47,32 @@
                             </a>
                         </li>
                         <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navAdmin" role="button"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Administración
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navAdmin">
+                                <a data-category="addShop" class="dropdown-item" href="#administration">
+                                    Añadir Tiendas
+                                </a>
+                                <a data-category="delShop" class="dropdown-item" href="#administration">
+                                    Borrar Tiendas
+                                </a>
+                                <a data-category="addCat" class="dropdown-item" href="#administration">
+                                    Añadir Categorías
+                                </a>
+                                <a data-category="delCat" class="dropdown-item" href="#administration">
+                                    Borrar Categorías
+                                </a>
+                                <a data-category="addProd" class="dropdown-item" href="#administration">
+                                    Añadir Productos
+                                </a>
+                                <a data-category="delProd" class="dropdown-item" href="#administration">
+                                    Borrar Productos
+                                </a>
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navProds" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Productos
@@ -52,19 +85,13 @@
                             </div>
                         </li>
                     </ul>
-                    <form class="d-flex ms-2 busqueda">
+                    <!--<form class="d-flex ms-2 busqueda">
                         <input class="form-control me-4" type="search" placeholder="Búsqueda" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit"><i
                                 class="icon-search"></i>&nbsp;Buscar</button>
-                    </form>
+                    </form>-->
                 </div>
             </div>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse"
-                data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
-                aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
         </nav>
 
         <dialog class="sesion">
@@ -78,10 +105,10 @@
             <section id="iniciar" class="mt-2">
                 <h3 id="sesion--h1">Iniciar Sesi&oacute;n</h3>
                 <form action="./registered.html" method="post" class="was-validated form1" id="form"
-                onchange="barraProgress()">
+                    onchange="barraProgress()">
                     <div class="progress">
                         <div id="bar" class="progress-bar progress-bar-striped active" role="progressbar"
-                            aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+                            aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
                             <span class="sr-only">0% Complete</span>
                         </div>
                     </div>
@@ -104,9 +131,9 @@
                                 <i class="icon-key"></i>
                             </div>
                             <input type="password" name="sesion__f1--Key" id="sesion__f1--Key" minlength="8"
-                                maxlength="20" required data--container="body" data-toggle="popover"
-                                data-trigger="hover focus" data-content="La longitud minima es de 8 y la máxima de 20."
-                                class="form-control text-black" placeholder="Contraseña">
+                                maxlength="20" data--container="body" data-toggle="popover" data-trigger="hover focus"
+                                data-content="La longitud minima es de 8 y la máxima de 20."
+                                class="form-control text-black" placeholder="Contraseña" required>
                             <div class="invalid-feedback text-white">
                                 Campo Obligatorio
                             </div>
@@ -137,8 +164,8 @@
                             <div class="input-group-prepend m-2">
                                 <i class="icon-user"></i>
                             </div>
-                            <input type="text" class="form-control is-invalid" id="sesion__f2--nom" placeholder="Introduzca el nombre"
-                                minlength="3" maxlength="20" autofocus required>
+                            <input type="text" class="form-control is-invalid" id="sesion__f2--nom"
+                                placeholder="Introduzca el nombre" minlength="3" maxlength="20" autofocus required>
                             <div class="invalid-feedback text-white">
                                 Campo Obligatorio
                             </div>
@@ -148,8 +175,8 @@
                             <div class="input-group-prepend m-2">
                                 <i class="icon-user"></i>
                             </div>
-                            <input type="text" class="form-control is-invalid" id="sesion__f2--ape" placeholder="Introduzca los apellidos"
-                                minlength="4" maxlength="40" required>
+                            <input type="text" class="form-control is-invalid" id="sesion__f2--ape"
+                                placeholder="Introduzca los apellidos" minlength="4" maxlength="40" required>
                             <div class="invalid-feedback text-white">
                                 Campo Obligatorio
                             </div>
@@ -172,8 +199,8 @@
                             <div class="input-group-prepend m-2">
                                 <i class="icon-map-marker"></i>
                             </div>
-                            <input type="text" class="form-control is-invalid" id="sesion__f2--dir" placeholder="Introduzca la direccion"
-                                minlength="10" required>
+                            <input type="text" class="form-control is-invalid" id="sesion__f2--dir"
+                                placeholder="Introduzca la direccion" minlength="10" required>
                             <div class="invalid-feedback text-white">
                                 Campo Obligatorio
                             </div>
@@ -188,7 +215,8 @@
                                 <i class="icon-envelope"></i>
                             </div>
                             <input type="email" class="form-control is-invalid" id="sesion__f2--email"
-                                placeholder="Introduzca su correo electrónico" required>
+                                placeholder="Introduzca su correo electrónico"
+                                pattern="^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$" required>
                             <div class="invalid-feedback text-white">
                                 Campo Obligatorio
                             </div>
@@ -199,8 +227,8 @@
                             <div class="input-group-prepend m-2">
                                 <i class="icon-mobile-phone"></i>
                             </div>
-                            <input type="text" class="form-control is-invalid" id="sesion__f2--tlf" placeholder="Introduzca su teléfono"
-                                minlength="9" maxlength="9" required>
+                            <input type="text" class="form-control is-invalid" id="sesion__f2--tlf"
+                                placeholder="Introduzca su teléfono" minlength="9" maxlength="9" required>
                             <div class="invalid-feedback text-white">
                                 Campo Obligatorio
                             </div>
@@ -230,9 +258,8 @@
                 id="publicidad--sale"></a>
     </aside>
     <aside class="publicidad__2">
-        <a href="#"><img src="./img/publi-2.jpg"
-                alt="Vende tu completamente gratis. Sin Comisiones. Sin letra pequeña. Infórmate"
-                id="publicidad--sale"></a>
+        <!--Se muestra cuando la pantalla tiene la resolución de un móvil-->
+        <a href="#"><img src="./img/publi-2.jpg" alt="Últimas ventas" id="publicidad--sale2"></a>
     </aside>
     <footer class="pie">
         <section class="arriba">

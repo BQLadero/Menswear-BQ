@@ -216,7 +216,6 @@ let StoreHouse = (function () {
                 return product;
             }
 
-
             getShops(){
                 let shops = [];
                 this.#shops.forEach(function (value, key) {
@@ -237,7 +236,6 @@ let StoreHouse = (function () {
                 return arr[Symbol.iterator]();
             }
 
-
             getTypeProduct(type){
                 let arr = [];
                 this.#products.forEach(function (value, key) {
@@ -251,7 +249,7 @@ let StoreHouse = (function () {
         Object.defineProperty(StoreHouse.prototype, "shops", { enumerable: true });
         Object.defineProperty(StoreHouse.prototype, "catDefault", { enumerable: true });
         Object.defineProperty(StoreHouse.prototype, "shopDefault", { enumerable: true });
-        let sth = new StoreHouse();//Devolvemos el objeto ShoppingCart para que sea una instancia única.
+        let sth = new StoreHouse();//Devolvemos el objeto StoreHouse para que sea una instancia única.
         Object.freeze(sth);
         return sth;
     }

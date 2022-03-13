@@ -619,6 +619,10 @@ select>option {
     width: 50%;
 }
 
+/*.info-wrap > a{
+    color: white;
+}*/
+
 @media screen and (min-width:1201px) {
     .nav-link {
         font-size: 22px;

@@ -18,6 +18,7 @@ class ManagerView {
 		if (product) {
 			window.document.title = `Especificaciones del producto: ${product.name}`;
 			header.append(`<h1 data-serial="${product.serialNumber}" class="text-center">${product.name}</h1>`);
+			//<img id="main-image" src="${product.images2}"/> 
 			container = $(`
 			<div id="single-product" class="${product.constructor.name}-style container mt-5 mb-5">
 				<div class="row d-flex text-center">
@@ -26,7 +27,17 @@ class ManagerView {
 							<div class="row">
 								<div class="col-md-6">
 									<div class="p-3">
-										<div class="text-center p-4"> <img id="main-image" src="${product.images2}"/> </div>
+										<div id="carousel-${product.serialNumber}" class="carousel slide" data-ride="carousel">
+											<div class="carousel-inner"></div>
+											<a class="carousel-control-prev" href="#carousel-${product.serialNumber}" role="button" data-slide="prev">
+												<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+												<span class="sr-only">Previous</span>
+											</a>
+											<a class="carousel-control-next" href="#carousel-${product.serialNumber}" role="button" data-slide="next">
+												<span class="carousel-control-next-icon" aria-hidden="true"></span>
+												<span class="sr-only">Next</span>
+											</a>
+										</div>
 									</div>
 								</div>
 								<div class="col-md-6 text-center">
@@ -55,8 +66,27 @@ class ManagerView {
 				</div>
 			</div>`);
 
-			//container.find('h6').after(this.#instance[product.constructor.name]);
-
+			for (let index = 0; index < product.images2.length; index++) {
+				let carImg = "";
+				if(index ===0){
+					carImg = $(`
+						<div class="carousel-item active">
+							<a data-serial="${product.serialNumber}" href="#single-product" class="img-wrap text-center">
+								<img class="d-block w-100" id="${product.serialNumber}" src="${product.images2[index]}" alt="${product.name}">
+							</a>
+						</div>
+					`);
+				}else{
+					carImg = $(`
+						<div class="carousel-item">
+							<a data-serial="${product.serialNumber}" href="#single-product" class="img-wrap text-center">
+								<img class="d-block w-100" id="${product.serialNumber}" src="${product.images2[index]}" alt="${product.name}">
+							</a>
+						</div>
+					`);
+				}
+				$(container).find('.carousel-inner').append(carImg);
+			}
 		} else {
 			container = $(`
 			<div class="container mt-5 mb-5">
@@ -109,7 +139,7 @@ class ManagerView {
 				</div>
 			</div>`);
 		}
-		this.main.append(`<h1 class="text-center text-white">Tiendas</h1>`);
+		this.main.append(`<h1 class="text-center">Tiendas</h1>`);
 		this.main.append(container);
 	}
 
@@ -135,15 +165,15 @@ class ManagerView {
 		let container = $(`<div id="shop-list" class="container">
 								<div class="row"> </div>
 							</div>`);
-		for (let product of products) {
+		for (let product of products) {			
 			let div = $(`
 			<div class="col ajustar">
-				<figure class="card text-center"> 
+				<figure class="card text-center">
 					<a data-serial="${product.serialNumber}" href="#single-product" class="img-wrap text-center">
-                        <img class="w-75" id="${product.serialNumber}"  src="${product.images2}">
-					</a>
+						<img class="w-75" id="${product.serialNumber}" alt="${product.name}"  src="${product.images2[0]}">
+					</a>					
 					<figcaption class="info-wrap mt-3">
-							<a data-serial="${product.serialNumber}" href="#single-product" class="text-white h4">
+							<a data-serial="${product.serialNumber}" href="#single-product" class="text-info h4">
 								${product.name}
 							</a>
 					</figcaption>
@@ -160,7 +190,6 @@ class ManagerView {
 			</div>`);
 			container.children().first().append(div);
 		}
-		//this.breadcrumb.append('<li class="breadcrumb-item active" aria-current="page">Tiendas</li>');
 		container.prepend(`<h2 class="text-center">Productos de la tienda ${shop}</h2>`);
 		this.main.append(container);
 	}
@@ -215,10 +244,10 @@ class ManagerView {
 			<div class="col">
 				<figure class="card card-product-grid card-lg"> 
 					<a data-serial="${product.serialNumber}" href="#single-product" class="img-wrap text-center">
-                        <img class="w-75" src="${product.images2}">
+                        <img class="w-75" src="${product.images2[0]}">
 					</a>
 					<figcaption class="info-wrap text-center">
-							<a data-serial="${product.serialNumber}" href="#single-product" class="text-white h4">
+							<a data-serial="${product.serialNumber}" href="#single-product" class="h4">
 								${product.name}
 							</a>
 					</figcaption>
@@ -261,10 +290,10 @@ class ManagerView {
 			<div class="col">
 				<figure class="card text-center"> 
 					<a data-serial="${product.serialNumber}" href="#single-product" class="img-wrap text-center">
-                        <img class="w-100" src="${product.images2}">
+                        <img class="w-100" src="${product.images2[0]}">
 					</a>
 					<figcaption class="info-wrap text-center">
-							<a data-serial="${product.serialNumber}" href="#single-product" class="text-white h4">
+							<a data-serial="${product.serialNumber}" href="#single-product" class="h4">
 								${product.name}
 							</a>
 					</figcaption>

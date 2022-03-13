@@ -24,22 +24,6 @@ class Product {
         price = Number.parseFloat(price);
         if (!price || price <= 0) throw new InvalidValueException("price");
 
-        //Al ser opcionales, pueden estar vacio, pero si se pasar algun dato hay que comprobarlo
-        /*if (tax !== "") {
-            tax = Number.parseFloat(tax);
-            if (!tax || tax <= 0) throw new InvalidValueException("tax");
-            this.#tax = tax;
-        } else if (tax === "") {
-            this.#tax = tax;
-        } else throw new InvalidValueException("tax");*/
-
-        /*if (images !== "") {
-            if (!Array.isArray(images)) throw new InvalidValueException("images");
-            this.#images = images;
-        } else if (images === "") {
-            this.#images = images;
-        } else throw new InvalidValueException("images");*/
-
         //Una vez que han sido validados los datos, se agregan a cada atributo correspondiente
         this.#serialNumber = serialNumber;
         this.#name = name;
@@ -98,11 +82,13 @@ class Product {
         return this.#images;
     }
     set images2(value) {
-        /*if (value !== "") {
-            if (!Array.isArray(value)) throw new InvalidValueException("images");
-            this.#images = value;
-        } else if (value === "") {
-        } else throw new InvalidValueException("images");*/
+        if (value !== "") {
+            if (Array.isArray(value)){
+                this.#images.push(value.values());
+            }else{
+                this.#images.push(value);
+            }
+        } else throw new InvalidValueException("images");
         this.#images = value;
 
     }

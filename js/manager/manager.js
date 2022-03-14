@@ -199,7 +199,7 @@ let StoreHouse = (function () {
             getCategory(title) {
                 let position = this.#categories.findIndex(x => x.title === title);
                 if (position === -1)
-                    throw new Error("hola");
+                    throw new Error("La categoria no existe");
                 return this.#categories[position];
             }
 

@@ -15,14 +15,14 @@ class Store {
 
     constructor(cif, name, address, phone, coords) {
         if (!new.target) throw new InvalidAccessConstructorException();
-
         if (!cif) throw new EmptyValueException("cif");
         if (!name) throw new EmptyValueException("name");
         if (!address) throw new EmptyValueException("address");
-
         //Testeo de que el atributo phone contiene 9 números
         if (!/^[0-9]{9}$/.test(phone)) throw new InvalidValueException("phone", phone);
-        if (!(coords instanceof Coords)) throw new Error("El elemento introducido no es un objecto Coordenada");
+        //if (!(coords instanceof Coords)) throw new Error("El elemento introducido no es un objecto Coordenada");
+        //Al pasar por el formulario un texto tengo que quitar lo de la instancia
+        if (!coords) throw new EmptyValueException("coords");
 
         this.#cif = cif;
         this.#name = name;

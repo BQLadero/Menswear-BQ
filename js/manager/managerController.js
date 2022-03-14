@@ -40,11 +40,11 @@ class ManagerController {
         storeHouse.addProductInShop(product1, store1, 7);
         storeHouse.addProductInShop(product1, store2, 7);
 
-        let product2 = new Traje(2, 'Tropical Active', 159.99, 189, 'Botón', 'Lavar en seco', 'no', "Traje de gala", 5, ['./img/traje-zalando-2.png','./img/traje-zalando-2-1.png','./img/traje-zalando-2-2.png']);
+        let product2 = new Traje(2, 'Tropical Active', 159.99, 189, 'Botón', 'Lavar en seco', 'no', "Traje de gala", 5, ['./img/traje-zalando-2.png', './img/traje-zalando-2-1.png', './img/traje-zalando-2-2.png']);
         storeHouse.addProduct(product2, category5);
         storeHouse.addProductInShop(product2, store1, 2);
 
-        let product3 = new Traje(3, 'Plain mens suit', 149.95, 192, 'Botón', 'Lavar en seco', 'Tira de botones, hombrera', "Traje de gala", 5, ['./img/traje-zalando-3.png','./img/traje-zalando-3-1.png','./img/traje-zalando-3-2.png']);
+        let product3 = new Traje(3, 'Plain mens suit', 149.95, 192, 'Botón', 'Lavar en seco', 'Tira de botones, hombrera', "Traje de gala", 5, ['./img/traje-zalando-3.png', './img/traje-zalando-3-1.png', './img/traje-zalando-3-2.png']);
         storeHouse.addProduct(product3, category5);
         storeHouse.addProductInShop(product3, store2, 3);
         storeHouse.addProductInShop(product3, store3, 3);
@@ -53,7 +53,7 @@ class ManagerController {
         storeHouse.addProduct(product4, category2);
         storeHouse.addProductInShop(product4, store3, 1);
 
-        let product5 = new Traje(5, 'Regular Fit', 117.99, 175, 'Botón y Cremallera', 'Lavar en ciclo de lavado suave a 40°', 'no', "Traje de gala", 5, ['./img/traje-c&a-2.png','./img/traje-c&a.png']);
+        let product5 = new Traje(5, 'Regular Fit', 117.99, 175, 'Botón y Cremallera', 'Lavar en ciclo de lavado suave a 40°', 'no', "Traje de gala", 5, ['./img/traje-c&a-2.png', './img/traje-c&a.png']);
         storeHouse.addProduct(product5, category4);
         storeHouse.addProductInShop(product5, store2, 4);
 
@@ -80,7 +80,7 @@ class ManagerController {
         storeHouse.addProductInShop(product9, store1, 8);
 
         let product10 = new Bota(10, 'Botas Chelsea', 39.99, 43, 'No contiene cierre', 'Goma termoplástica', 'Algodón ', "Botas Chelsea en ante sintético con elásticos laterales y trabilla detrás. Tacón 3 cm."
-            , 0, ['./img/botas-h&m.png','./img/botas-h&m-2.png']);
+            , 0, ['./img/botas-h&m.png', './img/botas-h&m-2.png']);
         storeHouse.addProduct(product10, category3);
         storeHouse.addProductInShop(product10, store1, 17);
         storeHouse.addProductInShop(product10, store2, 5);
@@ -100,22 +100,22 @@ class ManagerController {
         storeHouse.addProductInShop(product12, store2, 7);
 
         let product13 = new Pantalon(13, 'Chinos slim fit', 49.99, 'Elástica', 'Botón', 'Al bies por delante y un bolsillo pequeño, dos bolsillos ribeteados por detrás.', "Algodón y Elastano",
-            "Chinos ceñidos de tejido elástico. Con dos bolsillos al bies por delante y un bolsillo pequeño, dos bolsillos ribeteados por detrás.", 0, 
+            "Chinos ceñidos de tejido elástico. Con dos bolsillos al bies por delante y un bolsillo pequeño, dos bolsillos ribeteados por detrás.", 0,
             ['./img/pantalones-c&a-1.png', './img/pantalones-c&a-1-1.png']);
         storeHouse.addProduct(product13, category4);
         storeHouse.addProductInShop(product13, store1, 4);
         storeHouse.addProductInShop(product13, store3, 5);
 
-        let product14 = new Pantalon(14, 'Pantalón de deporte - fitness', 24.99, 'Elástica', 'Cordones', 'Dos bolsillos con cremalleras a los lados', "Poliéster y Algodón", 
-            "Pantalón de deporte de felpa lisa. Dos bolsillos con cremalleras a los lados y pespuntes estilo biker de adorno delante. Puños de canalé en los bajos.", 0, 
+        let product14 = new Pantalon(14, 'Pantalón de deporte - fitness', 24.99, 'Elástica', 'Cordones', 'Dos bolsillos con cremalleras a los lados', "Poliéster y Algodón",
+            "Pantalón de deporte de felpa lisa. Dos bolsillos con cremalleras a los lados y pespuntes estilo biker de adorno delante. Puños de canalé en los bajos.", 0,
             ['./img/pantalones-c&a-2.png', './img/pantalones-c&a-2-1.png']);
         storeHouse.addProduct(product14, category4);
         storeHouse.addProductInShop(product14, store1, 2);
         storeHouse.addProductInShop(product14, store1, 11);
         storeHouse.addProductInShop(product14, store3, 14);
 
-        let product15 = new Pantalon(15, 'Pantalón Confort Pliegue', 29.95, 'Elástica y confortable', 'Botón y Cremallera', 'En delantero y detalle de bolsillos de vivo en espalda', "Poliéster, viscosa y elastano", 
-            "Pantalón confeccionado en tejido de estructura elástica y confortable. Detalle de pliegues frontales en cintura.", 0, 
+        let product15 = new Pantalon(15, 'Pantalón Confort Pliegue', 29.95, 'Elástica y confortable', 'Botón y Cremallera', 'En delantero y detalle de bolsillos de vivo en espalda', "Poliéster, viscosa y elastano",
+            "Pantalón confeccionado en tejido de estructura elástica y confortable. Detalle de pliegues frontales en cintura.", 0,
             ['./img/pantalones-zara.png', './img/pantalones-zara-1.png', './img/pantalones-zara-2.png']);
         storeHouse.addProduct(product15, category2);
         storeHouse.addProductInShop(product15, store2, 1);
@@ -136,12 +136,12 @@ class ManagerController {
         storeHouse.addProductInShop(product18, store1, 12);
 
         let product19 = new Calcetin(19, 'Calcetines Jacquard The Beathles', 12.95, "THE BEATLES", 'Largos', 'Algodón, Poliamida y Elastano', 2, "Pack de calcetines con jacquard The Beatles. Acabados en rib.",
-            0, [ './img/calcetines-zara-1.png','./img/calcetines-zara.png',, './img/calcetines-zara-2.png']);
+            0, ['./img/calcetines-zara-1.png', './img/calcetines-zara.png', , './img/calcetines-zara-2.png']);
         storeHouse.addProduct(product19, category1);
         storeHouse.addProductInShop(product19, store2, 10);
 
         let product20 = new Calcetin(20, 'Calcetines Altos', 7.99, "Tela", 'Largos', 'Algodón, Poliamida y Elastano', 3, "JOIN LIFE Care for fiber & Care for water: At least 75% of Ecologically Grown Cotton.",
-             0, ['./img/calcetines-p&b.png', './img/calcetines-p&b-1.png']);
+            0, ['./img/calcetines-p&b.png', './img/calcetines-p&b-1.png']);
         storeHouse.addProduct(product20, category1);
         storeHouse.addProductInShop(product20, store1, 70);
     }
@@ -154,13 +154,22 @@ class ManagerController {
         this.onInit();
         this.#storeHouseView.bindInit(this.handleInit);
         this.#storeHouseView.closeWindows();
-        
+
     }
 
     onLoad = () => {
         this.#loadManagerObjects(); //Llamada a la funcion de creación de objectos
         this.onAddCategory();
         this.onAddShop();
+        /*	,
+            this.handleNewProductForm,
+            this.handleRemoveProductForm */
+        this.#storeHouseView.bindAdminMenu(
+            this.handleNewShopForm,
+            this.handleRemoveShopForm,
+            this.handleNewCategoryForm,
+            this.handleRemoveCategoryForm
+        );
     }
 
     onInit = () => {
@@ -175,6 +184,7 @@ class ManagerController {
 
     onAddShop = () => { //Añadición de las categorias creadas al menú
         this.#storeHouseView.showShopsInMenu(this.#storeHouse.getShops());
+        this.#storeHouseView.showShops(this.#storeHouse.getShops());
     }
 
     onAddCategory = () => { //Añadición de las categorias creadas al menú
@@ -185,8 +195,8 @@ class ManagerController {
     }
 
     handleInit = () => {
-		this.onInit();
-	}
+        this.onInit();
+    }
 
     handleProductsCategoryList = (title) => {
         let category = this.#storeHouse.getCategory(title);
@@ -200,20 +210,105 @@ class ManagerController {
         this.#storeHouseView.bindshowProductInNewWindow();
     }
 
-    handleTypeProductsList = (type) =>{
+    handleTypeProductsList = (type) => {
         this.#storeHouseView.listTypeProducts(this.#storeHouse.getTypeProduct(type), type);
         this.#storeHouseView.bindshowProductInNewWindow(this.handleShowProduct);
     }
 
     handleShowProduct = (serial) => {
-		try {
-			let product = this.#storeHouse.getProduct(Number.parseInt(serial));
+        try {
+            let product = this.#storeHouse.getProduct(Number.parseInt(serial));
             this.#storeHouseView.bindshowProductInNewWindow(product);
-		} catch (error) {
-			this.#storeHouseView.showProduct(null, 'No existe este producto en la página.');
-		}
+        } catch (error) {
+            this.#storeHouseView.showProduct(null, 'No existe este producto en la página.');
+        }
+    }
+
+    /*Administración*/
+
+    handleNewShopForm = () => {
+        this.#storeHouseView.showNewShopForm();
+        this.#storeHouseView.bindNewShopForm(this.handleCreateShop);
+    }
+
+    handleCreateShop = (nif, name, address, phone, coords) => {
+        let shop = new Store(nif, name, address, phone, coords);
+
+        let done, error;
+        try {
+            this.#storeHouse.addShop(shop);
+            done = true;
+            this.onAddShop();
+        } catch (exception) {
+            done = false;
+            error = exception;
+        }
+        this.#storeHouseView.showNewShopModal(done, shop, error);
+    }
+
+    handleRemoveShopForm = () => {
+        console.log(this.#storeHouse.shops);
+        for (let iterator of this.#storeHouse.shops) {
+            console.log(iterator);
+        }
+		this.#storeHouseView.showRemoveShopForm(this.#storeHouse.shops);
+        this.#storeHouseView.bindRemoveShopForm(this.handleRemoveShop);
 	}
 
+	handleRemoveShop = (name, position) => {
+		let done, error, shop;
+		try{
+			shop = this.#storeHouse.getShops(name);
+			this.#storeHouse.removeShop(shop);
+			done = true;
+			this.onAddShop();
+		} catch(exception){
+			done = false;
+			error = exception;
+		}
+		this.#storeHouseView.showRemoveShopModal(done, shop, position, error);
+	}
+
+    handleNewCategoryForm = () => {
+        this.#storeHouseView.showNewCategoryForm();
+        this.#storeHouseView.bindNewCategoryForm(this.handleCreateCategory);
+    }
+
+    handleCreateCategory = (title, desc) => {
+        let cat = new Category(title);
+        cat.description = desc;
+
+        let done, error;
+        try {
+            this.#storeHouse.addCategory(cat);
+            done = true;
+            this.onAddCategory();
+        } catch (exception) {
+            done = false;
+            error = exception;
+        }
+        this.#storeHouseView.showNewCategoryModal(done, cat, error);
+    }
+
+    handleRemoveCategoryForm = () => {
+		this.#storeHouseView.showRemoveCategoryForm(this.#storeHouse.categories);
+        this.#storeHouseView.bindRemoveCategoryForm(this.handleRemoveCategory);
+	}
+
+	handleRemoveCategory = (title, position) => {
+		let done, error, cat;
+		try{
+            console.log(title);
+			cat = this.#storeHouse.getCategory(title);
+			this.#storeHouse.removeCategory(cat);
+			done = true;
+			this.onAddCategory();
+		} catch(exception){
+			done = false;
+			error = exception;
+		}
+		this.#storeHouseView.showRemoveCategoryModal(done, cat, position, error);
+	}
 }
 
 export default ManagerController;

@@ -156,7 +156,107 @@ function removeShopValidation(handler) {
         event.preventDefault();
         event.stopPropagation();
     });
-    $(form.selectRemoveCategory).change(defaultCheckElement);
+    $(form.selectRemoveShop).change(defaultCheckElement);
 }
 
-export { showFeedBack, defaultCheckElement, newCategoryValidation, removeCategoryValidation, newShopValidation, removeShopValidation };
+function newProductValidation(handler) {
+    let form = document.forms.fNewProduct;
+    $(form).attr('novalidate', true);
+
+    $(form).submit(function (event) {
+        let isValid = true;
+        let firstInvalidElement = null;
+
+        if (!this.serialNumber.checkValidity()) {
+            isValid = false;
+            showFeedBack($(this.serialNumber), false);
+            firstInvalidElement = this.serialNumber;
+        } else {
+            showFeedBack($(this.serialNumber), true);
+        }
+
+        if (!this.nameProd.checkValidity()) {
+            isValid = false;
+            showFeedBack($(this.nameProd), false);
+            firstInvalidElement = this.nameProd;
+        } else {
+            showFeedBack($(this.nameProd), true);
+        }
+
+        if (!this.priceProduct.checkValidity()) {
+            isValid = false;
+            showFeedBack($(this.priceProduct), false);
+            firstInvalidElement = this.priceProduct;
+        } else {
+            showFeedBack($(this.priceProduct), true);
+        }
+
+        if (!this.taxProduct.checkValidity()) {
+            isValid = false;
+            showFeedBack($(this.taxProduct), false);
+            firstInvalidElement = this.taxProduct;
+        } else {
+            showFeedBack($(this.taxProduct), true);
+        }
+
+        if (!this.selectTypeProduct.checkValidity()) {
+            isValid = false;
+            showFeedBack($(this.selectTypeProduct), false);
+            firstInvalidElement = this.selectTypeProduct;
+        } else {
+            showFeedBack($(this.selectTypeProduct), true);
+        }
+
+        if (!this.desProduct.checkValidity()) {
+            isValid = false;
+            showFeedBack($(this.desProduct), false);
+            firstInvalidElement = this.desProduct;
+        } else {
+            showFeedBack($(this.desProduct), true);
+        }
+
+        if (!this.imageProduct.checkValidity()) {
+            isValid = false;
+            showFeedBack($(this.imageProduct), false);
+            firstInvalidElement = this.imageProduct;
+        } else {
+            showFeedBack($(this.imageProduct), true);
+        }
+        let checkArr = [];
+        $('input:checked').each(
+            /*function() {
+                alert("El checkbox con valor " + $(this).val() + " está seleccionado");
+            },*/
+            function () {
+                checkArr.push($(this).val())
+            }
+        );
+
+        if (!isValid) {
+            firstInvalidElement.focus();
+        } else {
+            handler(this.serialNumber.value, this.nameProd.value, this.priceProduct.value, this.taxProduct.value, this.selectTypeProduct.value,
+                    this.desProduct.value, this.imageProduct.value, checkArr);
+        }
+        alert(this.selectTypeProduct.value);
+        event.preventDefault();
+        event.stopPropagation();
+    });
+
+    form.addEventListener('reset', (function (event) {
+        let feedDivs = $(this).find('div.valid-feedback, div.invalid-feedback');
+        feedDivs.removeClass('d-block').addClass('d-none');
+        let inputs = $(this).find('input');
+        inputs.removeClass('is-valid is-invalid');
+    }));
+
+    $(form.serialNumber).change(defaultCheckElement);
+    $(form.nameProd).change(defaultCheckElement);
+    $(form.priceProduct).change(defaultCheckElement);
+    $(form.taxProduct).change(defaultCheckElement);
+    $(form.selectTypeProduct).change(defaultCheckElement);
+    $(form.desProduct).change(defaultCheckElement);
+    $(form.imageProduct).change(defaultCheckElement);
+}
+
+export { showFeedBack, defaultCheckElement, newCategoryValidation, removeCategoryValidation, newShopValidation, removeShopValidation, newProductValidation };

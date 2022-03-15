@@ -1,6 +1,6 @@
 import { StoreHouse } from './manager.js';
 //, newProductValidation
-import {showFeedBack, defaultCheckElement, newCategoryValidation, removeCategoryValidation, newShopValidation, removeShopValidation} from './validation.js';
+import { showFeedBack, defaultCheckElement, newCategoryValidation, removeCategoryValidation, newShopValidation, removeShopValidation, newProductValidation } from './validation.js';
 
 class ManagerView {
 
@@ -152,11 +152,11 @@ class ManagerView {
 		let container;
 		/*Al meter nuevas categorias con el formulario hayq eu poner esta condicion, para que borre las que existen y se actulicen con las nuevas. 
 			Si no se usiera esta condicion, crea un nuevo menu sin funcionalidad*/
-		if (link.length === 1){
+		if (link.length === 1) {
 			container = link.next();
 			container.children().remove();
 			link.parent().append(container);
-		}else{
+		} else {
 			container = $('<div class="dropdown-menu" aria-labelledby="navShops"></div>');
 			let li = $(`<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" href="#" id="navShops" role="button" data-toggle="dropdown" 
@@ -167,11 +167,11 @@ class ManagerView {
 			li.append(container);
 			this.menu.append(li);
 		}
-		
+
 		for (let shop of shops) {
 			container.append(`<a data-category="${shop.name}" class="dropdown-item" href="#product-list">${shop.name}</a>`);
 		}
-		
+
 	}
 
 	listShopProducts(products, shop) {
@@ -237,11 +237,11 @@ class ManagerView {
 		let container;
 		/*Al meter nuevas categorias con el formulario hayq eu poner esta condicion, para que borre las que existen y se actulicen con las nuevas. 
 			Si no se usiera esta condicion, crea un nuevo menu sin funcionalidad*/
-		if (link.length === 1){
+		if (link.length === 1) {
 			container = link.next();
 			container.children().remove();
 			link.parent().append(container);
-		}else{
+		} else {
 			container = $('<div class="dropdown-menu" aria-labelledby="navCats"></div>');
 			let li = $(`
 			<li class="nav-item dropdown">
@@ -537,22 +537,23 @@ class ManagerView {
 
 	/* Administración */
 
-    bindAdminMenu(hNewShop, hRemoveShop, hNewCategory, hRemoveCategory){
+	bindAdminMenu(hNewShop, hRemoveShop, hNewCategory, hRemoveCategory, hNewProduct) {
 		$('#lnewShop').click((event) => {
-			this.#excecuteHandler(hNewShop, [], '#new-shop', {action: 'newShop'}, '#', event);
+			this.#excecuteHandler(hNewShop, [], '#new-shop', { action: 'newShop' }, '#', event);
 		});
 		$('#ldelShop').click((event) => {
-			this.#excecuteHandler(hRemoveShop, [], '#remove-shop', {action: 'removeShop'}, '#', event);
+			this.#excecuteHandler(hRemoveShop, [], '#remove-shop', { action: 'removeShop' }, '#', event);
 		});
 		$('#lnewCategory').click((event) => {
-			this.#excecuteHandler(hNewCategory, [], '#new-category', {action: 'newCategory'}, '#', event);
+			this.#excecuteHandler(hNewCategory, [], '#new-category', { action: 'newCategory' }, '#', event);
 		});
+		//alert(hRemoveCategory);
 		$('#ldelCategory').click((event) => {
-			this.#excecuteHandler(hRemoveCategory, [], '#remove-category', {action: 'removeCategory'}, '#', event);
-		});/*
-		$('#lnewProduct').click((event) => {
-			this.#excecuteHandler(hNewProduct, [], '#new-product', {action: 'newProduct'}, '#', event);
+			this.#excecuteHandler(hRemoveCategory, [], '#remove-category', { action: 'removeCategory' }, '#', event);
 		});
+		$('#lnewProduct').click((event) => {
+			this.#excecuteHandler(hNewProduct, [], '#new-product', { action: 'newProduct' }, '#', event);
+		});/*
 		$('#ldelProduct').click((event) => {
 			this.#excecuteHandler(hRemoveProduct, [], '#remove-product', {action: 'removeProduct'}, '#', event);
 		});*/
@@ -651,14 +652,14 @@ class ManagerView {
 		$('body').append(container); //Se añade el modal al body, si se añade al main da error
 	}
 
-	bindNewShopForm(handler){ //Validación de la nueva Tienda
+	bindNewShopForm(handler) { //Validación de la nueva Tienda
 		newShopValidation(handler);
 	}
-	
+
 	showNewShopModal(done, shop, error) {//creación del modal para comprobar si se ha añadido correctamente o no
 		$("#new-shop").modal('hide'); //Cerrar el otro modal para que no haya conflicto
 		$(document.fNewShop).find('div.error').remove();
-		if (done){
+		if (done) {
 			let modal = $(`<div class="modal fade" id="newShopModal" tabindex="-1"
 				data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="newShopModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document">
@@ -694,62 +695,67 @@ class ManagerView {
 		}
 	}
 
-	showRemoveShopForm(shops){
+	showRemoveShopForm(shops) {
+		let link = $('#selectRemoveShop');
+		if (link.length === 1) {
+			$('#selectRemoveShop').remove();
+			$('#selectRemoveShopI').remove();
+		}
 		let container = $(`		
-		<div class="modal fade" id="remove-shop" data-backdrop="static" data-keyboard="false" tabindex="1"
-                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title text-body" id="remove-shop">Borrar una Tienda</h5>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span class="text-body h3" aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-							<form name="fRemShop" role="form" method="post" novalidate>
-								<div class="modal-body text-body text-justify">
-									<div class="form-row">
-										<div class="col-md-12 mb-3">
-											<label for="ncShop">Tiendas *</label>
-											<div class="input-group" id="colRemShop">
-												<div class="invalid-feedback">La categoría es obligatoria.</div>
-												<div class="valid-feedback">Correcta.</div>
+			<div class="modal fade" id="remove-shop" data-backdrop="static" data-keyboard="false" tabindex="1"
+						aria-labelledby="staticBackdropLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title text-body" id="remove-shop">Borrar una Tienda</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span class="text-body h3" aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<form name="fRemShop" role="form" method="post" novalidate>
+									<div class="modal-body text-body text-justify">
+										<div class="form-row">
+											<div class="col-md-12 mb-3">
+												<label for="ncShop">Tiendas *</label>
+												<div class="input-group" id="colRemShop">
+													<div class="valid-feedback">Correcta.</div>
+												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-								<div class="modal-footer">
-									<button class="btn btn-primary" type="submit">Eliminar</button>
-									<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-								</div>
-							</form>
-                        </div>
-                    </div>
-                </div>`);
+									<div class="modal-footer">
+										<button class="btn btn-primary" type="submit">Eliminar</button>
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>`);
 		$('body').append(container);
 
-		let select =  $(`
-			<div class="input-group-prepend">
-				<span class="input-group-text" id="titlePrepend"><i class="icon-group"></i></span>
-			</div>
-			<select class="form-control" id="selectRemoveShop" name="selectRemoveShop"> required>			
-			</select>`);
+		let select = $(`
+				<div class="input-group-prepend" id="selectRemoveShopI">
+					<span class="input-group-text" id="titlePrepend"><i class="icon-group"></i></span>
+				</div>
+				<select class="form-control" id="selectRemoveShop" name="selectRemoveShop"> required>			
+				</select>`);
 		$('#colRemShop').append(select);
-		console.log(shops);
+
 		for (let shop of shops) {
-			let option = $(`<option value="${shop.name}">${shop.name}</option>`);
+			//console.log(log);
+			let option = $(`<option value="${shop.cif}">${shop.name}</option>`);
 			$('#selectRemoveShop').append(option);
 		}
 	}
-	
-	bindRemoveShopForm(handler){
+
+	bindRemoveShopForm(handler) {
 		removeShopValidation(handler);
 	}
 
 	showRemoveShopModal(done, shop, position, error) {
-		$('#remove-category').modal('hide');
-		$('remove-category').find('div.error').remove();
-		if (done){
+		$('#remove-shop').modal('hide');
+		$('remove-shop').find('div.error').remove();
+		if (done) {
 			let modal = $(`<div class="modal fade" id="removeShopModal" tabindex="-1"
 				data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="removeCategoryModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document">
@@ -784,7 +790,6 @@ class ManagerView {
 			$('#removeShopModal').prepend(`<div class="error text-danger p-3"><i class="icon-exclamation-sign"></i> La Tienda <strong>${shop.name}</strong> no exite en el Almacen.</div>`);
 		}
 	}
-
 
 	showNewCategoryForm() {
 		let container = $(`		
@@ -841,15 +846,15 @@ class ManagerView {
 		$('body').append(container); //Se añade el modal al body, si se añade al main da error
 	}
 
-	bindNewCategoryForm(handler){ //Validación de la nueva categoria
+	bindNewCategoryForm(handler) { //Validación de la nueva categoria
 		newCategoryValidation(handler);
 	}
-	
+
 	showNewCategoryModal(done, cat, error) {//creación del modal para comprobar si se ha añadido correctamente o no
 		$("#new-category").modal('hide'); //Cerrar el otro modal para que no haya conflicto
 		$(document.fNewCategory).find('div.error').remove();
 		console.log(done);
-		if (done){
+		if (done) {
 			let modal = $(`<div class="modal fade" id="newCategoryModal" tabindex="-1"
 				data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="newCategoryModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document">
@@ -885,9 +890,14 @@ class ManagerView {
 		}
 	}
 
-	showRemoveCategoryForm(categories){
+	showRemoveCategoryForm(categories) {
+		let link = $('#selectRemoveCategory');
+		if (link.length === 1) {
+			$('#selectRemoveCategory').remove();
+			$('#selectRemoveCategoryI').remove();
+		}
 		let container = $(`		
-		<div class="modal fade" id="remove-category" data-backdrop="static" data-keyboard="false" tabindex="1"
+			<div class="modal fade" id="remove-category" data-backdrop="static" data-keyboard="false" tabindex="1"
                     aria-labelledby="staticBackdropLabel" aria-hidden="true">
                     <div class="modal-dialog">
                         <div class="modal-content">
@@ -919,28 +929,30 @@ class ManagerView {
                 </div>`);
 		$('body').append(container);
 
-		let select =  $(`
-			<div class="input-group-prepend">
+
+		let select = $(`
+			<div class="input-group-prepend" id="selectRemoveCategoryI">
 				<span class="input-group-text" id="titlePrepend"><i class="icon-tags"></i></span>
 			</div>
 			<select class="form-control" id="selectRemoveCategory" name="selectRemoveCategory"> required>
 			
 			</select>`);
 		$('#colRemCat').append(select);
+
 		for (let category of categories) {
 			let option = $(`<option value="${category.title}">${category.title}</option>`);
 			$('#selectRemoveCategory').append(option);
 		}
 	}
-	
-	bindRemoveCategoryForm(handler){
+
+	bindRemoveCategoryForm(handler) {
 		removeCategoryValidation(handler);
 	}
 
 	showRemoveCategoryModal(done, cat, position, error) {
 		$('#remove-category').modal('hide');
 		$('remove-category').find('div.error').remove();
-		if (done){
+		if (done) {
 			let modal = $(`<div class="modal fade" id="removeCategoryModal" tabindex="-1"
 				data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="removeCategoryModalLabel" aria-hidden="true">
 				<div class="modal-dialog" role="document">
@@ -974,6 +986,145 @@ class ManagerView {
 		} else {
 			$('#removeCategoryModal').prepend(`<div class="error text-danger p-3"><i class="icon-exclamation-sign"></i> La categoría <strong>${cat.title}</strong> no exite en el Almacen.</div>`);
 		}
+	}
+
+
+	showNewProductForm(categories) {
+		let container = $(`		
+		<div class="modal fade" id="new-product" data-backdrop="static" data-keyboard="false" tabindex="1"
+                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-body" id="new-product">Añadir nuevo Producto</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span class="text-body h3" aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+							<form name="fNewProduct" role="form" method="post" novalidate enctype="multipart/form-data">
+								<div class="modal-body text-body">
+									<div class="form-row">
+										<div class="col-md-6 mb-3">
+											<label for="serialNumber">Número de serie *</label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="serialNumber"><i class="icon-key"></i></span>
+												</div>
+												<input type="number" class="form-control" id="serialNumber" name="serialNumber" placeholder="Número de serie"
+													aria-describedby="serialNumber" value="" required>
+												<div class="invalid-feedback">El número de serie es obligatorio.</div>
+												<div class="valid-feedback">Correcto.</div>
+											</div>
+										</div>
+										<div class="col-md-6 mb-3">
+											<label for="nameProd">Nombre *</label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="nameProd"><i class="icon-group"></i></span>
+												</div>
+												<input type="text" class="form-control" id="nameProd" name="nameProd" placeholder="Nombre del producto"
+													aria-describedby="nameProd" value="" required>
+												<div class="invalid-feedback">El nombre es obligatorio.</div>
+												<div class="valid-feedback">Correcto.</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="col-md-5 mb-3">
+											<label for="priceProduct">Precio *</label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="priceProduct"><i class="icon-eur"></i></span>
+												</div>
+												<input type="number" class="form-control" id="priceProduct" name="priceProduct"
+													aria-describedby="priceProduct" value="" required placeholder="Precio producto">
+												<div class="invalid-feedback">La precio es obligatorio</div>
+												<div class="valid-feedback">Correcta.</div>
+											</div>
+										</div>
+										<div class="col-md-3 mb-3">
+											<label for="taxProduct">Impuesto *</label>
+											<div class="input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text" id="taxProduct"><i class="icon-sort-by-order"></i></span>
+											</div>
+											<input type="number" class="form-control" id="taxProduct" name="taxProduct"
+												aria-describedby="taxProduct" value="21" size="2" readonly="reandonly">
+											</div>
+										</div>
+										<div class="col-md-4 mb-3">
+										<label for="selectTypeProduct">Tipo de Producto *</label>
+										<select class="form-control" id="selectTypeProduct" name="selectTypeProduct"> required>
+											<option value="traje">Traje</option>
+											<option value="bota">Bota</option>
+											<option value="pantalon">Pantalón</option>
+											<option value="calcetin">Calcetín</option>
+										</select>
+									</div>
+									</div>
+									<div class="form-row">
+										<div class="col-md-12 mb-3">
+											<label for="desProduct">Descripción *</label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="desProduct"><i class="icon-align-justify"></i></span>
+												</div>
+												<input type="text" class="form-control" id="desProduct" name="desProduct" placeholder="Descripción del producto"
+													aria-describedby="desProduct" value="" required>
+												<div class="invalid-feedback">La descripción es obligatoria.</div>
+												<div class="valid-feedback">Correctas.</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="col-md-12 mb-3">
+											<label for="imageProduct">Imagen *</label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="imageProduct"><i class="icon-file"></i></span>
+												</div>
+												<input type="file" class="form-control" id="imageProduct" name="imageProduct"
+													aria-describedby="imageProduct" required>
+												<div class="invalid-feedback">Debe seleccionar un archivo con extensión png.</div>
+												<div class="valid-feedback">Correcta.</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-row">
+										<label for="categoryNewProduct">Categorías asociadas *</label>
+										<div class="col-md-12 mb-3" id="categoryNewProduct">
+
+										</div>
+									</div>
+								</div>
+								<div class="modal-footer">
+									<button class="btn btn-primary" type="submit">Enviar</button>
+									<button class="btn btn-primary" type="reset">Borrar</button>
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+								</div>
+							</form>
+                        </div>
+                    </div>
+                </div>`);
+		$('body').append(container);
+
+		let link = $('#categoryNewProduct > input');
+		if (link.length >= 1) {
+			$('#categoryNewProduct > input').remove();
+			$('#categoryNewProduct > label').remove();
+		}
+
+		for (let category of categories) {
+			let div = (`
+				<input type="checkbox" name="checkCategory" value="${category.title}">
+				<label for="check-${category.title}">${category.title}&nbsp;&nbsp;</label>
+			`);
+			$('#categoryNewProduct').append(div);
+		}
+	}
+
+	bindNewProductForm(handler) {
+		newProductValidation(handler);
 	}
 }
 

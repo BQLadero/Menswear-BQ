@@ -129,11 +129,12 @@ let StoreHouse = (function () {
             }
 
             removeShop(shop) {
-                if (!(shop instanceof Store)) throw new Error("El objecto introducido no es de tipo Shop");
-                if (!(this.#shops.has(shop.cif))) throw new Error("La tienda no está introducida");
+                //if (!(shop instanceof Store)) throw new Error("El objecto introducido no es de tipo Shop");
+                //if (!(this.#shops.has(shop.cif))) throw new Error("La tienda no está introducida");
                 let shopdef = this.#shopDefault;//Al eliminar la tienda se le añade la tienda de por defecto
                 let index;
-                this.#shops.forEach(function (value, key) {
+
+               /* this.#shops.forEach(function (value, key) {
                     if (key === shop) {
                         for (let product of value) {
                             //Los productos añadidos a la tienda eliminada, pasan a la tienda por defecto.
@@ -141,7 +142,7 @@ let StoreHouse = (function () {
                             if (index != -1) shopdef.push(product);
                         }
                     }
-                });
+                });*/
                 this.#shops.delete(shop);
                 return this.#shops.size;
             }
@@ -222,6 +223,15 @@ let StoreHouse = (function () {
                     shops.push(key);
                 });
                 return shops;
+            }
+
+            getExistShop(cif, shops) {
+                alert(cif);
+                //let shops = getShops();
+                let position = shops.findIndex(x => x.cif === cif);
+                if (position === -1)
+                    throw new Error("La categoria no existe");
+                return shops[position];
             }
 
             getProductinShops(shop){

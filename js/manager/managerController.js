@@ -168,7 +168,8 @@ class ManagerController {
             this.handleNewShopForm,
             this.handleRemoveShopForm,
             this.handleNewCategoryForm,
-            this.handleRemoveCategoryForm
+            this.handleRemoveCategoryForm,
+            this.handleNewProductForm
         );
     }
 
@@ -208,6 +209,7 @@ class ManagerController {
     handleShopProductsList = (shop) => {
         this.#storeHouseView.listShopProducts((this.#storeHouse.getProductinShops(shop)), shop);
         this.#storeHouseView.bindshowProductInNewWindow();
+        this.#storeHouseView.showNewShopForm();
     }
 
     handleTypeProductsList = (type) => {
@@ -247,27 +249,24 @@ class ManagerController {
     }
 
     handleRemoveShopForm = () => {
-        console.log(this.#storeHouse.shops);
-        for (let iterator of this.#storeHouse.shops) {
-            console.log(iterator);
-        }
-		this.#storeHouseView.showRemoveShopForm(this.#storeHouse.shops);
+        this.#storeHouseView.showRemoveShopForm(this.#storeHouse.getShops());
         this.#storeHouseView.bindRemoveShopForm(this.handleRemoveShop);
-	}
+    }
 
-	handleRemoveShop = (name, position) => {
-		let done, error, shop;
-		try{
-			shop = this.#storeHouse.getShops(name);
-			this.#storeHouse.removeShop(shop);
-			done = true;
-			this.onAddShop();
-		} catch(exception){
-			done = false;
-			error = exception;
-		}
-		this.#storeHouseView.showRemoveShopModal(done, shop, position, error);
-	}
+    handleRemoveShop = (name, position) => {
+        let done, error, shop;
+        try {
+            let shops = this.#storeHouse.getShops();
+            shop = this.#storeHouse.getExistShop(name, shops);
+            this.#storeHouse.removeShop(shop);
+            done = true;
+            this.onAddShop();
+        } catch (exception) {
+            done = false;
+            error = exception;
+        }
+        this.#storeHouseView.showRemoveShopModal(done, shop, position, error);
+    }
 
     handleNewCategoryForm = () => {
         this.#storeHouseView.showNewCategoryForm();
@@ -291,24 +290,59 @@ class ManagerController {
     }
 
     handleRemoveCategoryForm = () => {
-		this.#storeHouseView.showRemoveCategoryForm(this.#storeHouse.categories);
+        this.#storeHouseView.showRemoveCategoryForm(this.#storeHouse.categories);
         this.#storeHouseView.bindRemoveCategoryForm(this.handleRemoveCategory);
-	}
+    }
 
-	handleRemoveCategory = (title, position) => {
-		let done, error, cat;
-		try{
-            console.log(title);
-			cat = this.#storeHouse.getCategory(title);
-			this.#storeHouse.removeCategory(cat);
-			done = true;
-			this.onAddCategory();
-		} catch(exception){
-			done = false;
-			error = exception;
-		}
-		this.#storeHouseView.showRemoveCategoryModal(done, cat, position, error);
-	}
+    handleRemoveCategory = (title, position) => {
+        let done, error, cat;
+        try {
+            cat = this.#storeHouse.getCategory(title);
+            this.#storeHouse.removeCategory(cat);
+            done = true;
+            this.onAddCategory();
+        } catch (exception) {
+            done = false;
+            error = exception;
+        }
+        this.#storeHouseView.showRemoveCategoryModal(done, cat, position, error);
+    }
+    //this.#storeHouseView.bindNewCategoryForm(this.handleCreateCategory);
+
+    handleNewProductForm = () => {
+        this.#storeHouseView.showNewProductForm(this.#storeHouse.categories);
+        this.#storeHouseView.bindNewProductForm(this.handleRemoveCategory);
+    }
+
+    handleCreateShop = (id, name, price, taxProduct, type, des, image, categories) => {
+        let product;
+        alert("selectTypeProduct");
+        alert(type);
+        switch (type) {
+            case "traje":
+                product = new Traje(id, name, price, 0, " ", " ", " ", des, taxProduct, [image]);
+                break;
+            case "bota":
+                product = new Bota(id, name, price, " ", " ", " ", " ", des, taxProduct, [image]);
+                break;
+            case "pantalon":
+                product = new Pantalon(id, name, price, " ", " ", " ", " ", des, taxProduct, [image]);
+                break;
+            case "calcetin":
+                product = new Traje(id, name, price, " ", " ", " ", " ", des, taxProduct, [image]);
+                break;
+        }
+
+        let done, error;
+        try {
+            this.#storeHouseView.addProduct(product, categories);
+            done = true;
+        } catch (exception) {
+            done = false;
+            error = exception;
+        }
+        //this.#storeHouseView.showNewShopModal(done, shop, error);
+    }
 }
 
 export default ManagerController;

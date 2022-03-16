@@ -19,6 +19,31 @@ function defaultCheckElement(event) {
     }
 }
 
+
+function ocultForm() {
+    $('#productTraje').css('display', 'block');
+    $('#productTraje2').css('display', 'block');
+    $('#productTraje3').css('display', 'block');
+    $('#productTraje4').css('display', 'block');
+    $('#productTraje5').css('display', 'block');
+    $('#productBota').css('display', 'none');
+    $('#productBota1').css('display', 'none');
+    $('#productBota2').css('display', 'none');
+    $('#productBota3').css('display', 'none');
+    $('#productBota4').css('display', 'none');
+    $('#productPantalon').css('display', 'none');
+    $('#productPantalon1').css('display', 'none');
+    $('#productPantalon2').css('display', 'none');
+    $('#productPantalon3').css('display', 'none');
+    $('#productPantalon4').css('display', 'none');
+    $('#productCalcetin').css('display', 'none');
+    $('#productCalcetin1').css('display', 'none');
+    $('#productCalcetin2').css('display', 'none');
+    $('#productCalcetin3').css('display', 'none');
+    $('#productCalcetin4').css('display', 'none');
+    $('#categoryNewProductP').css('display', 'none');
+}
+
 function newCategoryValidation(handler) {
     let form = document.forms.fNewCategory;
     $(form).attr('novalidate', true);
@@ -162,11 +187,92 @@ function removeShopValidation(handler) {
 function newProductValidation(handler) {
     let form = document.forms.fNewProduct;
     $(form).attr('novalidate', true);
-
+    $('#selectTypeProduct').on('change', function () {
+        let product = $(this).val();
+        if (product === "traje") {
+            $('#productTraje').css('display', 'block');
+            $('#productTraje2').css('display', 'block');
+            $('#productTraje3').css('display', 'block');
+            $('#productTraje4').css('display', 'block');
+            $('#productTraje5').css('display', 'block');
+            $('#productBota').css('display', 'none');
+            $('#productBota1').css('display', 'none');
+            $('#productBota2').css('display', 'none');
+            $('#productBota3').css('display', 'none');
+            $('#productBota4').css('display', 'none');
+            $('#productPantalon').css('display', 'none');
+            $('#productPantalon1').css('display', 'none');
+            $('#productPantalon2').css('display', 'none');
+            $('#productPantalon3').css('display', 'none');
+            $('#productPantalon4').css('display', 'none');
+            $('#productCalcetin').css('display', 'none');
+            $('#productCalcetin1').css('display', 'none');
+            $('#productCalcetin2').css('display', 'none');
+            $('#productCalcetin3').css('display', 'none');
+            $('#productCalcetin4').css('display', 'none');
+        } else if (product === "bota") {
+            $('#productTraje').css('display', 'none');
+            $('#productTraje2').css('display', 'none');
+            $('#productTraje3').css('display', 'none');
+            $('#productTraje4').css('display', 'none');
+            $('#productTraje5').css('display', 'none');
+            $('#productBota').css('display', 'block');
+            $('#productBota1').css('display', 'block');
+            $('#productBota2').css('display', 'block');
+            $('#productBota3').css('display', 'block');
+            $('#productBota4').css('display', 'block');
+            $('#productPantalon').css('display', 'none');
+            $('#productPantalon1').css('display', 'none');
+            $('#productPantalon2').css('display', 'none');
+            $('#productPantalon3').css('display', 'none');
+            $('#productPantalon4').css('display', 'none');
+            $('#productCalcetin').css('display', 'none');
+            $('#productCalcetin1').css('display', 'none');
+            $('#productCalcetin2').css('display', 'none');
+            $('#productCalcetin3').css('display', 'none');
+            $('#productCalcetin4').css('display', 'none');
+        } else if (product === "pantalon") {
+            $('#productTraje').css('display', 'none');
+            $('#productTraje2').css('display', 'none');
+            $('#productTraje3').css('display', 'none');
+            $('#productTraje4').css('display', 'none');
+            $('#productTraje5').css('display', 'none');
+            $('#productBota').css('display', 'none');
+            $('#productBota1').css('display', 'none');
+            $('#productBota2').css('display', 'none');
+            $('#productBota3').css('display', 'none');
+            $('#productBota4').css('display', 'none');
+            $('#productPantalon').css('display', 'block');
+            $('#productPantalon1').css('display', 'block');
+            $('#productPantalon2').css('display', 'block');
+            $('#productPantalon3').css('display', 'block');
+            $('#productPantalon4').css('display', 'block');
+        } else {
+            $('#productTraje').css('display', 'none');
+            $('#productTraje2').css('display', 'none');
+            $('#productTraje3').css('display', 'none');
+            $('#productTraje4').css('display', 'none');
+            $('#productTraje5').css('display', 'none');
+            $('#productBota').css('display', 'none');
+            $('#productBota1').css('display', 'none');
+            $('#productBota2').css('display', 'none');
+            $('#productBota3').css('display', 'none');
+            $('#productBota4').css('display', 'none');
+            $('#productPantalon').css('display', 'none');
+            $('#productPantalon1').css('display', 'none');
+            $('#productPantalon2').css('display', 'none');
+            $('#productPantalon3').css('display', 'none');
+            $('#productPantalon4').css('display', 'none');
+            $('#productCalcetin').css('display', 'block');
+            $('#productCalcetin1').css('display', 'block');
+            $('#productCalcetin2').css('display', 'block');
+            $('#productCalcetin3').css('display', 'block');
+            $('#productCalcetin4').css('display', 'block');
+        }
+    });
     $(form).submit(function (event) {
         let isValid = true;
         let firstInvalidElement = null;
-
         if (!this.serialNumber.checkValidity()) {
             isValid = false;
             showFeedBack($(this.serialNumber), false);
@@ -207,13 +313,8 @@ function newProductValidation(handler) {
             showFeedBack($(this.selectTypeProduct), true);
         }
 
-        if (!this.desProduct.checkValidity()) {
-            isValid = false;
-            showFeedBack($(this.desProduct), false);
-            firstInvalidElement = this.desProduct;
-        } else {
-            showFeedBack($(this.desProduct), true);
-        }
+        this.desProduct.value = this.desProduct.value.trim();
+        showFeedBack($(this.desProduct), true);
 
         if (!this.imageProduct.checkValidity()) {
             isValid = false;
@@ -222,21 +323,61 @@ function newProductValidation(handler) {
         } else {
             showFeedBack($(this.imageProduct), true);
         }
+
         let checkArr = [];
         $('input:checked').each(
-            /*function() {
-                alert("El checkbox con valor " + $(this).val() + " está seleccionado");
-            },*/
             function () {
                 checkArr.push($(this).val())
             }
         );
+        if (checkArr.length !== 0) {
+            $('#categoryNewProductP').css('display', 'none');
+        } else {
+            isValid = false;
+            $('#categoryNewProductP').css('display', 'block');
+        }
+
+        /* Traje */
+        if (!this.alturaTraje.checkValidity()) {
+            isValid = false;
+            showFeedBack($(this.alturaTraje), false);
+            firstInvalidElement = this.alturaTraje;
+        } else {
+            showFeedBack($(this.alturaTraje), true);
+        }
+
+        if (!this.cierreTraje.checkValidity()) {
+            isValid = false;
+            showFeedBack($(this.cierreTraje), false);
+            firstInvalidElement = this.cierreTraje;
+        } else {
+            showFeedBack($(this.cierreTraje), true);
+        }
+
+        if (!this.cuidadosTraje.checkValidity()) {
+            isValid = false;
+            showFeedBack($(this.cuidadosTraje), false);
+            firstInvalidElement = this.cuidadosTraje;
+        } else {
+            showFeedBack($(this.cuidadosTraje), true);
+        }
+
+        if (!this.detallesTraje.checkValidity()) {
+            isValid = false;
+            showFeedBack($(this.detallesTraje), false);
+            firstInvalidElement = this.detallesTraje;
+        } else {
+            showFeedBack($(this.detallesTraje), true);
+        }
 
         if (!isValid) {
             firstInvalidElement.focus();
         } else {
-            handler(this.serialNumber.value, this.nameProd.value, this.priceProduct.value, this.taxProduct.value, this.selectTypeProduct.value,
-                    this.desProduct.value, this.imageProduct.value, checkArr);
+            if (this.selectTypeProduct.value === "traje") {
+                handler(this.serialNumber.value, this.nameProd.value, this.priceProduct.value, this.taxProduct.value, this.alturaTraje.value,
+                    this.cierreTraje.value, this.cuidadosTraje.value, this.detallesTraje.value, this.desProduct.value, this.imageProduct.value, checkArr, this.selectTypeProduct.value);
+            }
+
         }
         alert(this.selectTypeProduct.value);
         event.preventDefault();
@@ -259,4 +400,4 @@ function newProductValidation(handler) {
     $(form.imageProduct).change(defaultCheckElement);
 }
 
-export { showFeedBack, defaultCheckElement, newCategoryValidation, removeCategoryValidation, newShopValidation, removeShopValidation, newProductValidation };
+export { showFeedBack, defaultCheckElement, ocultForm, newCategoryValidation, removeCategoryValidation, newShopValidation, removeShopValidation, newProductValidation };

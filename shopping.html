@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
         integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="">
     <link rel="stylesheet" href="./css/style.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -66,8 +69,10 @@
         <section class="text-center">
             <hr>
             <h4 class="lang" key="subtotal">Subtotal</h4>
-            <p class="lang" key="precioSIva"><span>Precio sin IVA</span>&nbsp;<i class="icon-arrow-right">&nbsp;</i>67.93€</p>
-            <p><span class="lang" key="precioIva">Precio con IVA</span>&nbsp;<i class="icon-arrow-right">&nbsp;</i>85.89€</p>
+            <p class="lang" key="precioSIva"><span>Precio sin IVA</span>&nbsp;<i
+                    class="icon-arrow-right">&nbsp;</i>67.93€</p>
+            <p><span class="lang" key="precioIva">Precio con IVA</span>&nbsp;<i
+                    class="icon-arrow-right">&nbsp;</i>85.89€</p>
             <button type="button" class="btn btn-secondary mb-2" onclick="showDialog()"><i
                     class="icon-shopping-cart"></i>&nbsp;<span class="lang" key="comprar">Comprar</span></button>
         </section>
@@ -173,7 +178,8 @@
                     </li>
                     <li>
                         <a class="text" data-toggle="modal" data-target="#staticBackdrop2">
-                            <i class="icon-legal"></i>&nbsp;<span class="lang" key="privacidad">Política de Privacidad</span>
+                            <i class="icon-legal"></i>&nbsp;<span class="lang" key="privacidad">Política de
+                                Privacidad</span>
                         </a>
                     </li>
                     <li>
@@ -186,6 +192,16 @@
                             <i class="icon-sitemap"></i>&nbsp;<span class="lang" key="mapa">Mapa Web</span>
                         </a>
                     </li>
+                    <li>
+                        <a class="text" data-toggle="modal" data-target="#staticBackdrop5">
+                            <i class="icon-play-sign"></i>&nbsp;<span class="lang" key="video">Apertura de una nueva tienda</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="text" data-toggle="modal" data-target="#staticBackdrop6">
+                            <i class="icon-map-marker"></i>&nbsp;<span class="lang" key="almacen">¡Visita nuestro almacen!</span>
+                        </a>
+                    </li>
                 </ul>
 
                 <!-- Modal -->
@@ -194,21 +210,35 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header text-body">
-                                <h5 class="modal-title lang" id="exampleModalLongTitle" key="terminos">Terminos de uso</h5>
+                                <h5 class="modal-title lang" id="exampleModalLongTitle" key="terminos">Terminos de uso
+                                </h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span class="text-body h3" aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body text-body lang" key="terminosTexto">
-                                Menswear-BQ considerará como dueño de una Cuenta de Usuario, Plataforma de Usuario o
-                                Contenido de Usuario creado o subido a los Servicios de Menswear-BQ correspondientes,
-                                a la persona o entidad que tiene acceso a la dirección de correo electrónico consignada
-                                en los registros de Menswear-BQ para dicha Cuenta de Usuario bajo la cual se ha creado
-                                dicha Plataforma de Usuario o Contenido de Usuario.
+                            <div class="modal-body text-body">
+                                <p class="lang" key="terminosTexto">Menswear-BQ considerará como dueño de una Cuenta de
+                                    Usuario, Plataforma de Usuario o
+                                    Contenido de Usuario creado o subido a los Servicios de Menswear-BQ
+                                    correspondientes,
+                                    a la persona o entidad que tiene acceso a la dirección de correo electrónico
+                                    consignada
+                                    en los registros de Menswear-BQ para dicha Cuenta de Usuario bajo la cual se ha
+                                    creado
+                                    dicha Plataforma de Usuario o Contenido de Usuario.</p>
+
+                                <audio controls id="terminoEs">
+                                    <source src="./audio/terminos-uso-es.mp3" type="audio/mp3">
+                                </audio>
+                                <audio controls id="terminoEn">
+                                    <source src="./audio/terminos-uso-en.mp3" type="audio/mp3">
+                                </audio>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary lang" data-dismiss="modal" key="cerrar">Cerrar</button>
-                                <button type="button" class="btn btn-primary lang" data-dismiss="modal" key="aceptar">Aceptar</button>
+                                <button type="button" class="btn btn-secondary lang" data-dismiss="modal"
+                                    key="cerrar">Cerrar</button>
+                                <button type="button" class="btn btn-primary lang" data-dismiss="modal"
+                                    key="aceptar">Aceptar</button>
                             </div>
                         </div>
                     </div>
@@ -219,24 +249,42 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title text-body lang" id="staticBackdropLabel" key="privacidad">Política de Privacidad</h5>
+                                <h5 class="modal-title text-body lang" id="staticBackdropLabel" key="privacidad">
+                                    Política de Privacidad</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span class="text-body h3" aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body text-body lang" key="privacidadTexto">
-                                La Política de Privacidad establece los términos en que usa y protege la
-                                información que es proporcionada por sus usuarios al momento de utilizar su sitio web.
-                                Esta compañía está comprometida con la seguridad de los datos de sus usuarios. Cuando le
-                                pedimos llenar los campos de información personal con la cual usted pueda ser identificado, lo
-                                hacemos asegurando que sólo se empleará de acuerdo con los términos de este documento.
-                                Sin embargo esta Política de Privacidad puede cambiar con el tiempo o ser actualizada por lo
-                                que le recomendamos y enfatizamos revisar continuamente esta página para asegurarse que está
-                                de acuerdo con dichos cambios.
+                            <div class="modal-body text-body">
+                                <p class="lang" key="privacidadTexto">La Política de Privacidad establece los términos
+                                    en que usa y protege la
+                                    información que es proporcionada por sus usuarios al momento de utilizar su sitio
+                                    web.
+                                    Esta compañía está comprometida con la seguridad de los datos de sus usuarios.
+                                    Cuando le
+                                    pedimos llenar los campos de información personal con la cual usted pueda ser
+                                    identificado, lo
+                                    hacemos asegurando que sólo se empleará de acuerdo con los términos de este
+                                    documento.
+                                    Sin embargo esta Política de Privacidad puede cambiar con el tiempo o ser
+                                    actualizada por lo
+                                    que le recomendamos y enfatizamos revisar continuamente esta página para asegurarse
+                                    que está
+                                    de acuerdo con dichos cambios.</p>
+
+                                <audio controls id="privacidadEs">
+                                    <source src="./audio/politica-privacidad-es.mp3" type="audio/mp3">
+                                </audio>
+                                <audio controls id="privacidadEn">
+                                    <source src="./audio/politica-privacidad-en.mp3" type="audio/mp3">
+                                </audio>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary lang" data-dismiss="modal" key="cerrar">Cerrar</button>
-                                <button type="button" class="btn btn-primary lang" data-dismiss="modal" key="aceptar">Aceptar</button>                            </div>
+                                <button type="button" class="btn btn-secondary lang" data-dismiss="modal"
+                                    key="cerrar">Cerrar</button>
+                                <button type="button" class="btn btn-primary lang" data-dismiss="modal"
+                                    key="aceptar">Aceptar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -246,13 +294,15 @@
                     <div class="modal-dialog modal-dialog-scrollable">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title text-body lang" id="staticBackdropLabel" key="cookies">Política de Cookies</h5>
+                                <h5 class="modal-title text-body lang" id="staticBackdropLabel" key="cookies">Política
+                                    de Cookies</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span class="text-body h3" aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body text-body lang" key="cookiesTexto">
-                                    Nuestro sitio web emplea las cookies para poder identificar las
+                            <div class="modal-body text-body">
+                                <p class="lang" key="cookiesTexto">Nuestro sitio web emplea las cookies para poder
+                                    identificar las
                                     páginas que son visitadas y su frecuencia. Esta información es empleada únicamente
                                     para análisis estadístico y después la información se elimina de forma permanente.
                                     Usted puede eliminar las cookies en cualquier momento desde su ordenador. Sin
@@ -263,11 +313,21 @@
                                     cookies, sin embargo la mayoría de navegadores aceptan cookies automáticamente pues
                                     sirve para tener un mejor servicio web. También usted puede cambiar la configuración
                                     de su ordenador para declinar las cookies. Si se declinan es posible que no pueda
-                                    utilizar algunos de nuestros servicios.
+                                    utilizar algunos de nuestros servicios.</p>
+
+                                <audio controls id="cookiesEs">
+                                    <source src="./audio/politica-cookies-es.mp3" type="audio/mp3">
+                                </audio>
+                                <audio controls id="cookiesEn">
+                                    <source src="./audio/politica-cookies-en.mp3" type="audio/mp3">
+                                </audio>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal" key="cerrar">Cerrar</button>
-                                <button type="button" class="btn btn-primary lang" data-dismiss="modal" key="aceptar">Aceptar</button>                            </div>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal"
+                                    key="cerrar">Cerrar</button>
+                                <button type="button" class="btn btn-primary lang" data-dismiss="modal"
+                                    key="aceptar">Aceptar</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -297,9 +357,52 @@
                                         <li class="lang" key="mapaFav">Mis favoritos</li>
                                         <li class="lang" key="mapaDatos">Mis datos</li>
                                     </ul>
-                                        <li><a href="./shopping.html" class="lang" key="h1carrito">Mi Carrito</a></li>
-                                    </ul>
+                                    <li><a href="./shopping.html" class="lang" key="h1carrito">Mi Carrito</a></li>
                                 </ul>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary lang" data-dismiss="modal"
+                                    key="cerrar">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="staticBackdrop5" tabindex="1" role="dialog"
+                    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header text-body">
+                                <h5 class="modal-title lang" id="exampleModalLongTitle" key="video">Apertura de una nueva tienda</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span class="text-body h3" aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body text-body">
+                                <video width="320" height="240" controls="controls">
+                                    <source src="./video/new-shop.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary lang" data-dismiss="modal" key="cerrar">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="staticBackdrop6" tabindex="1" role="dialog"
+                    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header text-body">
+                                <h5 class="modal-title lang" id="exampleModalLongTitle" key="almacen">¡Visita nuestro almacen!</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span class="text-body h3" aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body text-body almacen">
+
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary lang" data-dismiss="modal" key="cerrar">Cerrar</button>
@@ -320,7 +423,8 @@
                     </li>
                     <li>
                         <form action="" method="post" name="changeLang">
-                            <label for="changeLangSelect" class="lang" key="idioma">Cambiar el idioma de la p&aacute;gina</label><br>
+                            <label for="changeLangSelect" class="lang" key="idioma">Cambiar el idioma de la
+                                p&aacute;gina</label><br>
                             <select name="changeLangSelect" id="changeLangSelect">
                                 <option value="es" class="lang" key="castellano">Castellano</option>
                                 <option value="en" class="lang" key="ingles">Inglés</option>
@@ -329,7 +433,8 @@
                     </li>
                     <li>
                         <h5 class="lang" key="ayuda">¿Necesita ayuda?</h5>
-                        <i class="icon-question"></i>&nbsp;<span class="lang" key="contacte">¡Contacte con nosotros!</span>
+                        <i class="icon-question"></i>&nbsp;<span class="lang" key="contacte">¡Contacte con
+                            nosotros!</span>
                     </li>
                 </ul>
             </section>
@@ -343,11 +448,11 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
         integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
-    <script src="./js/shopping.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
     <script src="./js/shop.js"></script>
-    <!--<script src="./js/translate.js"></script>
-    <script type="text/javascript"
-        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>-->
+    <script src="./js/shopping.js"></script>
     <script src="./js/ValidationForms.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="./js/changeLang.js" charset="utf-8"></script>

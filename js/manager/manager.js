@@ -95,11 +95,12 @@ let StoreHouse = (function () {
             addProduct(product, category) {
                 if (!(product instanceof Product)) throw new EmptyValueException("producto");
                 let arr = new Array();
+                //alert(category);
                 //Comprobamos que la categoría sea un array, si no lo fuera se le añade a un array nuevo
                 if (!(Array.isArray(category))) { arr.push(category) } else { arr = category };
                 //Si el producto no estaba introcido se le añade al mapa
                 if (!this.#products.has(product)) {
-                    this.#products.set(product, arr);
+                    this.#products.set(product, category);
                 } else {
                     //Si el producto ya estaba introducido, pero su nueva categoria no, se le añade.
                     this.#products.forEach(function (value, key) {

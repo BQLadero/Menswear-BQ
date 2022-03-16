@@ -35,7 +35,9 @@
         "mapaPerfil": "Perfil",
         "mapaPed": "Mis Pedidos",
         "mapaFav": "Mis favoritos",
-        "mapaDatos": "Mis datos"
+        "mapaDatos": "Mis datos",
+        "almacen": "¡Visita nuestro almacen!",
+        "video": "Apertura de una nueva tienda"
     },
     "en": {
         "h1carrito": "My cart",
@@ -57,6 +59,9 @@
         "contacto": "Contact",
         "idioma": "Change the language of the page",
         "castellano": "Spanish",
+        "ingles": "English",
+        "ayuda": "Need help?",
+        "contacte": "Contact us",
         "terminosTexto": "Menswear-BQ will consider as the owner of a User Account, User Platform or User Content created or uploaded to the corresponding Menswear-BQ Services, the person or entity that has access to the email address recorded in the records of Menswear-BQ for said User Account under which said User Platform or User Content has been created.",
         "cerrar": "Close",
         "aceptar": "Agree",
@@ -70,6 +75,8 @@
         "mapaPerfil": "Profile",
         "mapaPed": "My orders",
         "mapaFav": "My favourites",
-        "mapaDatos": "My data"
+        "mapaDatos": "My data",
+        "almacen": "Visit our warehouse!",
+        "video": "Opening of a new store"
     }
 }

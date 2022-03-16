@@ -1,6 +1,6 @@
 import { StoreHouse } from './manager.js';
 //, newProductValidation
-import { showFeedBack, defaultCheckElement, newCategoryValidation, removeCategoryValidation, newShopValidation, removeShopValidation, newProductValidation } from './validation.js';
+import { showFeedBack, defaultCheckElement, ocultForm, newCategoryValidation, removeCategoryValidation, newShopValidation, removeShopValidation, newProductValidation } from './validation.js';
 
 class ManagerView {
 
@@ -136,7 +136,8 @@ class ManagerView {
 				</a>
 				<div class="mlf--shops">
 					<h3>${shop.name}</h3>
-					<div class="ms-5">${shop.address}</div>
+					<div class="ms-5" id="view-map" data-toggle="modal"
+						data-target="#shop-map">${shop.address}</div>
 					<div class="ms-5">${shop.phone}</div>
 				</div>
 			</div>`);
@@ -1078,13 +1079,13 @@ class ManagerView {
 									</div>
 									<div class="form-row">
 										<div class="col-md-12 mb-3">
-											<label for="imageProduct">Imagen *</label>
+											<label for="imageProduct">Ruta del fichero img *</label>
 											<div class="input-group">
 												<div class="input-group-prepend">
 													<span class="input-group-text" id="imageProduct"><i class="icon-file"></i></span>
 												</div>
-												<input type="file" class="form-control" id="imageProduct" name="imageProduct"
-													aria-describedby="imageProduct" required>
+												<input type="text" class="form-control" id="imageProduct" name="imageProduct"
+													aria-describedby="imageProduct" placeholder="Ruta de donde se encuentra la imagen" required>
 												<div class="invalid-feedback">Debe seleccionar un archivo con extensión png.</div>
 												<div class="valid-feedback">Correcta.</div>
 											</div>
@@ -1094,6 +1095,221 @@ class ManagerView {
 										<label for="categoryNewProduct">Categorías asociadas *</label>
 										<div class="col-md-12 mb-3" id="categoryNewProduct">
 
+										</div>
+									</div>
+									<hr>
+									<div class="form-row">
+										<h5 class="text-center" id="productTraje">Especificaciones del Traje </h5>
+										<h5 class="text-center" id="productBota4">Especificaciones de la Bota </h5>
+										<h5 class="text-center" id="productPantalon">Especificaciones del Pantalón </h5>
+										<h5 class="text-center" id="productCalcetin">Especificaciones del Calcetin </h5>
+									</div>
+									<div class="form-row">
+										<div class="col-md-4 mb-3" id="productTraje2">
+											<label for="alturaTraje">Altura *</label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="alturaTraje"><i class="icon-sort-by-order"></i></span>
+												</div>
+												<input type="number" class="form-control" id="alturaTraje" name="alturaTraje"
+													aria-describedby="alturaTraje" placeholder="Altura" required>
+												<div class="invalid-feedback">Debe introducir una altura.</div>
+												<div class="valid-feedback">Correcta.</div>
+											</div>
+										</div>
+										<div class="col-md-4 mb-3" id="productTraje3">
+											<label for="cierreTraje">Cierre *</label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="cierreTraje"><i class="icon-align-justify"></i></span>
+												</div>
+												<input type="text" class="form-control" id="cierreTraje" name="cierreTraje"
+													aria-describedby="cierreTraje" placeholder="Cierre" required>
+												<div class="invalid-feedback">El cierre es obligatorio</div>
+												<div class="valid-feedback">Correcto.</div>
+											</div>
+										</div>
+										<div class="col-md-4 mb-3" id="productTraje4">
+											<label for="cuidadosTraje">Cuidados *</label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="cuidadosTraje"><i class="icon-align-justify"></i></span>
+												</div>
+												<input type="text" class="form-control" id="cuidadosTraje" name="cuidadosTraje"
+													aria-describedby="cuidadosTraje" placeholder="Cuidados" required>
+												<div class="invalid-feedback">Los cuidados son obligatorios</div>
+												<div class="valid-feedback">Correcto.</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-row" id="productTraje5">
+										<label for="detallesTraje">Detalles *</label>
+										<div class="col-md-12 mb-3">
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="detallesTraje"><i class="icon-align-justify"></i></span>
+												</div>
+												<input type="text" class="form-control" id="detallesTraje" name="detallesTraje"
+													aria-describedby="detallesTraje" placeholder="Detalles del traje" required>
+												<div class="invalid-feedback">Los detalles son obligatorios</div>
+												<div class="valid-feedback">Correcto.</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="col-md-6 mb-3" id="productBota">
+											<label for="tallaBota">Talla *</label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="tallaBota"><i class="icon-sort-by-order"></i></span>
+												</div>
+												<input type="number" class="form-control" id="tallaBota" name="tallaBota"
+													aria-describedby="tallaBota" placeholder="Talla" required>
+												<div class="invalid-feedback">Debe introducir una talla.</div>
+												<div class="valid-feedback">Correcta.</div>
+											</div>
+										</div>
+										<div class="col-md-6 mb-3" id="productBota1">
+											<label for="cierreBota">Cierre *</label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="cierreBota"><i class="icon-align-justify"></i></span>
+												</div>
+												<input type="text" class="form-control" id="cierreBota" name="cierreBota"
+													aria-describedby="cierreBota" placeholder="Cierre" required>
+												<div class="invalid-feedback">El cierre es obligatorio</div>
+												<div class="valid-feedback">Correcto.</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="col-md-6 mb-3" id="productBota2">
+											<label for="suelaBota">Suela *</label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="suelaBota"><i class="icon-align-justify"></i></span>
+												</div>
+												<input type="text" class="form-control" id="suelaBota" name="suelaBota"
+													aria-describedby="suelaBota" placeholder="Suela" required>
+												<div class="invalid-feedback">La suela es obligatoria</div>
+												<div class="valid-feedback">Correcto.</div>
+											</div>
+										</div>
+										<div class="col-md-6 mb-3"  id="productBota3">
+										<label for="plantillaBota">Plantilla *</label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="plantillaBota"><i class="icon-align-justify"></i></span>
+												</div>
+												<input type="text" class="form-control" id="plantillaBota" name="plantillaBota"
+													aria-describedby="plantillaBota" placeholder="Plantilla" required>
+												<div class="invalid-feedback">La plantilla es obligatoria</div>
+												<div class="valid-feedback">Correcto.</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="col-md-6 mb-3" id="productPantalon1">
+											<label for="cintuPantalon">Cintura *</label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="cintuPantalon"><i class="icon-align-justify"></i></span>
+												</div>
+												<input type="text" class="form-control" id="cintuPantalon" name="cintuPantalon"
+													aria-describedby="cintuPantalon" placeholder="Cintura" required>
+												<div class="invalid-feedback">Debe introducir una cintura.</div>
+												<div class="valid-feedback">Correcta.</div>
+											</div>
+										</div>
+										<div class="col-md-6 mb-3" id="productPantalon2">
+											<label for="cierrePantalon">Cierre *</label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="cierrePantalon"><i class="icon-align-justify"></i></span>
+												</div>
+												<input type="text" class="form-control" id="cierrePantalon" name="cierrePantalon"
+													aria-describedby="cierrePantalon" placeholder="Cierre" required>
+												<div class="invalid-feedback">El cierre es obligatorio</div>
+												<div class="valid-feedback">Correcto.</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="col-md-6 mb-3" id="productPantalon3">
+											<label for="bolsilloPantalon">Bolsillos *</label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="bolsilloPantalon"><i class="icon-align-justify"></i></span>
+												</div>
+												<input type="text" class="form-control" id="bolsilloPantalon" name="bolsilloPantalon"
+													aria-describedby="bolsilloPantalon" placeholder="Bolsillos" required>
+												<div class="invalid-feedback">Los bolsillos son obligatorio</div>
+												<div class="valid-feedback">Correcto.</div>
+											</div>
+										</div>
+										<div class="col-md-6 mb-3" id="productPantalon4">
+											<label for="materialPantalon">Material *</label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="materialPantalon"><i class="icon-align-justify"></i></span>
+												</div>
+												<input type="text" class="form-control" id="materialPantalon" name="materialPantalon"
+													aria-describedby="materialPantalon" placeholder="Material" required>
+												<div class="invalid-feedback">El material es obligatorio</div>
+												<div class="valid-feedback">Correcto.</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="col-md-6 mb-3" id="productCalcetin1">
+											<label for="diseCalcetin">Diseño *</label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="diseCalcetin"><i class="icon-align-justify"></i></span>
+												</div>
+												<input type="text" class="form-control" id="diseCalcetin" name="diseCalcetin"
+													aria-describedby="diseCalcetin" placeholder="Diseño" required>
+												<div class="invalid-feedback">Debe introducir un tipo de Diseño.</div>
+												<div class="valid-feedback">Correcta.</div>
+											</div>
+										</div>
+										<div class="col-md-6 mb-3" id="productCalcetin2">
+											<label for="tipoPantalon">Tipo *</label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="tipoPantalon"><i class="icon-align-justify"></i></span>
+												</div>
+												<input type="text" class="form-control" id="tipoPantalon" name="tipoPantalon"
+													aria-describedby="tipoPantalon" placeholder="Tipo" required>
+												<div class="invalid-feedback">El tipo es obligatorio</div>
+												<div class="valid-feedback">Correcto.</div>
+											</div>
+										</div>
+									</div>
+									<div class="form-row">
+										<div class="col-md-6 mb-3" id="productCalcetin3">
+											<label for="materialCalcetin">Material *</label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="materialCalcetin"><i class="icon-align-justify"></i></span>
+												</div>
+												<input type="text" class="form-control" id="materialCalcetin" name="materialCalcetin"
+													aria-describedby="materialCalcetin" placeholder="Material" required>
+												<div class="invalid-feedback">Los bolsillos son obligatorio</div>
+												<div class="valid-feedback">Correcto.</div>
+											</div>
+										</div>
+										<div class="col-md-6 mb-3" id="productCalcetin4">
+											<label for="packCalcetin">Pack *</label>
+											<div class="input-group">
+												<div class="input-group-prepend">
+													<span class="input-group-text" id="packCalcetin"><i class="icon-sort-by-order"></i></span>
+												</div>
+												<input type="number" class="form-control" id="packCalcetin" name="packCalcetin"
+													aria-describedby="packCalcetin" min="1" placeholder="Material" required>
+												<div class="invalid-feedback">El material es obligatorio</div>
+												<div class="valid-feedback">Correcto.</div>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -1121,10 +1337,51 @@ class ManagerView {
 			`);
 			$('#categoryNewProduct').append(div);
 		}
+		$('#categoryNewProduct').append(`<p class="text-danger" id="categoryNewProductP">Al menos debe seleccionar alguna categoria</p>`);
+		ocultForm(); //Al principio no muestra ningun campo, excepto del traje
 	}
 
 	bindNewProductForm(handler) {
 		newProductValidation(handler);
+	}
+
+	showNewProductModal(done, product, position, error) {
+		$('#new-product').modal('hide');
+		$('new-product').find('div.error').remove();
+		if (done) {
+			let modal = $(`<div class="modal fade" id="newProductModal" tabindex="-1"
+				data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="newProductModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title text-body" id="newProductModalLabel">Producto añadido</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body text-body">
+							La categoría <strong>${product.name}</strong> ha sido añadido correctamente.
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+						</div>
+					</div>
+				</div>
+			</div>`);
+			$('body').append(modal);
+			let removeCategoryModal = $('#removeCategoryModal');
+			removeCategoryModal.modal('show');
+			removeCategoryModal.find('button').click(() => {
+				removeCategoryModal.on('hidden.bs.modal', function (event) {
+					document.fRemCategory.reset();
+					document.fRemCategory.selectRemoveCategory.focus();
+					this.remove();
+				});
+				removeCategoryModal.modal('hide');
+			})
+		} else {
+			$('#removeCategoryModal').prepend(`<div class="error text-danger p-3"><i class="icon-exclamation-sign"></i> La categoría <strong>${cat.title}</strong> no exite en el Almacen.</div>`);
+		}
 	}
 }
 

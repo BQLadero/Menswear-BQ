@@ -121,8 +121,9 @@
                 <div class="col">
                     <div class="card text-center">
                         <h5 class="card-title">Abrigo Cruzado largo gris</h5>
-                        <img src="./img/abrigo-largo-gris.png" class="card-img-top" alt="Abrigo Cruzado largo gris" tabindex="0"
-                            data-bs-toggle="popover" data-bs-trigger="hover focus" data-bs-content="89.99€">
+                        <img src="./img/abrigo-largo-gris.png" class="card-img-top" alt="Abrigo Cruzado largo gris"
+                            tabindex="0" data-bs-toggle="popover" data-bs-trigger="hover focus"
+                            data-bs-content="89.99€">
                         <div class="card-body text-center">
                             <button type="button" class="btn btn-primary mt-2">Quitar de favoritos</button>
                         </div>
@@ -189,6 +190,16 @@
                     <li>
                         <a class="text ms-3" data-bs-toggle="modal" data-bs-target="#staticBackdrop3">
                             Política de Cookies
+                        </a>
+                    </li>
+                    <li>
+                        <a class="text" data-toggle="modal" data-target="#staticBackdrop4">
+                            <i class="icon-sitemap"></i>&nbsp;Mapa Web
+                        </a>
+                    </li>
+                    <li>
+                        <a class="text" data-toggle="modal" data-target="#staticBackdrop5">
+                            <i class="icon-play-sign"></i>&nbsp;Apertura de una nueva tienda
                         </a>
                     </li>
                 </ul>
@@ -287,6 +298,69 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="modal fade" id="staticBackdrop4" data-backdrop="static" data-keyboard="false" tabindex="1"
+                    aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title text-body" id="staticBackdropLabel">Mapa Web</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span class="text-body h3" aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body text-body text-justify">
+                                <ul class="list">
+                                    <li><a href="./index.html">Inicio</a></li>
+                                    <ul class="list">
+                                        <li>Productos</li>
+                                        <li>Categorías</li>
+                                        <li>Tiendas</li>
+                                    </ul>
+                                    <li><a href="./registered.html">Inicio | Registrado</a></li>
+                                    <ul class="list">
+                                        <li>Productos</li>
+                                        <li>Categorías</li>
+                                        <li>Tiendas</li>
+                                        <li><a href="./profile.html">Perfil</a></li>
+                                        <ul class="list">
+                                            <li>Mis Pedidos</li>
+                                            <li>Mis favoritos</li>
+                                            <li>Mis datos</li>
+                                            <li><a href="./shopping.html">Carrito</a></li>
+                                        </ul>
+                                    </ul>
+                                </ul>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="staticBackdrop5" tabindex="1" role="dialog"
+                    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header text-body">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Apertura de una nueva tienda</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span class="text-body h3" aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body text-body">
+                                <video width="320" height="240" controls="controls">
+                                    <source src="./video/new-shop.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 </div>
             </section>
 

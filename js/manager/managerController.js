@@ -315,34 +315,36 @@ class ManagerController {
         this.#storeHouseView.bindNewProductForm(this.handleCreateProduct);
     }
 
-    handleCreateProduct = (id, name, price, taxProduct, type, des, image, categories) => {
+    handleCreateProduct = (id, name, price, taxProduct, espeProd1, espeProd2, espeProd3, espeProd4, des, image, categories, type) => {
         let product;
-        alert("selectTypeProduct");
-        alert(type);
         switch (type) {
             case "traje":
-                product = new Traje(id, name, price, 0, " ", " ", " ", des, taxProduct, [image]);
+                product = new Traje(id, name, price, espeProd1, espeProd2, espeProd3, espeProd4, des, taxProduct, [image]);
                 break;
             case "bota":
-                product = new Bota(id, name, price, " ", " ", " ", " ", des, taxProduct, [image]);
+                product = new Bota(id, name, price, espeProd1, espeProd2, espeProd3, espeProd4, des, taxProduct, [image]);
                 break;
             case "pantalon":
-                product = new Pantalon(id, name, price, " ", " ", " ", " ", des, taxProduct, [image]);
+                product = new Pantalon(id, name, price, espeProd1, espeProd2, espeProd3, espeProd4, des, taxProduct, [image]);
                 break;
             case "calcetin":
-                product = new Traje(id, name, price, " ", " ", " ", " ", des, taxProduct, [image]);
+                product = new Traje(id, name, price, espeProd1, espeProd2, espeProd3, espeProd4, des, taxProduct, [image]);
                 break;
         }
 
         let done, error;
         try {
+            alert(product)
+            alert(categories)
             this.#storeHouseView.addProduct(product, categories);
+            alert(type);
+           //this.onAddCategory();
             done = true;
         } catch (exception) {
             done = false;
             error = exception;
         }
-        //this.#storeHouseView.showNewShopModal(done, shop, error);
+        this.#storeHouseView.showNewProductModal(done, product, error);
     }
 
     handleChangeBackgroundColor = () =>{

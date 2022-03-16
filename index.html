@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="./css/normalize.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
         integrity="sha384-WskhaSGFgHYWDcbwN70/dfYBj47jz9qbsMId/iRN3ewGhXQFZCSftd1LZCfmhktB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="">
     <link rel="stylesheet" href="./css/style.css">
     <link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -37,7 +40,7 @@
                             </a>
                         </li>
                         <li class="nav-item" id="inicioSesion">
-                            <a role="button"name="inicio" class="nav-link active" onclick="showDialog()">
+                            <a role="button" name="inicio" class="nav-link active" onclick="showDialog()">
                                 <i class="icon-signin"></i>&nbsp;Iniciar Sesi&oacute;n
                             </a>
                         </li>
@@ -314,6 +317,16 @@
                             <i class="icon-gamepad"></i>&nbsp;Minijuego
                         </a>
                     </li>
+                    <li>
+                        <a class="text" data-toggle="modal" data-target="#staticBackdrop5">
+                            <i class="icon-play-sign"></i>&nbsp;Apertura de una nueva tienda
+                        </a>
+                    </li>
+                    <li>
+                        <a class="text" data-toggle="modal" data-target="#staticBackdrop6">
+                            <i class="icon-map-marker"></i>&nbsp;¡Visita nuestro almacen!
+                        </a>
+                    </li>
                 </ul>
 
                 <!-- Modal -->
@@ -328,11 +341,15 @@
                                 </button>
                             </div>
                             <div class="modal-body text-body">
-                                Menswear-BQ considerará como dueño de una Cuenta de Usuario, Plataforma de Usuario o
+                                <p>Menswear-BQ considerará como dueño de una Cuenta de Usuario, Plataforma de Usuario o
                                 Contenido de Usuario creado o subido a los Servicios de Menswear-BQ correspondientes,
                                 a la persona o entidad que tiene acceso a la dirección de correo electrónico consignada
                                 en los registros de Menswear-BQ para dicha Cuenta de Usuario bajo la cual se ha creado
-                                dicha Plataforma de Usuario o Contenido de Usuario.
+                                dicha Plataforma de Usuario o Contenido de Usuario.</p>
+
+                                <audio controls>
+                                    <source src="./audio/terminos-uso-es.mp3" type="audio/mp3">
+                                </audio>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -353,19 +370,20 @@
                                 </button>
                             </div>
                             <div class="modal-body text-body">
-                                La Política de Privacidad establece los términos en que usa y protege la
+                                <p>La Política de Privacidad establece los términos en que usa y protege la
                                 información que es proporcionada por sus usuarios al momento de utilizar su sitio web.
-                                Esta
-                                compañía está comprometida con la seguridad de los datos de sus usuarios. Cuando le
-                                pedimos
-                                llenar los campos de información personal con la cual usted pueda ser identificado, lo
+                                Esta compañía está comprometida con la seguridad de los datos de sus usuarios. Cuando le
+                                pedimos llenar los campos de información personal con la cual usted pueda ser
+                                identificado, lo
                                 hacemos asegurando que sólo se empleará de acuerdo con los términos de este documento.
-                                Sin
-                                embargo esta Política de Privacidad puede cambiar con el tiempo o ser actualizada por lo
-                                que
-                                le recomendamos y enfatizamos revisar continuamente esta página para asegurarse que está
-                                de
-                                acuerdo con dichos cambios.
+                                Sin embargo esta Política de Privacidad puede cambiar con el tiempo o ser actualizada
+                                por lo
+                                que le recomendamos y enfatizamos revisar continuamente esta página para asegurarse que
+                                está
+                                de acuerdo con dichos cambios.</p>
+                                <audio controls>
+                                    <source src="./audio/politica-privacidad-es.mp3" type="audio/mp3">
+                                </audio>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -386,18 +404,22 @@
                                 </button>
                             </div>
                             <div class="modal-body text-body">
-                                <p class="text-body">Nuestro sitio web emplea las cookies para poder identificar las
-                                    páginas que son visitadas y su frecuencia. Esta información es empleada únicamente
-                                    para análisis estadístico y después la información se elimina de forma permanente.
-                                    Usted puede eliminar las cookies en cualquier momento desde su ordenador. Sin
-                                    embargo las
-                                    cookies ayudan a proporcionar un mejor servicio de los sitios web, estás no dan
-                                    acceso a información de su ordenador ni de usted, a menos de que usted así lo quiera
-                                    y la proporcione directamente noticias. Usted puede aceptar o negar el uso de
-                                    cookies, sin embargo la mayoría de navegadores aceptan cookies automáticamente pues
-                                    sirve para tener un mejor servicio web. También usted puede cambiar la configuración
-                                    de su ordenador para declinar las cookies. Si se declinan es posible que no pueda
-                                    utilizar algunos de nuestros servicios.
+                                <p> Nuestro sitio web emplea las cookies para poder identificar las
+                                páginas que son visitadas y su frecuencia. Esta información es empleada únicamente
+                                para análisis estadístico y después la información se elimina de forma permanente.
+                                Usted puede eliminar las cookies en cualquier momento desde su ordenador. Sin
+                                embargo las
+                                cookies ayudan a proporcionar un mejor servicio de los sitios web, estás no dan
+                                acceso a información de su ordenador ni de usted, a menos de que usted así lo quiera
+                                y la proporcione directamente noticias. Usted puede aceptar o negar el uso de
+                                cookies, sin embargo la mayoría de navegadores aceptan cookies automáticamente pues
+                                sirve para tener un mejor servicio web. También usted puede cambiar la configuración
+                                de su ordenador para declinar las cookies. Si se declinan es posible que no pueda
+                                utilizar algunos de nuestros servicios.</p>
+
+                                <audio controls>
+                                    <source src="./audio/politica-cookies-es.mp3" type="audio/mp3">
+                                </audio>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -446,6 +468,50 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="modal fade" id="staticBackdrop5" tabindex="1" role="dialog"
+                    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header text-body">
+                                <h5 class="modal-title" id="exampleModalLongTitle">Apertura de una nueva tienda</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span class="text-body h3" aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body text-body">
+                                <video width="320" height="240" controls="controls">
+                                    <source src="./video/new-shop.mp4" type="video/mp4">
+                                </video>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="staticBackdrop6" tabindex="1" role="dialog"
+                    aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header text-body">
+                                <h5 class="modal-title" id="exampleModalLongTitle">¡Visita nuestro almacen!</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span class="text-body h3" aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body text-body almacen">
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
 
             <section class="contact text-center me-5 mt-2">
@@ -486,7 +552,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"
         integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
-
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
     <script src="./js/shop.js" type="module"></script>
     <script src="./js/index.js"></script>
     <script src="./js/translate.js"></script>

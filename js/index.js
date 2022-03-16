@@ -2,9 +2,14 @@ $(document).ready(function () {
     $('[data-toggle="popover"]').popover();
 });
 
+$(function () {
+    $('#cerrarSesion').css('display', 'none');
+    $('#profile').css('display', 'none');
+    $('#carrito').css('display', 'none');
+})
+
 //Referencia a los elementos
 let dialog = document.getElementsByTagName("dialog")[0];
-//let dialog2 = document.getElementsByTagName("dialog")[1];
 
 function showDialog() {
     dialog.show();
@@ -14,14 +19,6 @@ function showDialog() {
 function closeDialog() {
     dialog.close();
 }
-
-/*function crearCuenta() {
-    dialog2.show();
-}
-
-function cerrarCuenta() {
-    dialog2.close();
-}*/
 
 let iniciar = document.getElementById("iniciar");
 let crear = document.getElementById("crear");
@@ -44,14 +41,29 @@ function barraProgress() {
     let usuario = document.getElementById("sesion__f1--usu");
     let password = document.getElementById("sesion__f1--Key");
 
-    if(usuario.value.length>1 && usuario.value.length<21 ){
-        pixeles+=50;
-        progreso.style.width=pixeles+"%";
+    if (usuario.value.length > 1 && usuario.value.length < 21) {
+        pixeles += 50;
+        progreso.style.width = pixeles + "%";
     }
-    if(password.value.length>7 && password.value.length<21){
-        pixeles+=50;
-        progreso.style.width=pixeles+"%";
+    if (password.value.length > 7 && password.value.length < 21) {
+        pixeles += 50;
+        progreso.style.width = pixeles + "%";
     }
+
+    if (pixeles === 100) {
+        $('#inicioSesion').css('display', 'none');
+        $('#cerrarSesion').css('display', 'block');
+        $('#profile').css('display', 'block');
+        $('#carrito').css('display', 'block');
+    }
+
+    let form = document.forms.inicioSesion1;
+
+    $(form).submit(function (event) {
+        event.preventDefault();
+        event.stopPropagation();
+        closeDialog();
+    });
 }
 
 function barraProgress2() {
@@ -64,30 +76,52 @@ function barraProgress2() {
     let email = document.getElementById("sesion__f2--email");
     let tlf = document.getElementById("sesion__f2--tlf");
 
-    if(nombre.value.length>2 && nombre.value.length<21 ){
-        pixeles+=16.666;
-        progreso.style.width=pixeles+"%";
+    if (nombre.value.length > 2 && nombre.value.length < 21) {
+        pixeles += 16.666;
+        progreso.style.width = pixeles + "%";
     }
-    if(apellidos.value.length>4 && apellidos.value.length<41){
-        pixeles+=16.666;
-        progreso.style.width=pixeles+"%";
+    if (apellidos.value.length > 4 && apellidos.value.length < 41) {
+        pixeles += 16.666;
+        progreso.style.width = pixeles + "%";
     }
-    if(pwd.value.length>7 && pwd.value.length<21){
-        pixeles+=16.666;
-        progreso.style.width=pixeles+"%";
+    if (pwd.value.length > 7 && pwd.value.length < 21) {
+        pixeles += 16.666;
+        progreso.style.width = pixeles + "%";
     }
-    if(direccion.value.length>9){
-        pixeles+=16.666;
-        progreso.style.width=pixeles+"%";
+    if (direccion.value.length > 9) {
+        pixeles += 16.666;
+        progreso.style.width = pixeles + "%";
     }
 
     let pattern = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
-    if(pattern.test(email.value)){
-        pixeles+=16.666;
-        progreso.style.width=pixeles+"%";
+    if (pattern.test(email.value)) {
+        pixeles += 16.666;
+        progreso.style.width = pixeles + "%";
     }
-    if(tlf.value.length>8 && tlf.value.length<10){
-        pixeles+=16.666;
-        progreso.style.width=pixeles+"%";
+    if (tlf.value.length > 8 && tlf.value.length < 10) {
+        pixeles += 16.666;
+        progreso.style.width = pixeles + "%";
     }
+}
+
+let mini = $('#minijuego');
+let main = $('#cuerpo__espe');
+mini.css("display", "none");
+
+function mostCam() {
+    mini.css("display", "block");
+    main.css("display", "none");
+    window.location.href = "#minijuego";
+}
+
+function ocultCam() {
+    mini.css("display", "none");
+    main.css("display", "block");
+}
+
+function cerrarSesion() {
+    $('#inicioSesion').css('display', 'block');
+    $('#cerrarSesion').css('display', 'none');
+    $('#profile').css('display', 'none');
+    $('#carrito').css('display', 'none');
 }

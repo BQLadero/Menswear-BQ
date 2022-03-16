@@ -171,6 +171,7 @@ class ManagerController {
             this.handleRemoveCategoryForm,
             this.handleNewProductForm
         );
+        this.handleChangeBackgroundColor();
     }
 
     onInit = () => {
@@ -311,10 +312,10 @@ class ManagerController {
 
     handleNewProductForm = () => {
         this.#storeHouseView.showNewProductForm(this.#storeHouse.categories);
-        this.#storeHouseView.bindNewProductForm(this.handleRemoveCategory);
+        this.#storeHouseView.bindNewProductForm(this.handleCreateProduct);
     }
 
-    handleCreateShop = (id, name, price, taxProduct, type, des, image, categories) => {
+    handleCreateProduct = (id, name, price, taxProduct, type, des, image, categories) => {
         let product;
         alert("selectTypeProduct");
         alert(type);
@@ -342,6 +343,24 @@ class ManagerController {
             error = exception;
         }
         //this.#storeHouseView.showNewShopModal(done, shop, error);
+    }
+
+    handleChangeBackgroundColor = () =>{
+        $('#changeColorSelect').on('change', function () {
+            let color = $(this).val();
+            if (color === "grey") {
+                $('body').css("background-image", 'none');
+                $('body').css("background-color", 'rgba(187, 183, 183, 0.425)');
+                $('body').css("color", 'black');
+                $('footer').css("background-color", 'rgba(62, 73, 126, 0.253');
+                $('h2').css("color", 'black');
+            } else {
+                $('body').css("background-image", 'url("../img/dark-canvas.gif")');
+                $('body').css("color", 'white');
+                $('footer').css("background-color", 'rgba(196, 233, 255, 0.253)');
+                $('h2').css("color", 'white');
+            }
+        });
     }
 }
 

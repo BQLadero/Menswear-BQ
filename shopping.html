@@ -23,11 +23,11 @@
             </a>
         </section>
         <section class="cabezacarr__productos">
-            <h1 id="cabezacarr__productos--h1">Mi carrito</h1>
+            <h1 id="cabezacarr__productos--h1" class="lang" key="h1carrito">Mi carrito</h1>
         </section>
         <section class="cabezacarr__cierre">
             <button type="button" name="cierre" class="btn btn-light mt-4">
-                <a href="./index.html">Cerrar Sesi&oacute;n</a></button>
+                <a href="./index.html" class="lang" key="cierre">Cerrar Sesi&oacute;n</a></button>
         </section>
     </header>
 
@@ -35,32 +35,28 @@
         <div class="container">
             <div class="row">
                 <div class="col text-center">
-                    <a href="#">
-                        <img src="./img/depors-dest.png" alt="Zapatillas altas" id="cuerpo__producto__portada--img">
-                    </a>
+                    <img src="./img/depors-dest.png" alt="Zapatillas altas" id="cuerpo__producto__portada--img">
                     <article class="p-3">
-                        <h4>Zapatillas altas</h4>
-                        <p id="cuerpo__producto__descripcion--p">
+                        <h4 class="lang" key="zapatillas">Zapatillas altas</h4>
+                        <input type="number" name="aniadir" value="1" max="20" min="1" class="aniadir">
+                        <span id="cuerpo__producto__descripcion--p" class="lang" key="zapatillasPrecio">
                             Precio: 35.90€
-                            <input type="number" name="aniadir" value="1" max="20" min="1" class="aniadir">
-                        </p>
+                        </span><br><br>
                         <button type="button" class="btn btn-secondary">
-                            <i class="icon-trash"></i>&nbsp;Eliminar
+                            <i class="icon-trash"></i>&nbsp;<span class="lang" key="eliminar">Eliminar</span>
                         </button>
                     </article>
                 </div>
                 <div class="col text-center">
-                    <a href="#">
-                        <img src="./img/chaqueton-azul.png" alt="Chaquetón Azul" id="cuerpo__producto__portada--img">
-                    </a>
+                    <img src="./img/chaqueton-azul.png" alt="Chaquetón Azul" id="cuerpo__producto__portada--img">
                     <article class="p-3">
-                        <h4>Chaquetón Azul</h4>
-                        <p id="cuerpo__producto__descripcion--p">
+                        <h4 class="lang" key="chaqueton">Chaquetón Azul</h4>
+                        <input type="number" name="aniadir" value="1" min="1" max="20" class="aniadir">
+                        <span id="cuerpo__producto__descripcion--p" class="lang" key="chaquetonPrice">
                             Precio: 49.99€
-                            <input type="number" name="aniadir" value="1" min="1" max="20" class="aniadir">
-                        </p>
+                        </span><br><br>
                         <button type="button" class="btn btn-secondary">
-                            <i class="icon-trash"></i>&nbsp;Eliminar
+                            <i class="icon-trash"></i>&nbsp;<span class="lang" key="eliminar">Eliminar</span>
                         </button>
                     </article>
                 </div>
@@ -68,12 +64,12 @@
         </div>
 
         <section class="text-center">
-            <span class="placeholder col-12 placeholder-xs"></span>
-            <h4>Subtotal</h4>
-            <p>Precio sin IVA <i class="icon-arrow-right"></i> 67.93€</p>
-            <p>Precio con IVA <i class="icon-arrow-right"></i> 85.89€</p>
+            <hr>
+            <h4 class="lang" key="subtotal">Subtotal</h4>
+            <p class="lang" key="precioSIva"><span>Precio sin IVA</span>&nbsp;<i class="icon-arrow-right">&nbsp;</i>67.93€</p>
+            <p><span class="lang" key="precioIva">Precio con IVA</span>&nbsp;<i class="icon-arrow-right">&nbsp;</i>85.89€</p>
             <button type="button" class="btn btn-secondary mb-2" onclick="showDialog()"><i
-                    class="icon-shopping-cart"></i>&nbsp;Comprar</button>
+                    class="icon-shopping-cart"></i>&nbsp;<span class="lang" key="comprar">Comprar</span></button>
         </section>
 
         <dialog class="paying w-50 text-white text-center">
@@ -169,25 +165,25 @@
         <section class="arriba">
             <section class="information mt-2 text-center">
                 <ul>
-                    <h3>Información</h3>
+                    <h3 class="lang" key="informacion">Información</h3>
                     <li>
                         <a class="text" data-toggle="modal" data-target="#staticBackdrop">
-                            <i class="icon-legal"></i>&nbsp;Terminos de uso
+                            <i class="icon-legal"></i>&nbsp;<span class="lang" key="terminos">Terminos de uso</span>
                         </a>
                     </li>
                     <li>
                         <a class="text" data-toggle="modal" data-target="#staticBackdrop2">
-                            <i class="icon-legal"></i>&nbsp;Política de Privacidad
+                            <i class="icon-legal"></i>&nbsp;<span class="lang" key="privacidad">Política de Privacidad</span>
                         </a>
                     </li>
                     <li>
                         <a class="text" data-toggle="modal" data-target="#staticBackdrop3">
-                            <i class="icon-legal"></i>&nbsp;Política de Cookies
+                            <i class="icon-legal"></i>&nbsp;<span class="lang" key="cookies">Política de Cookies</span>
                         </a>
                     </li>
                     <li>
                         <a class="text" data-toggle="modal" data-target="#staticBackdrop4">
-                            <i class="icon-sitemap"></i>&nbsp;Mapa Web
+                            <i class="icon-sitemap"></i>&nbsp;<span class="lang" key="mapa">Mapa Web</span>
                         </a>
                     </li>
                 </ul>
@@ -198,12 +194,12 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header text-body">
-                                <h5 class="modal-title" id="exampleModalLongTitle">Terminos de uso</h5>
+                                <h5 class="modal-title lang" id="exampleModalLongTitle" key="terminos">Terminos de uso</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span class="text-body h3" aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body text-body">
+                            <div class="modal-body text-body lang" key="terminosTexto">
                                 Menswear-BQ considerará como dueño de una Cuenta de Usuario, Plataforma de Usuario o
                                 Contenido de Usuario creado o subido a los Servicios de Menswear-BQ correspondientes,
                                 a la persona o entidad que tiene acceso a la dirección de correo electrónico consignada
@@ -211,8 +207,8 @@
                                 dicha Plataforma de Usuario o Contenido de Usuario.
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+                                <button type="button" class="btn btn-secondary lang" data-dismiss="modal" key="cerrar">Cerrar</button>
+                                <button type="button" class="btn btn-primary lang" data-dismiss="modal" key="aceptar">Aceptar</button>
                             </div>
                         </div>
                     </div>
@@ -223,30 +219,24 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title text-body" id="staticBackdropLabel">Política de Privacidad</h5>
+                                <h5 class="modal-title text-body lang" id="staticBackdropLabel" key="privacidad">Política de Privacidad</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span class="text-body h3" aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body text-body">
+                            <div class="modal-body text-body lang" key="privacidadTexto">
                                 La Política de Privacidad establece los términos en que usa y protege la
                                 información que es proporcionada por sus usuarios al momento de utilizar su sitio web.
-                                Esta
-                                compañía está comprometida con la seguridad de los datos de sus usuarios. Cuando le
-                                pedimos
-                                llenar los campos de información personal con la cual usted pueda ser identificado, lo
+                                Esta compañía está comprometida con la seguridad de los datos de sus usuarios. Cuando le
+                                pedimos llenar los campos de información personal con la cual usted pueda ser identificado, lo
                                 hacemos asegurando que sólo se empleará de acuerdo con los términos de este documento.
-                                Sin
-                                embargo esta Política de Privacidad puede cambiar con el tiempo o ser actualizada por lo
-                                que
-                                le recomendamos y enfatizamos revisar continuamente esta página para asegurarse que está
-                                de
-                                acuerdo con dichos cambios.
+                                Sin embargo esta Política de Privacidad puede cambiar con el tiempo o ser actualizada por lo
+                                que le recomendamos y enfatizamos revisar continuamente esta página para asegurarse que está
+                                de acuerdo con dichos cambios.
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <a href="#" class="btn btn-primary text-white">Aceptar</a>
-                            </div>
+                                <button type="button" class="btn btn-secondary lang" data-dismiss="modal" key="cerrar">Cerrar</button>
+                                <button type="button" class="btn btn-primary lang" data-dismiss="modal" key="aceptar">Aceptar</button>                            </div>
                         </div>
                     </div>
                 </div>
@@ -256,13 +246,13 @@
                     <div class="modal-dialog modal-dialog-scrollable">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title text-body" id="staticBackdropLabel">Política de Cookies</h5>
+                                <h5 class="modal-title text-body lang" id="staticBackdropLabel" key="cookies">Política de Cookies</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span class="text-body h3" aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                            <div class="modal-body text-body">
-                                <p class="text-body">Nuestro sitio web emplea las cookies para poder identificar las
+                            <div class="modal-body text-body lang" key="cookiesTexto">
+                                    Nuestro sitio web emplea las cookies para poder identificar las
                                     páginas que son visitadas y su frecuencia. Esta información es empleada únicamente
                                     para análisis estadístico y después la información se elimina de forma permanente.
                                     Usted puede eliminar las cookies en cualquier momento desde su ordenador. Sin
@@ -276,9 +266,8 @@
                                     utilizar algunos de nuestros servicios.
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <a href="#" class="btn btn-primary text-white">Aceptar</a>
-                            </div>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal" key="cerrar">Cerrar</button>
+                                <button type="button" class="btn btn-primary lang" data-dismiss="modal" key="aceptar">Aceptar</button>                            </div>
                         </div>
                     </div>
                 </div>
@@ -288,36 +277,32 @@
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title text-body" id="staticBackdropLabel">Mapa Web</h5>
+                                <h5 class="modal-title text-body lang" id="staticBackdropLabel" key="mapa">Mapa Web</h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span class="text-body h3" aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                             <div class="modal-body text-body text-justify">
                                 <ul class="list">
-                                    <li><a href="./index.html">Inicio</a></li>
+                                    <li><a href="./index.html" class="lang" key="mapaInicio">Inicio</a></li>
                                     <ul class="list">
-                                        <li>Productos</li>
-                                        <li>Categorías</li>
-                                        <li>Tiendas</li>
+                                        <li class="lang" key="mapaAdmin">Administración</li>
+                                        <li class="lang" key="mapaProd">Productos</li>
+                                        <li class="lang" key="mapaCat">Categorías</li>
+                                        <li class="lang" key="mapaTiendas">Tiendas</li>
                                     </ul>
-                                    <li><a href="./registered.html">Inicio | Registrado</a></li>
+                                    <li><a href="./profile.html" class="lang" key="mapaPerfil">Perfil</a></li>
                                     <ul class="list">
-                                        <li>Productos</li>
-                                        <li>Categorías</li>
-                                        <li>Tiendas</li>
-                                        <li><a href="./profile.html">Perfil</a></li>
-                                        <ul class="list">
-                                            <li>Mis Pedidos</li>
-                                            <li>Mis favoritos</li>
-                                            <li>Mis datos</li>
-                                            <li><a href="./shopping.html">Carrito</a></li>
-                                        </ul>
+                                        <li class="lang" key="mapaPed">Mis Pedidos</li>
+                                        <li class="lang" key="mapaFav">Mis favoritos</li>
+                                        <li class="lang" key="mapaDatos">Mis datos</li>
+                                    </ul>
+                                        <li><a href="./shopping.html" class="lang" key="h1carrito">Mi Carrito</a></li>
                                     </ul>
                                 </ul>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="button" class="btn btn-secondary lang" data-dismiss="modal" key="cerrar">Cerrar</button>
                             </div>
                         </div>
                     </div>
@@ -326,7 +311,7 @@
 
             <section class="contact text-center me-5 mt-2">
                 <ul>
-                    <h3>Contacto</h3>
+                    <h3 class="lang" key="contacto">Contacto</h3>
                     <li>
                         <i class="icon-envelope"></i><span>&nbsp;blasladero12@gmail.com</span>
                     </li>
@@ -334,12 +319,17 @@
                         <i class="icon-phone"></i><span>&nbsp;926 63 45 15</span>
                     </li>
                     <li>
-                        <h5>Idioma</h5>
-                        <div id="google_translate_element" class="google"></div>
+                        <form action="" method="post" name="changeLang">
+                            <label for="changeLangSelect" class="lang" key="idioma">Cambiar el idioma de la p&aacute;gina</label><br>
+                            <select name="changeLangSelect" id="changeLangSelect">
+                                <option value="es" class="lang" key="castellano">Castellano</option>
+                                <option value="en" class="lang" key="ingles">Inglés</option>
+                            </select>
+                        </form>
                     </li>
                     <li>
-                        <h5>¿Necesita ayuda?</h5>
-                        <i class="icon-question"></i><span>&nbsp;¡Contacte con nosotros!</span>
+                        <h5 class="lang" key="ayuda">¿Necesita ayuda?</h5>
+                        <i class="icon-question"></i>&nbsp;<span class="lang" key="contacte">¡Contacte con nosotros!</span>
                     </li>
                 </ul>
             </section>
@@ -354,10 +344,13 @@
         integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T"
         crossorigin="anonymous"></script>
     <script src="./js/shopping.js"></script>
-    <script src="./js/translate.js"></script>
+    <script src="./js/shop.js"></script>
+    <!--<script src="./js/translate.js"></script>
     <script type="text/javascript"
-        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+        src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>-->
     <script src="./js/ValidationForms.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="./js/changeLang.js" charset="utf-8"></script>
 
 </body>
 

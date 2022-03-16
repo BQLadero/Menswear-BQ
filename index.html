@@ -19,7 +19,7 @@
     <header class="cabeza">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
-                <a href="#" id="logo" class="navbar-brand">
+                <a href="#" id="logo" class="navbar-brand" onclick="ocultCam()">
                     <img src="./img/logo.png" alt="Logo PortalGames" id="cabeza__logo--img">
                 </a>
 
@@ -32,14 +32,21 @@
                 <div class="collapse navbar-collapse" id="navbarToggleExternalContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#" id="init">
+                            <a class="nav-link active" aria-current="page" href="#" id="init" onclick="ocultCam()">
                                 <i class="icon-home"></i>&nbsp;Inicio
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a role="button" name="inicio" class="nav-link active" onclick="showDialog()">
+                        <li class="nav-item" id="inicioSesion">
+                            <a role="button"name="inicio" class="nav-link active" onclick="showDialog()">
                                 <i class="icon-signin"></i>&nbsp;Iniciar Sesi&oacute;n
                             </a>
+                        </li>
+                        <li class="nav-item" id="cerrarSesion">
+                            <a role="button" name="inicio" class="nav-link active" onclick="cerrarSesion()">
+                                <i class="icon-signout"></i>&nbsp;Cerrar Sesi&oacute;n</a>
+                        </li>
+                        <li class="nav-item" id="profile">
+                            <a class="nav-link active" aria-current="page" href="./profile.html">Perfil</a>
                         </li>
                         <li class="nav-item" id="close">
                             <a class="nav-link active" role="button" aria-pressed="true" href="#" id="closeWindows">
@@ -49,13 +56,13 @@
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navAdmin" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Administración
+                                Administraci&oacute;n
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navAdmin">
                                 <a class="text"></a>
                                 <a data-category="addShop" class="dropdown-item" id="lnewShop" data-toggle="modal"
                                     data-target="#new-shop" href="#new-category">
-                                    Añadir Tiendas
+                                    A&ntilde;adir Tiendas
                                 </a>
                                 <a data-category="delShop" class="dropdown-item" id="ldelShop" data-toggle="modal"
                                     data-target="#remove-shop" href="#new-category">
@@ -63,15 +70,15 @@
                                 </a>
                                 <a data-category="addCat" class="dropdown-item" id="lnewCategory" data-toggle="modal"
                                     data-target="#new-category" href="#new-category">
-                                    Añadir Categorías
+                                    A&ntilde;adir Categor&iacute;as
                                 </a>
                                 <a data-category="delCat" class="dropdown-item" id="ldelCategory" data-toggle="modal"
                                     data-target="#remove-category" href="#new-category">
-                                    Borrar Categorías
+                                    Borrar Categor&iacute;as
                                 </a>
                                 <a data-category="addProd" class="dropdown-item" id="lnewProduct" data-toggle="modal"
                                     data-target="#new-product" href="#new-category">
-                                    Añadir Productos
+                                    A&ntilde;adir Productos
                                 </a>
                                 <a data-category="delProd" class="dropdown-item" href="#administration">
                                     Borrar Productos
@@ -91,6 +98,9 @@
                             </div>
                         </li>
                     </ul>
+                    <a href="./shopping.html" id="carrito" class="img__carrito text-right">
+                        <img src="./img/carrito.png" alt="Carrito de Compra">
+                    </a>
                     <!--<form class="d-flex ms-2 busqueda">
                         <input class="form-control me-4" type="search" placeholder="Búsqueda" aria-label="Search">
                         <button class="btn btn-outline-success" type="submit"><i
@@ -110,7 +120,7 @@
             </div>
             <section id="iniciar" class="mt-2">
                 <h3 id="sesion--h1">Iniciar Sesi&oacute;n</h3>
-                <form action="./registered.html" method="post" class="was-validated form1" id="form"
+                <form name="inicioSesion1" method="post" class="was-validated form1" id="form"
                     onchange="barraProgress()">
                     <div class="progress">
                         <div id="bar" class="progress-bar progress-bar-striped active" role="progressbar"
@@ -256,6 +266,13 @@
         <div class="cuerpo__espe">
 
         </div>
+        <script src="./js/minigame.js"></script>
+        <section id="minijuego">
+            <section class="minijuego">
+                <canvas id="minijuego--canv" class="minijuego--canv" height="650" width="850">
+                </canvas>
+            </section>
+        </section>
     </main>
 
     <aside class="publicidad">
@@ -264,7 +281,7 @@
                 id="publicidad--sale"></a>
     </aside>
     <aside class="publicidad__2">
-        <!--Se muestra cuando la pantalla tiene la resolución de un móvil-->
+        <!--Se muestra cuando la pantalla tiene la resolución de un móvil y/o tablet-->
         <a href="#"><img src="./img/publi-2.jpg" alt="Últimas ventas" id="publicidad--sale2"></a>
     </aside>
     <footer class="pie">
@@ -290,6 +307,11 @@
                     <li>
                         <a class="text" data-toggle="modal" data-target="#staticBackdrop4">
                             <i class="icon-sitemap"></i>&nbsp;Mapa Web
+                        </a>
+                    </li>
+                    <li>
+                        <a class="text" onclick="mostCam()">
+                            <i class="icon-gamepad"></i>&nbsp;Minijuego
                         </a>
                     </li>
                 </ul>
@@ -471,7 +493,7 @@
     <script type="text/javascript"
         src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="./js/ValidationForms.js"></script>
-    <script src="./js/changeBackgroundColor.js"></script>
+    <!--<script src="./js/changeBackgroundColor.js"></script>-->
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-$('#changeColorSelect').on('change', function () {
+/*$('#changeColorSelect').on('change', function () {
     let color = $(this).val();
     if (color === "grey") {
         $('body').css("background-image", 'none');
@@ -12,4 +12,4 @@ $('#changeColorSelect').on('change', function () {
         $('footer').css("background-color", 'rgba(196, 233, 255, 0.253)');
         $('h2').css("color", 'white');
     }
-});
+});*/

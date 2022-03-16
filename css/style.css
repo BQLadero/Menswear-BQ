@@ -619,9 +619,9 @@ select>option {
     width: 50%;
 }
 
-/*.info-wrap > a{
-    color: white;
-}*/
+hr {
+    color: black; background-color: black; width:75%; height: 1%;
+}
 
 @media screen and (min-width:1201px) {
     .nav-link {

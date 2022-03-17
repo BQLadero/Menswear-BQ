@@ -51,3 +51,10 @@ map.on('click', function (event) {
 map.on('contextmenu', function (event) {
     marker.setLatLng([event.latlng.lat, event.latlng.lng]);
 });
+
+$("#terminoEs").css('display', 'block');
+$("#terminoEn").css('display', 'none');
+$("#cookiesEs").css('display', 'block');
+$("#cookiesEn").css('display', 'none');
+$("#privacidadEs").css('display', 'block');
+$("#privacidadEn").css('display', 'none');

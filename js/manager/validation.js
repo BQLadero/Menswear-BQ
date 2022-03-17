@@ -270,6 +270,11 @@ function newProductValidation(handler) {
             $('#productCalcetin4').css('display', 'block');
         }
     });
+
+    $('input:checked').each(
+        function(){$('#categoryNewProductP').css('display', 'none')}
+    );
+
     $(form).submit(function (event) {
         let isValid = true;
         let firstInvalidElement = null;
@@ -338,48 +343,164 @@ function newProductValidation(handler) {
         }
 
         /* Traje */
-        if (!this.alturaTraje.checkValidity()) {
+        let espe1, espe2, espe3, espe4;
+        if (this.selectTypeProduct.value === "traje") {
+            if (!this.alturaTraje.checkValidity()) {
+                isValid = false;
+                showFeedBack($(this.alturaTraje), false);
+                firstInvalidElement = this.alturaTraje;
+            } else {
+                espe1 = this.alturaTraje.value;
+                showFeedBack($(this.alturaTraje), true);
+            }
+
+            if (!this.cierreTraje.checkValidity()) {
+                isValid = false;
+                showFeedBack($(this.cierreTraje), false);
+                firstInvalidElement = this.cierreTraje;
+            } else {
+                espe2 = this.cierreTraje.value;
+                showFeedBack($(this.cierreTraje), true);
+            }
+
+            if (!this.cuidadosTraje.checkValidity()) {
+                isValid = false;
+                showFeedBack($(this.cuidadosTraje), false);
+                firstInvalidElement = this.cuidadosTraje;
+            } else {
+                espe3 = this.cuidadosTraje.value;
+                showFeedBack($(this.cuidadosTraje), true);
+            }
+
+            if (!this.detallesTraje.checkValidity()) {
+                isValid = false;
+                showFeedBack($(this.detallesTraje), false);
+                firstInvalidElement = this.detallesTraje;
+            } else {
+                espe4 = this.detallesTraje.value;
+                showFeedBack($(this.detallesTraje), true);
+            }
+        } else if (this.selectTypeProduct.value === "bota") {
+            if (!this.tallaBota.checkValidity()) {
+                isValid = false;
+                showFeedBack($(this.tallaBota), false);
+                firstInvalidElement = this.tallaBota;
+            } else {
+                espe1 = this.tallaBota.value;
+                showFeedBack($(this.tallaBota), true);
+            }
+
+            if (!this.cierreBota.checkValidity()) {
+                isValid = false;
+                showFeedBack($(this.cierreBota), false);
+                firstInvalidElement = this.cierreBota;
+            } else {
+                espe2 = this.cierreBota.value;
+                showFeedBack($(this.cierreBota), true);
+            }
+
+            if (!this.suelaBota.checkValidity()) {
+                isValid = false;
+                showFeedBack($(this.suelaBota), false);
+                firstInvalidElement = this.suelaBota;
+            } else {
+                espe3 = this.suelaBota.value;
+                showFeedBack($(this.suelaBota), true);
+            }
+
+            if (!this.plantillaBota.checkValidity()) {
+                isValid = false;
+                showFeedBack($(this.plantillaBota), false);
+                firstInvalidElement = this.plantillaBota;
+            } else {
+                espe4 = this.plantillaBota.value;
+                showFeedBack($(this.plantillaBota), true);
+            }
+        }else if (this.selectTypeProduct.value === "pantalon") {
+            if (!this.cintuPantalon.checkValidity()) {
+                isValid = false;
+                showFeedBack($(this.cintuPantalon), false);
+                firstInvalidElement = this.cintuPantalon;
+            } else {
+                espe1 = this.cintuPantalon.value;
+                showFeedBack($(this.cintuPantalon), true);
+            }
+
+            if (!this.cierrePantalon.checkValidity()) {
+                isValid = false;
+                showFeedBack($(this.cierrePantalon), false);
+                firstInvalidElement = this.cierrePantalon;
+            } else {
+                espe2 = this.cierrePantalon.value;
+                showFeedBack($(this.cierrePantalon), true);
+            }
+
+            if (!this.bolsilloPantalon.checkValidity()) {
+                isValid = false;
+                showFeedBack($(this.bolsilloPantalon), false);
+                firstInvalidElement = this.bolsilloPantalon;
+            } else {
+                espe3 = this.bolsilloPantalon.value;
+                showFeedBack($(this.bolsilloPantalon), true);
+            }
+
+            if (!this.materialPantalon.checkValidity()) {
+                isValid = false;
+                showFeedBack($(this.materialPantalon), false);
+                firstInvalidElement = this.materialPantalon;
+            } else {
+                espe4 = this.materialPantalon.value;
+                showFeedBack($(this.materialPantalon), true);
+            }
+        }else if(this.selectTypeProduct.value === "calcetin") {
+            if (!this.diseCalcetin.checkValidity()) {
+                isValid = false;
+                showFeedBack($(this.diseCalcetin), false);
+                firstInvalidElement = this.diseCalcetin;
+            } else {
+                espe1 = this.diseCalcetin.value;
+                showFeedBack($(this.diseCalcetin), true);
+            }
+
+            if (!this.tipoPantalon.checkValidity()) {
+                isValid = false;
+                showFeedBack($(this.tipoPantalon), false);
+                firstInvalidElement = this.tipoPantalon;
+            } else {
+                espe2 = this.tipoPantalon.value;
+                showFeedBack($(this.tipoPantalon), true);
+            }
+
+            if (!this.materialCalcetin.checkValidity()) {
+                isValid = false;
+                showFeedBack($(this.materialCalcetin), false);
+                firstInvalidElement = this.materialCalcetin;
+            } else {
+                espe3 = this.materialCalcetin.value;
+                showFeedBack($(this.materialCalcetin), true);
+            }
+
+            if (!this.packCalcetin.checkValidity()) {
+                isValid = false;
+                showFeedBack($(this.packCalcetin), false);
+                firstInvalidElement = this.packCalcetin;
+            } else {
+                espe4 = this.packCalcetin.value;
+                showFeedBack($(this.packCalcetin), true);
+            }
+        }else{
             isValid = false;
-            showFeedBack($(this.alturaTraje), false);
-            firstInvalidElement = this.alturaTraje;
-        } else {
-            showFeedBack($(this.alturaTraje), true);
         }
 
-        if (!this.cierreTraje.checkValidity()) {
-            isValid = false;
-            showFeedBack($(this.cierreTraje), false);
-            firstInvalidElement = this.cierreTraje;
-        } else {
-            showFeedBack($(this.cierreTraje), true);
-        }
-
-        if (!this.cuidadosTraje.checkValidity()) {
-            isValid = false;
-            showFeedBack($(this.cuidadosTraje), false);
-            firstInvalidElement = this.cuidadosTraje;
-        } else {
-            showFeedBack($(this.cuidadosTraje), true);
-        }
-
-        if (!this.detallesTraje.checkValidity()) {
-            isValid = false;
-            showFeedBack($(this.detallesTraje), false);
-            firstInvalidElement = this.detallesTraje;
-        } else {
-            showFeedBack($(this.detallesTraje), true);
-        }
 
         if (!isValid) {
             firstInvalidElement.focus();
         } else {
-            if (this.selectTypeProduct.value === "traje") {
-                handler(this.serialNumber.value, this.nameProd.value, this.priceProduct.value, this.taxProduct.value, this.alturaTraje.value,
-                    this.cierreTraje.value, this.cuidadosTraje.value, this.detallesTraje.value, this.desProduct.value, this.imageProduct.value, checkArr, this.selectTypeProduct.value);
-            }
-
+            handler(this.serialNumber.value, this.nameProd.value, this.priceProduct.value, this.taxProduct.value, espe1, espe2, espe3, espe4,
+                this.desProduct.value, this.imageProduct.value, checkArr, this.selectTypeProduct.value);
+                form.reset();
+                $('#categoryNewProductP').css('display', 'none');
         }
-        alert(this.selectTypeProduct.value);
         event.preventDefault();
         event.stopPropagation();
     });

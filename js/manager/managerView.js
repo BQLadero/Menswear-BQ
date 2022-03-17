@@ -538,7 +538,7 @@ class ManagerView {
 
 	/* Administración */
 
-	bindAdminMenu(hNewShop, hRemoveShop, hNewCategory, hRemoveCategory, hNewProduct) {
+	bindAdminMenu(hNewShop, hRemoveShop, hNewCategory, hRemoveCategory, hNewProduct, hRemoveProduct) {
 		$('#lnewShop').click((event) => {
 			this.#excecuteHandler(hNewShop, [], '#new-shop', { action: 'newShop' }, '#', event);
 		});
@@ -554,10 +554,10 @@ class ManagerView {
 		});
 		$('#lnewProduct').click((event) => {
 			this.#excecuteHandler(hNewProduct, [], '#new-product', { action: 'newProduct' }, '#', event);
-		});/*
+		});
 		$('#ldelProduct').click((event) => {
 			this.#excecuteHandler(hRemoveProduct, [], '#remove-product', {action: 'removeProduct'}, '#', event);
-		});*/
+		});
 	}
 
 	showNewShopForm() {
@@ -989,7 +989,6 @@ class ManagerView {
 		}
 	}
 
-
 	showNewProductForm(categories) {
 		let container = $(`		
 		<div class="modal fade" id="new-product" data-backdrop="static" data-keyboard="false" tabindex="1"
@@ -1105,7 +1104,7 @@ class ManagerView {
 										<h5 class="text-center" id="productCalcetin">Especificaciones del Calcetin </h5>
 									</div>
 									<div class="form-row">
-										<div class="col-md-4 mb-3" id="productTraje2">
+										<div class="col-md-6 mb-3" id="productTraje2">
 											<label for="alturaTraje">Altura *</label>
 											<div class="input-group">
 												<div class="input-group-prepend">
@@ -1117,7 +1116,7 @@ class ManagerView {
 												<div class="valid-feedback">Correcta.</div>
 											</div>
 										</div>
-										<div class="col-md-4 mb-3" id="productTraje3">
+										<div class="col-md-6 mb-3" id="productTraje3">
 											<label for="cierreTraje">Cierre *</label>
 											<div class="input-group">
 												<div class="input-group-prepend">
@@ -1129,7 +1128,9 @@ class ManagerView {
 												<div class="valid-feedback">Correcto.</div>
 											</div>
 										</div>
-										<div class="col-md-4 mb-3" id="productTraje4">
+									</div>
+									<div class="form-row">
+										<div class="col-md-6 mb-3" id="productTraje4">
 											<label for="cuidadosTraje">Cuidados *</label>
 											<div class="input-group">
 												<div class="input-group-prepend">
@@ -1141,10 +1142,8 @@ class ManagerView {
 												<div class="valid-feedback">Correcto.</div>
 											</div>
 										</div>
-									</div>
-									<div class="form-row" id="productTraje5">
+										<div class="col-md-6 mb-3" id="productTraje5">
 										<label for="detallesTraje">Detalles *</label>
-										<div class="col-md-12 mb-3">
 											<div class="input-group">
 												<div class="input-group-prepend">
 													<span class="input-group-text" id="detallesTraje"><i class="icon-align-justify"></i></span>
@@ -1360,7 +1359,7 @@ class ManagerView {
 							</button>
 						</div>
 						<div class="modal-body text-body">
-							La categoría <strong>${product.name}</strong> ha sido añadido correctamente.
+							EL producto <strong>${product.name}</strong> ha sido añadido correctamente.
 						</div>
 						<div class="modal-footer">
 							<button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
@@ -1369,19 +1368,60 @@ class ManagerView {
 				</div>
 			</div>`);
 			$('body').append(modal);
-			let removeCategoryModal = $('#removeCategoryModal');
-			removeCategoryModal.modal('show');
-			removeCategoryModal.find('button').click(() => {
-				removeCategoryModal.on('hidden.bs.modal', function (event) {
-					document.fRemCategory.reset();
-					document.fRemCategory.selectRemoveCategory.focus();
+			let newProductModal = $('#newProductModal');
+			newProductModal.modal('show');
+			newProductModal.find('button').click(() => {
+				/*newProductModal.on('hidden.bs.modal', function (event) {
+					document.fNewProduct.serialNumber.focus();
 					this.remove();
-				});
-				removeCategoryModal.modal('hide');
+				});*/
+				newProductModal.modal('hide');
 			})
 		} else {
-			$('#removeCategoryModal').prepend(`<div class="error text-danger p-3"><i class="icon-exclamation-sign"></i> La categoría <strong>${cat.title}</strong> no exite en el Almacen.</div>`);
+			$('#newProductModal').prepend(`<div class="error text-danger p-3"><i class="icon-exclamation-sign"></i> El producto <strong>${product.name}</strong> no exite en el Almacen.</div>`);
 		}
+	}
+
+	showRemoveProductForm() {
+			/*let link = $('#selectRemoveProduct');
+			if (link.length === 1) {
+				$('#selectRemoveCategory').remove();
+				$('#selectRemoveCategoryI').remove();
+			}*/
+			let container = $(`		
+				<div class="modal fade" id="remove-product" data-backdrop="static" data-keyboard="false" tabindex="1"
+						aria-labelledby="staticBackdropLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title text-body" id="remove-product">Borrar uno u varios Productos</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span class="text-body h3" aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<form name="fRemProduct" role="form" method="post" novalidate>
+									<div class="modal-body text-body text-justify">
+										<div class="form-row">
+											<div class="col-md-12 mb-3 text-center">
+												<label for="selectTypeProduct">Tipo de Producto *</label>
+												<select class="form-control text-center" id="selectTypeProduct" name="selectTypeProduct"> required>
+													<option value="traje">Traje</option>
+													<option value="bota">Bota</option>
+													<option value="pantalon">Pantalón</option>
+													<option value="calcetin">Calcetín</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="modal-footer">
+										<button class="btn btn-primary" type="submit">Eliminar</button>
+										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>`);
+			$('body').append(container);
 	}
 }
 

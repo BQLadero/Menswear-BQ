@@ -83,7 +83,8 @@
                                     data-target="#new-product" href="#new-category">
                                     A&ntilde;adir Productos
                                 </a>
-                                <a data-category="delProd" class="dropdown-item" href="#administration">
+                                <a data-category="delProd" class="dropdown-item" id="ldelProduct" data-toggle="modal"
+                                data-target="#remove-product" href="#new-category">
                                     Borrar Productos
                                 </a>
                             </div>
@@ -177,8 +178,8 @@
                             <span class="sr-only">0% Complete</span>
                         </div>
                     </div>
-                    <div class="form-group row mt-2">
-                        <div class="input-group mb-2 me-sm-2 col">
+                    <div class="form-row">
+                        <div class="input-group me-sm-2 col">
                             <label class="sr-only form-check-label me-3" for="form-check-label">Nombre</label>
                             <div class="input-group-prepend m-2">
                                 <i class="icon-user"></i>
@@ -189,7 +190,7 @@
                                 Campo Obligatorio
                             </div>
                         </div>
-                        <div class="input-group mb-2 me-sm-0 col">
+                        <div class="input-group me-sm-0 col">
                             <label class="sr-only form-check-label me-4" for="form-check-label">Apellidos</label>
                             <div class="input-group-prepend m-2">
                                 <i class="icon-user"></i>
@@ -201,8 +202,8 @@
                             </div>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="input-group mb-2 me-sm-2 col">
+                    <div class="form-row">
+                        <div class="input-group me-sm-2 col">
                             <label class="sr-only form-check-label me-3" for="form-check-label">Contraseña</label>
                             <div class="input-group-prepend m-2">
                                 <i class="icon-key"></i>
@@ -213,7 +214,7 @@
                                 Campo Obligatorio
                             </div>
                         </div>
-                        <div class="input-group mb-2 me-sm-0 col">
+                        <div class="input-group me-sm-0 col">
                             <label class="sr-only form-check-label me-4" for="form-check-label">Direccion</label>
                             <div class="input-group-prepend m-2">
                                 <i class="icon-map-marker"></i>
@@ -226,8 +227,8 @@
                         </div>
                     </div>
 
-                    <div class="form-group row">
-                        <div class="input-group mb-2 me-sm-2 col">
+                    <div class="form-row">
+                        <div class="input-group me-sm-2 col">
                             <label class="sr-only form-check-label me-3" for="form-check-label">Correo
                                 electrónico</label>
                             <div class="input-group-prepend m-2">
@@ -240,7 +241,7 @@
                                 Campo Obligatorio
                             </div>
                         </div>
-                        <div class="input-group mb-2 me-sm-0 col">
+                        <div class="input-group me-sm-0 col">
                             <label class="sr-only form-check-label me-4" for="form-check-label">Número de
                                 Teléfono</label>
                             <div class="input-group-prepend m-2">
@@ -561,7 +562,6 @@
     <script type="text/javascript"
         src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
     <script src="./js/ValidationForms.js"></script>
-    <!--<script src="./js/changeBackgroundColor.js"></script>-->
 </body>
 
 </html>

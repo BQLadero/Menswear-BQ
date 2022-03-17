@@ -36,12 +36,12 @@ class ManagerController {
 
         /*TRAJES*/
         let product1 = new Traje(1, 'JPRFanco Suit', 74.99, 188, 'Botón', 'Lavar en seco', 'Hombrera', "Traje de gala", 5, ['./img/traje-zalando-1.png', './img/traje-zalando-1-2.png', './img/traje-zalando-1-3.png']);
-        storeHouse.addProduct(product1, category5);
+        storeHouse.addProduct(product1, [category5, category1]);
         storeHouse.addProductInShop(product1, store1, 7);
         storeHouse.addProductInShop(product1, store2, 7);
 
         let product2 = new Traje(2, 'Tropical Active', 159.99, 189, 'Botón', 'Lavar en seco', 'no', "Traje de gala", 5, ['./img/traje-zalando-2.png', './img/traje-zalando-2-1.png', './img/traje-zalando-2-2.png']);
-        storeHouse.addProduct(product2, category5);
+        storeHouse.addProduct(product2, [category5, category3]);
         storeHouse.addProductInShop(product2, store1, 2);
 
         let product3 = new Traje(3, 'Plain mens suit', 149.95, 192, 'Botón', 'Lavar en seco', 'Tira de botones, hombrera', "Traje de gala", 5, ['./img/traje-zalando-3.png', './img/traje-zalando-3-1.png', './img/traje-zalando-3-2.png']);
@@ -50,7 +50,7 @@ class ManagerController {
         storeHouse.addProductInShop(product3, store3, 3);
 
         let product4 = new Traje(4, 'Blazer Conjunto Relaxed', 79.95, 188, 'Botón', 'No usar secadora', 'Bolsillo interior', "Traje de gala", 5, ['./img/traje-zara-1.png', './img/traje-zara-1-1.png', './img/traje-zara-1-2.png']);
-        storeHouse.addProduct(product4, category2);
+        storeHouse.addProduct(product4, [category2, category4]);
         storeHouse.addProductInShop(product4, store3, 1);
 
         let product5 = new Traje(5, 'Regular Fit', 117.99, 175, 'Botón y Cremallera', 'Lavar en ciclo de lavado suave a 40°', 'no', "Traje de gala", 5, ['./img/traje-c&a-2.png', './img/traje-c&a.png']);
@@ -88,7 +88,7 @@ class ManagerController {
         /*PANTALONES*/
         let product11 = new Pantalon(11, 'Joggers cargo Skinny Fit', 23.99, "Elástica", 'Cordones', 'Al bies y bolsillos traseros ', 'Algodón ', "Joggers en sarga de algodón con cintura elástica y cordón de ajuste"
             , 0, ['./img/pantalones-h&m-1.png', './img/pantalones-h&m-1-1.png']);
-        storeHouse.addProduct(product11, category3);
+        storeHouse.addProduct(product11, [category3, category2]);
         storeHouse.addProductInShop(product11, store1, 7);
         storeHouse.addProductInShop(product11, store3, 4);
         storeHouse.addProductInShop(product11, store2, 3);
@@ -110,6 +110,7 @@ class ManagerController {
             "Pantalón de deporte de felpa lisa. Dos bolsillos con cremalleras a los lados y pespuntes estilo biker de adorno delante. Puños de canalé en los bajos.", 0,
             ['./img/pantalones-c&a-2.png', './img/pantalones-c&a-2-1.png']);
         storeHouse.addProduct(product14, category4);
+        storeHouse.addProduct(product14, category5);
         storeHouse.addProductInShop(product14, store1, 2);
         storeHouse.addProductInShop(product14, store1, 11);
         storeHouse.addProductInShop(product14, store3, 14);
@@ -128,6 +129,7 @@ class ManagerController {
 
         let product17 = new Calcetin(17, 'Calcetines', 3.99, "Jacquard", 'Largos', 'Algodón, Poliamida y Elastano', 1, "Calcetines de bob Esponja", 0, ['./img/calcetines-c&a.png', './img/calcetines-c&a-1.png']);
         storeHouse.addProduct(product17, category4);
+        storeHouse.addProduct(product17, category5);
         storeHouse.addProductInShop(product17, store2, 4);
         storeHouse.addProductInShop(product17, store3, 50);
 
@@ -137,7 +139,7 @@ class ManagerController {
 
         let product19 = new Calcetin(19, 'Calcetines Jacquard The Beathles', 12.95, "THE BEATLES", 'Largos', 'Algodón, Poliamida y Elastano', 2, "Pack de calcetines con jacquard The Beatles. Acabados en rib.",
             0, ['./img/calcetines-zara-1.png', './img/calcetines-zara.png', , './img/calcetines-zara-2.png']);
-        storeHouse.addProduct(product19, category1);
+        storeHouse.addProduct(product19, [category1, category2]);
         storeHouse.addProductInShop(product19, store2, 10);
 
         let product20 = new Calcetin(20, 'Calcetines Altos', 7.99, "Tela", 'Largos', 'Algodón, Poliamida y Elastano', 3, "JOIN LIFE Care for fiber & Care for water: At least 75% of Ecologically Grown Cotton.",
@@ -161,15 +163,13 @@ class ManagerController {
         this.#loadManagerObjects(); //Llamada a la funcion de creación de objectos
         this.onAddCategory();
         this.onAddShop();
-        /*	,
-            this.handleNewProductForm,
-            this.handleRemoveProductForm */
         this.#storeHouseView.bindAdminMenu(
             this.handleNewShopForm,
             this.handleRemoveShopForm,
             this.handleNewCategoryForm,
             this.handleRemoveCategoryForm,
-            this.handleNewProductForm
+            this.handleNewProductForm,
+            this.handleRemoveProductForm
         );
         this.handleChangeBackgroundColor();
     }
@@ -308,7 +308,6 @@ class ManagerController {
         }
         this.#storeHouseView.showRemoveCategoryModal(done, cat, position, error);
     }
-    //this.#storeHouseView.bindNewCategoryForm(this.handleCreateCategory);
 
     handleNewProductForm = () => {
         this.#storeHouseView.showNewProductForm(this.#storeHouse.categories);
@@ -334,17 +333,27 @@ class ManagerController {
 
         let done, error;
         try {
-            alert(product)
-            alert(categories)
-            this.#storeHouseView.addProduct(product, categories);
-            alert(type);
-           //this.onAddCategory();
+            let categorias = new Array();
+            for (let i = 0; i < categories.length; i++) {
+                //console.log(categories[i]);
+                let categoria = this.#storeHouse.getCategory(categories[i]);
+                console.log(categoria.title);
+                categorias.push(categoria);
+            }
+            console.log(categorias);
+            this.#storeHouse.addProduct(product, categorias);
+            this.onAddCategory();
             done = true;
         } catch (exception) {
             done = false;
             error = exception;
         }
         this.#storeHouseView.showNewProductModal(done, product, error);
+    }
+
+    handleRemoveProductForm = () => {
+        this.#storeHouseView.showRemoveProductForm();
+        //this.#storeHouseView.bindRemoveCategoryForm(this.handleRemoveCategory);
     }
 
     handleChangeBackgroundColor = () =>{

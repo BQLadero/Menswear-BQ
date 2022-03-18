@@ -130,19 +130,8 @@ let StoreHouse = (function () {
 
             removeShop(shop) {
                 //if (!(shop instanceof Store)) throw new Error("El objecto introducido no es de tipo Shop");
-                //if (!(this.#shops.has(shop.cif))) throw new Error("La tienda no está introducida");
-                let shopdef = this.#shopDefault;//Al eliminar la tienda se le añade la tienda de por defecto
-                let index;
-
-               /* this.#shops.forEach(function (value, key) {
-                    if (key === shop) {
-                        for (let product of value) {
-                            //Los productos añadidos a la tienda eliminada, pasan a la tienda por defecto.
-                            index = shopdef.indexOf(product);
-                            if (index != -1) shopdef.push(product);
-                        }
-                    }
-                });*/
+                if (!(this.#shops.has(shop))) throw new Error("La tienda no está introducida");
+                //let shopdef = this.#shopDefault;//Al eliminar la tienda se le añade la tienda de por defecto
                 this.#shops.delete(shop);
                 return this.#shops.size;
             }
@@ -153,9 +142,23 @@ let StoreHouse = (function () {
                 if (units <= 0) throw new InvalidValueException("unidad", units);
                 let index;
                 this.#shops.forEach(function (value, key) {
-                    if(key===shop) value.set(product, units);
+                    if (key === shop) value.set(product, units);
                 });
                 return index; //Retorna las unidades del producto pasado por parametro
+            }
+
+            removeProductShop(product) {//Borra el producto de todas las tiendas
+                //if (!(this.#products.has(product))) throw new Error("El producto no está introducido en el almacen");
+                this.#shops.forEach(function (value, key) {
+                    value.delete(product);
+                });
+            }
+
+            removeProductInShop(product, shop) {//Borra el producto de una de las tiendas especifica
+                //if (!(this.#products.has(product))) throw new Error("El producto no está introducido en el almacen");
+                this.#shops.forEach(function (value, key) {
+                    if (key.cif === shop) value.delete(product);
+                });
             }
 
             addQuantityProductInShop(product, shop, stock) {//Añade las unidades al producto de la tienda
@@ -205,19 +208,14 @@ let StoreHouse = (function () {
             }
 
             getProduct(id) {
-                let arr = [];
                 let product;
                 this.#products.forEach(function (value, key) {
-                    arr.push(key);
+                    if (key.serialNumber === id) product = key;
                 });
-
-                for (let object of arr) {
-                    if(object.serialNumber === id) product = object;
-                }
                 return product;
             }
 
-            getShops(){
+            getShops() {
                 let shops = [];
                 this.#shops.forEach(function (value, key) {
                     shops.push(key);
@@ -233,10 +231,10 @@ let StoreHouse = (function () {
                 return shops[position];
             }
 
-            getProductinShops(shop){
+            getProductinShops(shop) {
                 let arr = new Array();
                 this.#shops.forEach(function (value, key) {
-                    if(key.name === shop){
+                    if (key.name === shop) {
                         value.forEach(function (stock, product) {
                             arr.push(product);
                         })
@@ -245,10 +243,22 @@ let StoreHouse = (function () {
                 return arr[Symbol.iterator]();
             }
 
-            getTypeProduct(type){
+            getProductinShopsCif(shop) { //Creo otro especifico para el cif
+                let arr = new Array();
+                this.#shops.forEach(function (value, key) {
+                    if (key.cif === shop) {
+                        value.forEach(function (stock, product) {
+                            arr.push(product);
+                        })
+                    }
+                })
+                return arr[Symbol.iterator]();
+            }
+
+            getTypeProduct(type) {
                 let arr = [];
                 this.#products.forEach(function (value, key) {
-                    if(key.constructor.name === type) arr.push(key);;
+                    if (key.constructor.name === type) arr.push(key);
                 });
                 return arr;
             }

@@ -172,7 +172,7 @@ function newShopValidation(handler) {
 }
 
 function removeShopValidation(handler) {
-    let form = document.forms.fRemShop;
+    let form = document.forms.fRemShop;fRemProductShop
     $(form).attr('novalidate', true);
 
     $(form).submit(function (event) {
@@ -272,7 +272,7 @@ function newProductValidation(handler) {
     });
 
     $('input:checked').each(
-        function(){$('#categoryNewProductP').css('display', 'none')}
+        function () { $('#categoryNewProductP').css('display', 'none') }
     );
 
     $(form).submit(function (event) {
@@ -416,7 +416,7 @@ function newProductValidation(handler) {
                 espe4 = this.plantillaBota.value;
                 showFeedBack($(this.plantillaBota), true);
             }
-        }else if (this.selectTypeProduct.value === "pantalon") {
+        } else if (this.selectTypeProduct.value === "pantalon") {
             if (!this.cintuPantalon.checkValidity()) {
                 isValid = false;
                 showFeedBack($(this.cintuPantalon), false);
@@ -452,7 +452,7 @@ function newProductValidation(handler) {
                 espe4 = this.materialPantalon.value;
                 showFeedBack($(this.materialPantalon), true);
             }
-        }else if(this.selectTypeProduct.value === "calcetin") {
+        } else if (this.selectTypeProduct.value === "calcetin") {
             if (!this.diseCalcetin.checkValidity()) {
                 isValid = false;
                 showFeedBack($(this.diseCalcetin), false);
@@ -488,7 +488,7 @@ function newProductValidation(handler) {
                 espe4 = this.packCalcetin.value;
                 showFeedBack($(this.packCalcetin), true);
             }
-        }else{
+        } else {
             isValid = false;
         }
 
@@ -498,8 +498,8 @@ function newProductValidation(handler) {
         } else {
             handler(this.serialNumber.value, this.nameProd.value, this.priceProduct.value, this.taxProduct.value, espe1, espe2, espe3, espe4,
                 this.desProduct.value, this.imageProduct.value, checkArr, this.selectTypeProduct.value);
-                form.reset();
-                $('#categoryNewProductP').css('display', 'none');
+            form.reset();
+            $('#categoryNewProductP').css('display', 'none');
         }
         event.preventDefault();
         event.stopPropagation();
@@ -521,4 +521,132 @@ function newProductValidation(handler) {
     $(form.imageProduct).change(defaultCheckElement);
 }
 
-export { showFeedBack, defaultCheckElement, ocultForm, newCategoryValidation, removeCategoryValidation, newShopValidation, removeShopValidation, newProductValidation };
+function selectTypeValidation(handler) {
+    let form = document.forms.fRemProduct;
+    $(form).attr('novalidate', true);
+    $(form).submit(function (event) {
+        let isValid = true;
+        let firstInvalidElement = null;
+        /*$('#selectTypeRemProduct').on('change', function () {
+            type = $(this).val();
+        });*/
+        if (!this.selectTypeRemProduct.checkValidity()) {
+            isValid = false;
+            showFeedBack($(this.selectTypeRemProduct), false);
+            firstInvalidElement = this.selectTypeRemProduct;
+        } else {
+            showFeedBack($(this.selectTypeRemProduct), true);
+        }
+
+        if (!isValid) {
+            firstInvalidElement.focus();
+        } else {
+            handler(this.selectTypeRemProduct.value);
+        }
+        event.preventDefault();
+        event.stopPropagation();
+    });
+
+    form.addEventListener('reset', (function (event) {
+        let feedDivs = $(this).find('div.valid-feedback, div.invalid-feedback');
+        feedDivs.removeClass('d-block').addClass('d-none');
+        let inputs = $(this).find('input');
+        inputs.removeClass('is-valid is-invalid');
+    }));
+
+    $(form.selectTypeRemProduct).change(defaultCheckElement);
+}
+
+function removeProductTypeForm(handler){
+    let form = document.forms.fRemTypeProduct;
+    $(form).attr('novalidate', true);
+    $(form).submit(function (event) {
+        let isValid = true;
+        let firstInvalidElement = null;
+        let checkArr = [];
+        $('input:checked').each(
+            function () {
+                checkArr.push($(this).val())
+            }
+        );
+
+        if (checkArr.length !== 0) {
+            $('#typeRemProduct').css('display', 'none');
+        } else {
+            isValid = false;
+            $('#typeRemProduct').css('display', 'block');
+        }
+
+        if (!isValid) {
+            firstInvalidElement.focus();
+        } else {
+            handler(checkArr);
+        }
+        event.preventDefault();
+        event.stopPropagation();
+    });
+
+    form.addEventListener('reset', (function (event) {
+        let feedDivs = $(this).find('div.valid-feedback, div.invalid-feedback');
+        feedDivs.removeClass('d-block').addClass('d-none');
+        let inputs = $(this).find('input');
+        inputs.removeClass('is-valid is-invalid');
+    }));
+
+    //$(form.selectTypeRemProduct).change(defaultCheckElement);
+}
+
+function removeProductShopValidation(handler) {
+    let form = document.forms.fRemProductShop;
+    $(form).attr('novalidate', true);
+
+    $(form).submit(function (event) {
+        //Como las tiendas existen si o si, y no hay ningun option vacio, no hace falta hacer validaciones
+        handler(this.selectRemoveProductShop.value);
+        event.preventDefault();
+        event.stopPropagation();
+    });
+    $(form.selectRemoveProductShop).change(defaultCheckElement);
+}
+
+function removeProductShopForm(handler){
+    let form = document.forms.fRemProductInShop;
+    let form2 = document.forms.fRemProductShop;
+    $(form).attr('novalidate', true);
+    $(form).submit(function (event) {
+        let isValid = true;
+        let checkArr = [];
+        $('input:checked').each(
+            function () {
+                checkArr.push($(this).val())
+            }
+        );
+
+        if (checkArr.length !== 0) {
+            $('#categoryRemProductShopP').css('display', 'none');
+        } else {
+            isValid = false;
+            $('#categoryRemProductShopP').css('display', 'block');
+        }
+
+        if (!isValid) {
+            form2.selectRemoveProductShop.focus();
+        } else {
+            handler(checkArr, form2.selectRemoveProductShop.value);
+        }
+        event.preventDefault();
+        event.stopPropagation();
+    });
+
+    form.addEventListener('reset', (function (event) {
+        let feedDivs = $(this).find('div.valid-feedback, div.invalid-feedback');
+        feedDivs.removeClass('d-block').addClass('d-none');
+        let inputs = $(this).find('input');
+        inputs.removeClass('is-valid is-invalid');
+    }));
+
+    //$(form.selectTypeRemProduct).change(defaultCheckElement);
+}
+
+
+export { showFeedBack, defaultCheckElement, ocultForm, newCategoryValidation, removeCategoryValidation, newShopValidation, removeShopValidation, newProductValidation, selectTypeValidation, removeProductTypeForm, removeProductShopValidation, removeProductShopForm };

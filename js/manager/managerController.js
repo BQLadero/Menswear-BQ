@@ -169,7 +169,8 @@ class ManagerController {
             this.handleNewCategoryForm,
             this.handleRemoveCategoryForm,
             this.handleNewProductForm,
-            this.handleRemoveProductForm
+            this.handleRemoveProductForm,
+            this.handleRemoveProductShopForm
         );
         this.handleChangeBackgroundColor();
     }
@@ -335,12 +336,9 @@ class ManagerController {
         try {
             let categorias = new Array();
             for (let i = 0; i < categories.length; i++) {
-                //console.log(categories[i]);
                 let categoria = this.#storeHouse.getCategory(categories[i]);
-                console.log(categoria.title);
                 categorias.push(categoria);
             }
-            console.log(categorias);
             this.#storeHouse.addProduct(product, categorias);
             this.onAddCategory();
             done = true;
@@ -353,7 +351,57 @@ class ManagerController {
 
     handleRemoveProductForm = () => {
         this.#storeHouseView.showRemoveProductForm();
-        //this.#storeHouseView.bindRemoveCategoryForm(this.handleRemoveCategory);
+        this.#storeHouseView.bindSelectTypeForm(this.handleRemoveTypeProduct);
+    }
+
+    handleRemoveTypeProduct = (type) => {
+        this.#storeHouseView.showRemoveTypeProductForm(this.#storeHouse.getTypeProduct(type));
+        this.#storeHouseView.bindRemoveProductTypeForm(this.handleRemoveproduct);
+    }
+
+    handleRemoveproduct = (products) => {
+        let done, error, position;
+        let productsDel = new Array();
+        try {
+            for (let product of products) {
+                let productX = this.#storeHouse.getProduct(parseInt(product)); //al ser un string se convierte en number
+                this.#storeHouse.removeProduct(productX);
+                this.#storeHouse.removeProductShop(productX);
+                productsDel.push(productX);
+            }
+            done = true;
+        } catch (exception) {
+            done = false;
+            error = exception;
+        }
+        this.#storeHouseView.showRemoveProductModal(done, productsDel, position, error);
+    }
+
+    handleRemoveProductShopForm = () => {
+        this.#storeHouseView.showRemoveProShopForm(this.#storeHouse.getShops());
+        this.#storeHouseView.bindSelectProductShopForm(this.handleRemoveProductInShop);
+    }
+
+    handleRemoveProductInShop = (cif) => {
+        this.#storeHouseView.showRemoveProductShopForm(this.#storeHouse.getProductinShopsCif(cif));
+        this.#storeHouseView.bindRemoveProductShopForm(this.handleRemoveProductShop);
+    }
+
+    handleRemoveProductShop = (products, shop) =>{
+        let done, error, position;
+        let productsDel = new Array();
+        try {
+            for (let product of products) {
+                let productX = this.#storeHouse.getProduct(parseInt(product)); //al ser un string se convierte en number
+                this.#storeHouse.removeProductInShop(productX, shop);
+                productsDel.push(productX);
+            }
+            done = true;
+        } catch (exception) {
+            done = false;
+            error = exception;
+        }
+        this.#storeHouseView.showRemoveProductShopModal(done, productsDel, this.#storeHouse.getExistShop(shop, this.#storeHouse.getShops()), error);
     }
 
     handleChangeBackgroundColor = () =>{

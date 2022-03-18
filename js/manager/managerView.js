@@ -1,6 +1,6 @@
 import { StoreHouse } from './manager.js';
 //, newProductValidation
-import { showFeedBack, defaultCheckElement, ocultForm, newCategoryValidation, removeCategoryValidation, newShopValidation, removeShopValidation, newProductValidation } from './validation.js';
+import { ocultForm, newCategoryValidation, removeCategoryValidation, newShopValidation, removeShopValidation, newProductValidation, selectTypeValidation, removeProductTypeForm, removeProductShopValidation, removeProductShopForm } from './validation.js';
 
 class ManagerView {
 
@@ -53,7 +53,7 @@ class ManagerView {
 										<h6 class="text-uppercase">Características</h6>
 									</div>
 									<p class="about">${product.description}</p>
-									<div class="mt-4 align-items-center"> 
+									<div class="mt-4 align-items-center">
 										<button data-serial="${product.serialNumber}" class="btn btn-primary text-uppercase mr-2 px-4">
 										<i class="icon-plus"></i>&nbsp;Comprar
 										</button>
@@ -196,6 +196,9 @@ class ManagerView {
 						<div> 
 							<p class="price h5 text-danger">${product.price} €</p> 
 							<p class="text-success">Producto rebajado de precio</p>
+						</div>
+						<div>
+							
 						</div>
 						<a href="#" data-serial="${product.serialNumber}" class="btn btn-primary">
 						<i class="icon-plus"></i>&nbsp;Comprar 
@@ -538,7 +541,7 @@ class ManagerView {
 
 	/* Administración */
 
-	bindAdminMenu(hNewShop, hRemoveShop, hNewCategory, hRemoveCategory, hNewProduct, hRemoveProduct) {
+	bindAdminMenu(hNewShop, hRemoveShop, hNewCategory, hRemoveCategory, hNewProduct, hRemoveProduct, hRemoveProductShop) {
 		$('#lnewShop').click((event) => {
 			this.#excecuteHandler(hNewShop, [], '#new-shop', { action: 'newShop' }, '#', event);
 		});
@@ -548,7 +551,6 @@ class ManagerView {
 		$('#lnewCategory').click((event) => {
 			this.#excecuteHandler(hNewCategory, [], '#new-category', { action: 'newCategory' }, '#', event);
 		});
-		//alert(hRemoveCategory);
 		$('#ldelCategory').click((event) => {
 			this.#excecuteHandler(hRemoveCategory, [], '#remove-category', { action: 'removeCategory' }, '#', event);
 		});
@@ -556,7 +558,10 @@ class ManagerView {
 			this.#excecuteHandler(hNewProduct, [], '#new-product', { action: 'newProduct' }, '#', event);
 		});
 		$('#ldelProduct').click((event) => {
-			this.#excecuteHandler(hRemoveProduct, [], '#remove-product', {action: 'removeProduct'}, '#', event);
+			this.#excecuteHandler(hRemoveProduct, [], '#remove-product', { action: 'removeProduct' }, '#', event);
+		});
+		$('#ldelProductShop').click((event) => {
+			this.#excecuteHandler(hRemoveProductShop, [], '#remove-product-shop', { action: 'removeProductShop' }, '#', event);
 		});
 	}
 
@@ -743,7 +748,6 @@ class ManagerView {
 		$('#colRemShop').append(select);
 
 		for (let shop of shops) {
-			//console.log(log);
 			let option = $(`<option value="${shop.cif}">${shop.name}</option>`);
 			$('#selectRemoveShop').append(option);
 		}
@@ -854,7 +858,6 @@ class ManagerView {
 	showNewCategoryModal(done, cat, error) {//creación del modal para comprobar si se ha añadido correctamente o no
 		$("#new-category").modal('hide'); //Cerrar el otro modal para que no haya conflicto
 		$(document.fNewCategory).find('div.error').remove();
-		console.log(done);
 		if (done) {
 			let modal = $(`<div class="modal fade" id="newCategoryModal" tabindex="-1"
 				data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="newCategoryModalLabel" aria-hidden="true">
@@ -1383,45 +1386,280 @@ class ManagerView {
 	}
 
 	showRemoveProductForm() {
-			/*let link = $('#selectRemoveProduct');
-			if (link.length === 1) {
-				$('#selectRemoveCategory').remove();
-				$('#selectRemoveCategoryI').remove();
-			}*/
-			let container = $(`		
-				<div class="modal fade" id="remove-product" data-backdrop="static" data-keyboard="false" tabindex="1"
+		$('#remove-product').modal('hide');
+		let container = $(`		
+			<div class="modal fade" id="remove-product" data-backdrop="static" data-keyboard="false" tabindex="1"
+				aria-labelledby="staticBackdropLabel" aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title text-body" id="remove-product">Borrar uno u varios Productos</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span class="text-body h3" aria-hidden="true">&times;</span>
+							</button>
+						</div>
+							<form name="fRemProduct" role="form" method="post" novalidate>
+								<div class="modal-body text-body text-justify">
+									<div class="form-row">
+										<div class="col-md-12 mb-3 text-center">
+											<label for="selectTypeRemProduct">Tipo de Producto *</label>
+											<select class="form-control text-center" id="selectTypeRemProduct" name="selectTypeRemProduct"> required>
+												<option value="Traje">Traje</option>
+												<option value="Bota">Bota</option>
+												<option value="Pantalon">Pantalón</option>
+												<option value="Calcetin">Calcetín</option>
+											</select>
+										</div>
+									</div>
+								</div>
+								<button class="btn btn-primary" type="submit">Mostrar los productos</button>							
+							</form>
+							<form name="fRemTypeProduct" role="form" method="post" novalidate id="fRemTypeProduct">
+
+							</form>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>`);
+		$('body').append(container);
+		$('#fRemTypeProduct').css('display', 'none');
+		//('#typeRem').css('display', 'none');
+	}
+
+	bindSelectTypeForm(handler) {
+		selectTypeValidation(handler);
+	}
+
+	showRemoveTypeProductForm(products) {
+		//$('#divType').remove();
+		$('#removeTypeProduct').remove();
+		let div = $(`
+			<div class="modal-body text-body text-justify" id="removeTypeProduct">
+				<div class="form-row">
+					<label for="typeRemProduct">Selecciona algún producto *</label>
+					<div class="col-md-12 mb-3" id="typeRemProduct">
+
+					</div>
+					<button class="btn btn-primary" type="submit" id="typeRem">Eliminar</button>
+				</div>
+			</div>
+		`);
+		$('#fRemTypeProduct').append(div);
+
+		let br = 0;
+		for (let product of products) {
+			let check = (`
+				<input type="checkbox" name="checkTypeProduct" value="${product.serialNumber}">
+				<label for="check-${product.serialNumber}">${product.name}&nbsp;&nbsp;</label>
+			`);
+			$('#typeRemProduct').append(check);
+			if (br % 2 === 0) $('#typeRemProduct').append(`<br>`);
+			br++;
+		}
+		$('#typeRemProduct').append(`<p class="text-danger" id="categoryRemTypeProductP">Al menos debe seleccionar algún producto</p>`);
+		$('#fRemTypeProduct').css('display', 'block');
+	}
+
+	bindRemoveProductTypeForm(handler) {
+		removeProductTypeForm(handler);
+	}
+
+	showRemoveProductModal(done, products, position, error) {
+		$('#remove-product').modal('hide');
+		$('remove-product').find('div.error').remove();
+		$('#delProductModalP').remove();
+		if (done) {
+			let modal = $(`<div class="modal fade" id="delProductModal" tabindex="-1"
+				data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="delProductModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title text-body" id="delProductModalLabel">Producto añadido</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body text-body" id="delProductModalDiv">
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+						</div>
+					</div>
+				</div>
+			</div>`);
+			$('body').append(modal);
+			if (products.length === 1) {
+				$('#delProductModalDiv').append(`<p id="delProductModalP">El producto ${products[0].name} ha sido eliminado correctamente`);
+			} else {
+				$('#delProductModalDiv').append(`<p id="delProductModalP">Los productos: <p>`);
+				for (let product of products) {
+					//let div = $(`${product.name}`);
+					$('#delProductModalP').append(`<span>${product.name},</span>`);
+				}
+				$('#delProductModalP').append(` han sido eliminado correctamente.`);
+			}
+
+
+			let delProductModal = $('#delProductModal');
+			delProductModal.modal('show');
+			delProductModal.find('button').click(() => {
+				/*newProductModal.on('hidden.bs.modal', function (event) {
+					document.fNewProduct.serialNumber.focus();
+					this.remove();
+				});*/
+				delProductModal.modal('hide');
+			});
+
+		} else {
+			let product = products[0];
+			$('#delProductModal').prepend(`<div class="error text-danger p-3"><i class="icon-exclamation-sign"></i> El producto <strong>${product.name}</strong> no ha sido eliminido.</div>`);
+		}
+	}
+
+	showRemoveProShopForm(shops) {
+		let link = $('#fRemProductInShop');
+		if (link.length >= 1) {
+			$('#selectRemoveProductShop').remove();
+			$('#selectRemoveProductShopI').remove();
+			$('#typeRemProductShop > input').remove();
+		}
+		let container = $(`		
+			<div class="modal fade" id="remove-product-shop" data-backdrop="static" data-keyboard="false" tabindex="1"
 						aria-labelledby="staticBackdropLabel" aria-hidden="true">
 						<div class="modal-dialog">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h5 class="modal-title text-body" id="remove-product">Borrar uno u varios Productos</h5>
+									<h5 class="modal-title text-body" id="remove-product-shop">Borrar productos de una Tienda</h5>
 									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 										<span class="text-body h3" aria-hidden="true">&times;</span>
 									</button>
 								</div>
-								<form name="fRemProduct" role="form" method="post" novalidate>
+								<form class="text-center" name="fRemProductShop" role="form" method="post" novalidate>
 									<div class="modal-body text-body text-justify">
 										<div class="form-row">
-											<div class="col-md-12 mb-3 text-center">
-												<label for="selectTypeProduct">Tipo de Producto *</label>
-												<select class="form-control text-center" id="selectTypeProduct" name="selectTypeProduct"> required>
-													<option value="traje">Traje</option>
-													<option value="bota">Bota</option>
-													<option value="pantalon">Pantalón</option>
-													<option value="calcetin">Calcetín</option>
-												</select>
+											<div class="col-md-12 mb-3">
+												<label for="ncShop">Tiendas *</label>
+												<div class="input-group" id="colRemShop">
+													<div class="valid-feedback">Correcta.</div>
+												</div>
 											</div>
 										</div>
 									</div>
-									<div class="modal-footer">
-										<button class="btn btn-primary" type="submit">Eliminar</button>
-										<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-									</div>
+									<button class="btn btn-primary" type="submit">Mostrar los productos</button>
 								</form>
+								<form name="fRemProductInShop" role="form" method="post" novalidate id="fRemProductInShop">
+
+								</form>					
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+								</div>
 							</div>
 						</div>
 					</div>`);
-			$('body').append(container);
+		$('body').append(container);
+
+		let select = $(`
+				<div class="input-group-prepend" id="selectRemoveProductShopI">
+					<span class="input-group-text" id="titlePrepend"><i class="icon-group"></i></span>
+				</div>
+				<select class="form-control" id="selectRemoveProductShop" name="selectRemoveProductShop"> required>			
+				</select>`);
+		$('#colRemShop').append(select);
+
+		for (let shop of shops) {
+			let option = $(`<option value="${shop.cif}">${shop.name}</option>`);
+			$('#selectRemoveProductShop').append(option);
+		}
+	}
+
+	bindSelectProductShopForm(handler) {
+		removeProductShopValidation(handler);
+	}
+
+	showRemoveProductShopForm(products) {
+		$('#typeRemProductShopDiv').remove();
+		let div = $(`
+			<div class="modal-body text-body text-justify" id="typeRemProductShopDiv">
+				<div class="form-row">
+					<label for="typeRemProductShop">Selecciona algún producto *</label>
+					<div class="col-md-12 mb-3" id="typeRemProductShop">
+
+					</div>
+					<button class="btn btn-primary" type="submit" id="typeRem">Eliminar</button>
+				</div>
+			</div>
+		`);
+		$('#fRemProductInShop').append(div);
+
+		let br = 0;
+		for (let product of products) {
+			let check = (`
+				<input type="checkbox" name="checkProductShop" value="${product.serialNumber}">
+				<label for="check-${product.serialNumber}">${product.name}&nbsp;&nbsp;</label>
+			`);
+			$('#typeRemProductShop').append(check);
+			if (br % 2 === 0) $('#typeRemProductShop').append(`<br>`);
+			br++;
+		}
+		$('#typeRemProductShop').append(`<p class="text-danger" id="typeRemProductShopP">Al menos debe seleccionar algún producto</p>`);
+		$('#typeRemProductShopP').css('display', 'block');
+	}
+
+	bindRemoveProductShopForm(handler) {
+		removeProductShopForm(handler);
+	}
+
+	showRemoveProductShopModal(done, products, shop, error) {
+		$('#typeRemProductShopDiv').remove();
+		$('#remove-product-shop').modal('hide');
+		$('remove-product-shop').find('div.error').remove();
+		$('#delProductShopModalDivP').remove();
+		if (done) {
+			let modal = $(`<div class="modal fade" id="delProductShopModal" tabindex="-1"
+				data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="delProductShopModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title text-body" id="delProductShopModalLabel">Producto/s borado de la ${shop.name}</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body text-body" id="delProductShopModalDiv">
+
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+						</div>
+					</div>
+				</div>
+			</div>`);
+			$('body').append(modal);
+			if (products.length === 1) {
+				$('#delProductShopModalDiv').append(`<p id="delProductShopModalDivP">El producto ${products[0].name} ha sido eliminado correctamente`);
+			} else {
+				$('#delProductShopModalDiv').append(`<p id="delProductShopModalDivP">Los productos: <p>`);
+				for (let product of products) {
+					//let div = $(`${product.name}`);
+					$('#delProductShopModalDivP').append(`<span>${product.name}, </span>`);
+				}
+				$('#delProductShopModalDivP').append(` han sido eliminado correctamente.`);
+			}
+
+			let delProductShopModalDiv = $('#delProductShopModal');
+			delProductShopModalDiv.modal('show');
+			delProductShopModalDiv.find('button').click(() => {
+				delProductShopModalDiv.modal('hide');
+			});
+
+		} else {
+			let product = products[0];
+			$('#delProductShopModalDiv').prepend(`<div class="error text-danger p-3"><i class="icon-exclamation-sign"></i> El producto <strong>${product.name}</strong> no ha sido eliminido.</div>`);
+		}
 	}
 }
 

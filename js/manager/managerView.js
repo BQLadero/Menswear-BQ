@@ -1,7 +1,6 @@
 import { StoreHouse } from './manager.js';
 //, newProductValidation
-import { ocultForm, newCategoryValidation, removeCategoryValidation, newShopValidation, removeShopValidation, newProductValidation, selectTypeValidation, removeProductTypeForm, removeProductShopValidation, removeProductShopForm } from './validation.js';
-
+import { ocultForm, newCategoryValidation, removeCategoryValidation, newShopValidation, removeShopValidation, newProductValidation, selectTypeValidation, removeProductTypeForm, removeProductShopValidation, removeProductShopForm, selectProductShopFormValidation, selectProductShopForm2Validation } from './validation.js';
 class ManagerView {
 
 	//Objecto History
@@ -541,7 +540,7 @@ class ManagerView {
 
 	/* Administración */
 
-	bindAdminMenu(hNewShop, hRemoveShop, hNewCategory, hRemoveCategory, hNewProduct, hRemoveProduct, hRemoveProductShop) {
+	bindAdminMenu(hNewShop, hRemoveShop, hNewCategory, hRemoveCategory, hNewProduct, hRemoveProduct, hRemoveProductShop, hAddStockProductInShop) {
 		$('#lnewShop').click((event) => {
 			this.#excecuteHandler(hNewShop, [], '#new-shop', { action: 'newShop' }, '#', event);
 		});
@@ -562,6 +561,9 @@ class ManagerView {
 		});
 		$('#ldelProductShop').click((event) => {
 			this.#excecuteHandler(hRemoveProductShop, [], '#remove-product-shop', { action: 'removeProductShop' }, '#', event);
+		});
+		$('#laddStock').click((event) => {
+			this.#excecuteHandler(hAddStockProductInShop, [], '#add-stock-product-shop', { action: 'addStrockProductInShop' }, '#', event);
 		});
 	}
 
@@ -1521,7 +1523,7 @@ class ManagerView {
 	}
 
 	showRemoveProShopForm(shops) {
-		let link = $('#fRemProductInShop');
+		let link = $('#fRemProductShop');
 		if (link.length >= 1) {
 			$('#selectRemoveProductShop').remove();
 			$('#selectRemoveProductShopI').remove();
@@ -1624,7 +1626,7 @@ class ManagerView {
 				<div class="modal-dialog" role="document">
 					<div class="modal-content">
 						<div class="modal-header">
-							<h5 class="modal-title text-body" id="delProductShopModalLabel">Producto/s borado de la ${shop.name}</h5>
+							<h5 class="modal-title text-body" id="delProductShopModalLabel">Producto/s borrado/s de la tienda ${shop.name}</h5>
 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 								<span aria-hidden="true">&times;</span>
 							</button>
@@ -1659,6 +1661,152 @@ class ManagerView {
 		} else {
 			let product = products[0];
 			$('#delProductShopModalDiv').prepend(`<div class="error text-danger p-3"><i class="icon-exclamation-sign"></i> El producto <strong>${product.name}</strong> no ha sido eliminido.</div>`);
+		}
+	}
+
+	showAddStockProShopForm(shops) {
+		//AddStockProShop
+		let link = $('#fAddStockProShop');
+		if (link.length === 1) {
+			$('#selectAddStockProShop').remove();
+			$('#selectAddStockProShopI').remove();
+		}
+		let container = $(`		
+			<div class="modal fade" id="stock-product-shop" data-backdrop="static" data-keyboard="false" tabindex="1"
+						aria-labelledby="staticBackdropLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h5 class="modal-title text-body" id="stock-product-shop">Añadir stock de un producto a una Tienda</h5>
+									<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+										<span class="text-body h3" aria-hidden="true">&times;</span>
+									</button>
+								</div>
+								<form class="text-center" name="fAddStockProShop" role="form" method="post" novalidate>
+									<div class="modal-body text-body text-justify">
+										<div class="form-row">
+											<div class="col-md-12 mb-3">
+												<label for="ncShop">Tiendas *</label>
+												<div class="input-group" id="colRemShop">
+													<div class="valid-feedback">Correcta.</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<button class="btn btn-primary" type="submit">Mostrar los productos</button>
+								</form>
+								<form name="fAddStockProInShop" role="form" method="post" novalidate id="fAddStockProInShop">
+
+								</form>					
+								<div class="modal-footer">
+									<button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+								</div>
+							</div>
+						</div>
+					</div>`);
+		$('body').append(container);
+
+		let select = $(`
+				<div class="input-group-prepend" id="selectAddStockProShopI">
+					<span class="input-group-text" id="titlePrepend"><i class="icon-group"></i></span>
+				</div>
+				<select class="form-control" id="selectAddStockProShop" name="selectAddStockProShop"> required>			
+				</select>`);
+		$('#colRemShop').append(select);
+
+		for (let shop of shops) {
+			let option = $(`<option value="${shop.cif}">${shop.name}</option>`);
+			$('#selectAddStockProShop').append(option);
+		}
+	}
+
+	bindSelectShopStockForm(handler) {
+		selectProductShopFormValidation(handler);
+	}
+
+	showAddStockProShopForm2(products) {
+		$('#addStockProInShopDiv').remove();
+		let div = $(`
+			<div class="modal-body text-body text-justify">
+				<div class="form-row">
+					<div class="col-md-12 mb-3">
+						<label for="typeRemProductShop">Selecciona algún producto *</label>
+						<div class="input-group" id="addStockProInShopDiv">
+							<div class="valid-feedback">Correcta.</div>
+						</div>
+					</div>
+					<div class="col-md-12 mb-3">
+						<label for="addStockProductShop">Introduzca el stock que sea añadir*</label>
+						<div class="input-group">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="stockProduct"><i class="icon-ok-sign"></i></span>
+							</div>
+							<input type="number" class="form-control" id="stockProduct" name="stockProduct" placeholder="Número de stock"
+								aria-describedby="stockProduct" value="" required>
+								<div class="invalid-feedback">El stock debe ser mayor que 0.</div>
+								<div class="valid-feedback">Correcto.</div>
+						</div>
+					</div>
+					<button class="btn btn-primary" type="submit" id="typeRem">Añadir stock</button>
+				</div>
+			</div>
+		`);
+		$('#fAddStockProInShop').append(div);
+
+		let select = $(`
+			<div class="input-group-prepend" id="selectAddStockProShop2I">
+				<span class="input-group-text" id="titlePrepend"><i class="icon-adn"></i></span>
+			</div>
+			<select class="form-control" id="selectAddStockProShop2" name="selectAddStockProShop2"> required>			
+			</select>
+		`);
+		$('#addStockProInShopDiv').append(select);
+
+		for (let product of products) {
+			let option = $(`<option value="${product.serialNumber}">${product.name}</option>`);
+			$('#selectAddStockProShop2').append(option);
+		}
+	}
+
+	bindSelectProdStockForm(handler) {
+		selectProductShopForm2Validation(handler);
+	}
+
+	showAddStockProShopModal(done, product, stock, shop, error) {
+		//$('#typeRemProductShopDiv').remove();
+		$('#stock-product-shop').modal('hide');
+		$('stock-product-shop').find('div.error').remove();
+		if (done) {
+			let modal = $(`<div class="modal fade" id="stockProductShopModal" tabindex="-1"
+				data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="stockProductShopModalLabel" aria-hidden="true">
+				<div class="modal-dialog" role="document">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title text-body" id="stockProductShopModalLabel">El stock ha sido añadido correctamente a la tienda ${shop.name}</h5>
+							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+						<div class="modal-body text-body">
+							<p>El producto <strong>${product.name}</strong> ya contiene <strong>${stock}</strong> unidades.</p>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" data-dismiss="modal">Aceptar</button>
+						</div>
+					</div>
+				</div>
+			</div>`);
+			$('body').append(modal);
+
+			let stockProductShopModal = $('#stockProductShopModal');
+			stockProductShopModal.modal('show');
+			stockProductShopModal.find('button').click(() => {
+				stockProductShopModal.modal('hide');
+			});
+
+		} else {
+			let product = products[0];
+			$('#stockProductShopModal').prepend(`<div class="error text-danger p-3"><i class="icon-exclamation-sign"></i> El producto <strong>${product.name}</strong> no se la ha podido asignar el stock.</div>`);
 		}
 	}
 }

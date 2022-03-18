@@ -172,7 +172,7 @@ function newShopValidation(handler) {
 }
 
 function removeShopValidation(handler) {
-    let form = document.forms.fRemShop;fRemProductShop
+    let form = document.forms.fRemShop;
     $(form).attr('novalidate', true);
 
     $(form).submit(function (event) {
@@ -648,5 +648,45 @@ function removeProductShopForm(handler){
     //$(form.selectTypeRemProduct).change(defaultCheckElement);
 }
 
+function selectProductShopFormValidation(handler) {
+    let form = document.forms.fAddStockProShop;
+    $(form).attr('novalidate', true);
 
-export { showFeedBack, defaultCheckElement, ocultForm, newCategoryValidation, removeCategoryValidation, newShopValidation, removeShopValidation, newProductValidation, selectTypeValidation, removeProductTypeForm, removeProductShopValidation, removeProductShopForm };
+    $(form).submit(function (event) {
+        //Como las tiendas existen si o si, y no hay ningun option vacio, no hace falta hacer validaciones
+        handler(this.selectAddStockProShop.value);
+        event.preventDefault();
+        event.stopPropagation();
+    });
+    $(form.selectAddStockProShop).change(defaultCheckElement);
+}
+
+function selectProductShopForm2Validation(handler){
+    let form = document.forms.fAddStockProInShop;
+    let form2 = document.forms.fAddStockProShop;
+    $(form).attr('novalidate', true);
+
+    $(form).submit(function (event) {
+        let isValid = true;
+        let firstInvalidElement = null;
+
+        if (!this.stockProduct.checkValidity()) {
+            isValid = false;
+            showFeedBack($(this.stockProduct), false);
+            firstInvalidElement = this.stockProduct;
+        } else {
+            showFeedBack($(this.stockProduct), true);
+        }
+
+        if (!isValid) {
+            firstInvalidElement.focus();
+        } else {
+            handler(this.selectAddStockProShop2.value, this.stockProduct.value, form2.selectAddStockProShop.value);
+        }
+        event.preventDefault();
+        event.stopPropagation();
+    });
+    $(form.selectAddStockProShop).change(defaultCheckElement);
+}
+
+export { showFeedBack, defaultCheckElement, ocultForm, newCategoryValidation, removeCategoryValidation, newShopValidation, removeShopValidation, newProductValidation, selectTypeValidation, removeProductTypeForm, removeProductShopValidation, removeProductShopForm, selectProductShopFormValidation, selectProductShopForm2Validation };

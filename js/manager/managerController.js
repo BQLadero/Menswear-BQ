@@ -170,7 +170,8 @@ class ManagerController {
             this.handleRemoveCategoryForm,
             this.handleNewProductForm,
             this.handleRemoveProductForm,
-            this.handleRemoveProductShopForm
+            this.handleRemoveProductShopForm,
+            this.handleAddStockProShopForm
         );
         this.handleChangeBackgroundColor();
     }
@@ -387,7 +388,7 @@ class ManagerController {
         this.#storeHouseView.bindRemoveProductShopForm(this.handleRemoveProductShop);
     }
 
-    handleRemoveProductShop = (products, shop) =>{
+    handleRemoveProductShop = (products, shop) => {
         let done, error, position;
         let productsDel = new Array();
         try {
@@ -404,7 +405,7 @@ class ManagerController {
         this.#storeHouseView.showRemoveProductShopModal(done, productsDel, this.#storeHouse.getExistShop(shop, this.#storeHouse.getShops()), error);
     }
 
-    handleChangeBackgroundColor = () =>{
+    handleChangeBackgroundColor = () => {
         $('#changeColorSelect').on('change', function () {
             let color = $(this).val();
             if (color === "grey") {
@@ -421,6 +422,30 @@ class ManagerController {
             }
         });
     }
+
+    handleAddStockProShopForm = () => {
+        this.#storeHouseView.showAddStockProShopForm(this.#storeHouse.getShops());
+        this.#storeHouseView.bindSelectShopStockForm(this.handleAddStockProShopForm2);
+    }
+
+    handleAddStockProShopForm2 = (cif) => {
+        this.#storeHouseView.showAddStockProShopForm2(this.#storeHouse.getProductinShopsCif(cif));
+        this.#storeHouseView.bindSelectProdStockForm(this.handleAddStockProInShop);
+    }
+
+    handleAddStockProInShop = (product, stock, shop) => {
+        let done, error, stockPod, productX;
+        try {
+            productX = this.#storeHouse.getProduct(parseInt(product)); //al ser un string se convierte en number para que no de error
+            stockPod = this.#storeHouse.addQuantityProductInShop(productX, parseInt(stock), shop);
+            done = true;
+        } catch (exception) {
+            done = false;
+            error = exception;
+        }
+        this.#storeHouseView.showAddStockProShopModal(done, productX, stockPod, this.#storeHouse.getExistShop(shop, this.#storeHouse.getShops()), error);
+    }
+
 }
 
 export default ManagerController;

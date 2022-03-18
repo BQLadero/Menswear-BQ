@@ -436,7 +436,7 @@ class ManagerController {
     handleAddStockProInShop = (product, stock, shop) => {
         let done, error, stockPod, productX;
         try {
-            productX = this.#storeHouse.getProduct(parseInt(product)); //al ser un string se convierte en number para que no de error
+            productX = this.#storeHouse.getProduct(parseInt(product)); //al ser un string se convierte en number para que no dé error
             stockPod = this.#storeHouse.addQuantityProductInShop(productX, parseInt(stock), shop);
             done = true;
         } catch (exception) {

@@ -1523,12 +1523,18 @@ class ManagerView {
 	}
 
 	showRemoveProShopForm(shops) {
-		let link = $('#fRemProductShop');
-		if (link.length >= 1) {
+		let link = $('#selectRemoveProductShop');
+		if (link.length === 1) {
 			$('#selectRemoveProductShop').remove();
 			$('#selectRemoveProductShopI').remove();
+			/*$('#typeRemProductShopP').remove();
+			$('#typeRemProductShopL').remove();
+			$('#typeRemProductShopB').remove();
 			$('#typeRemProductShop > input').remove();
+			$('#typeRemProductShop > label').remove();*/
+			$('#typeRemProductShopDiv').remove();
 		}
+		
 		let container = $(`		
 			<div class="modal fade" id="remove-product-shop" data-backdrop="static" data-keyboard="false" tabindex="1"
 						aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -1583,26 +1589,26 @@ class ManagerView {
 	}
 
 	showRemoveProductShopForm(products) {
-		$('#typeRemProductShopDiv').remove();
 		let div = $(`
 			<div class="modal-body text-body text-justify" id="typeRemProductShopDiv">
 				<div class="form-row">
-					<label for="typeRemProductShop">Selecciona algún producto *</label>
+					<label for="typeRemProductShop" id="typeRemProductShopL">Selecciona algún producto *</label>
 					<div class="col-md-12 mb-3" id="typeRemProductShop">
 
 					</div>
-					<button class="btn btn-primary" type="submit" id="typeRem">Eliminar</button>
+					<button class="btn btn-primary" type="submit" id="typeRemProductShopB">Eliminar</button>
 				</div>
 			</div>
 		`);
 		$('#fRemProductInShop').append(div);
 
 		let br = 0;
+
 		for (let product of products) {
 			let check = (`
-				<input type="checkbox" name="checkProductShop" value="${product.serialNumber}">
-				<label for="check-${product.serialNumber}">${product.name}&nbsp;&nbsp;</label>
-			`);
+					<input type="checkbox" name="checkProductShop" value="${product.serialNumber}">
+					<label for="check-${product.serialNumber}">${product.name}&nbsp;&nbsp;</label>
+				`);
 			$('#typeRemProductShop').append(check);
 			if (br % 2 === 0) $('#typeRemProductShop').append(`<br>`);
 			br++;

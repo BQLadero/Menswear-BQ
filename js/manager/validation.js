@@ -108,7 +108,14 @@ function newShopValidation(handler) {
             showFeedBack($(this.nifShop), false);
             firstInvalidElement = this.nifShop;
         } else {
-            showFeedBack($(this.nifShop), true);
+            if (this.nifShop.value < 1) {
+                isValid = false;
+                showFeedBack($(this.nifShop), false);
+                firstInvalidElement = this.nifShop;
+            } else {
+                isValid = true;
+                showFeedBack($(this.nifShop), true);
+            }
         }
 
         if (!this.nameShop.checkValidity()) {
@@ -128,16 +135,18 @@ function newShopValidation(handler) {
         }
 
         if (!this.phoneShop.checkValidity()) {
-            if (/^[0-9]{9}$/.test(this.phoneShop)) {
+            isValid = false;
+            showFeedBack($(this.phoneShop), false);
+            firstInvalidElement = this.phoneShop;
+        } else {
+            if (!/^[0-9]{9}$/.test(this.phoneShop.value)) {
                 isValid = false;
                 showFeedBack($(this.phoneShop), false);
                 firstInvalidElement = this.phoneShop;
             } else {
                 isValid = true;
-                showFeedBack($(this.phoneShop), false);
+                showFeedBack($(this.phoneShop), true);
             }
-        } else {
-            showFeedBack($(this.phoneShop), true);
         }
 
         if (!this.coordsShop.checkValidity()) {
@@ -299,7 +308,14 @@ function newProductValidation(handler) {
             showFeedBack($(this.priceProduct), false);
             firstInvalidElement = this.priceProduct;
         } else {
-            showFeedBack($(this.priceProduct), true);
+            if (this.priceProduct.value <= 0) {
+                isValid = false;
+                showFeedBack($(this.priceProduct), false);
+                firstInvalidElement = this.priceProduct;
+            } else {
+                isValid = true;
+                showFeedBack($(this.priceProduct), true);
+            }
         }
 
         if (!this.taxProduct.checkValidity()) {
@@ -350,8 +366,14 @@ function newProductValidation(handler) {
                 showFeedBack($(this.alturaTraje), false);
                 firstInvalidElement = this.alturaTraje;
             } else {
-                espe1 = this.alturaTraje.value;
-                showFeedBack($(this.alturaTraje), true);
+                if (this.alturaTraje.value <= 0) {
+                    isValid = false;
+                    showFeedBack($(this.alturaTraje), false);
+                    firstInvalidElement = this.alturaTraje;
+                } else {
+                    espe1 = this.alturaTraje.value;
+                    showFeedBack($(this.alturaTraje), true);
+                }
             }
 
             if (!this.cierreTraje.checkValidity()) {
@@ -386,8 +408,14 @@ function newProductValidation(handler) {
                 showFeedBack($(this.tallaBota), false);
                 firstInvalidElement = this.tallaBota;
             } else {
-                espe1 = this.tallaBota.value;
-                showFeedBack($(this.tallaBota), true);
+                if (this.tallaBota.value <= 0) {
+                    isValid = false;
+                    showFeedBack($(this.tallaBota), false);
+                    firstInvalidElement = this.tallaBota;
+                } else {
+                    espe1 = this.tallaBota.value;
+                    showFeedBack($(this.tallaBota), true);
+                }
             }
 
             if (!this.cierreBota.checkValidity()) {
@@ -485,8 +513,14 @@ function newProductValidation(handler) {
                 showFeedBack($(this.packCalcetin), false);
                 firstInvalidElement = this.packCalcetin;
             } else {
-                espe4 = this.packCalcetin.value;
-                showFeedBack($(this.packCalcetin), true);
+                if (this.packCalcetin.value <= 0) {
+                    isValid = false;
+                    showFeedBack($(this.packCalcetin), false);
+                    firstInvalidElement = this.packCalcetin;
+                } else {
+                    espe4 = this.packCalcetin.value;
+                    showFeedBack($(this.packCalcetin), true);
+                }
             }
         } else {
             isValid = false;
@@ -557,7 +591,7 @@ function selectTypeValidation(handler) {
     $(form.selectTypeRemProduct).change(defaultCheckElement);
 }
 
-function removeProductTypeForm(handler){
+function removeProductTypeForm(handler) {
     let form = document.forms.fRemTypeProduct;
     $(form).attr('novalidate', true);
     $(form).submit(function (event) {
@@ -609,7 +643,7 @@ function removeProductShopValidation(handler) {
     $(form.selectRemoveProductShop).change(defaultCheckElement);
 }
 
-function removeProductShopForm(handler){
+function removeProductShopForm(handler) {
     let form = document.forms.fRemProductInShop;
     let form2 = document.forms.fRemProductShop;
     $(form).attr('novalidate', true);
@@ -661,7 +695,7 @@ function selectProductShopFormValidation(handler) {
     $(form.selectAddStockProShop).change(defaultCheckElement);
 }
 
-function selectProductShopForm2Validation(handler){
+function selectProductShopForm2Validation(handler) {
     let form = document.forms.fAddStockProInShop;
     let form2 = document.forms.fAddStockProShop;
     $(form).attr('novalidate', true);

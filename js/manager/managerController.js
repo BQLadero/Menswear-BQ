@@ -174,6 +174,7 @@ class ManagerController {
             this.handleAddStockProShopForm
         );
         this.handleChangeBackgroundColor();
+        this.handleLocationStores();
     }
 
     onInit = () => {
@@ -237,7 +238,9 @@ class ManagerController {
     }
 
     handleCreateShop = (nif, name, address, phone, coords) => {
-        let shop = new Store(nif, name, address, phone, coords);
+        let coordsArray = coords.split(',');
+        //let store = new Coords(coords[0], coords[1]))
+        let shop = new Store(nif, name, address, phone, new Coords(coordsArray[0], coordsArray[1]));
 
         let done, error;
         try {
@@ -444,6 +447,10 @@ class ManagerController {
             error = exception;
         }
         this.#storeHouseView.showAddStockProShopModal(done, productX, stockPod, this.#storeHouse.getExistShop(shop, this.#storeHouse.getShops()), error);
+    }
+
+    handleLocationStores = () => {
+        this.#storeHouseView.showLocationStores(this.#storeHouse.getShops());
     }
 
 }

@@ -129,14 +129,14 @@ function cerrarSesion() {
 let shopmap = $('.almacen');
 shopmap.empty();
 //Contenedor del mapa
-shopmap.append($('<div class="container"><div class="m-4" id="mapid"></div></div>'));
-let mapContainer = $('#mapid');
+shopmap.append($('<div class="container"><div class="m-4" id="pee"></div></div>'));
+let mapContainer = $('#pee');
 mapContainer.css({
     height: '350px',
     border: '2px solid #faa541'
 });
 
-let map = L.map('mapid')
+let map = L.map('pee')
     .setView([38.984263, -3.906514], 15);
 L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',

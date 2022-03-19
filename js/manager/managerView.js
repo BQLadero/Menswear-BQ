@@ -140,6 +140,28 @@ class ManagerView {
 					<div class="ms-5">${shop.phone}</div>
 				</div>
 			</div>`);
+			/*let mapContainer = $('#map-shop-'+shop.cif);
+			mapContainer.css({
+				height: '200px',
+				border: '2px solid #faa541'
+			});
+
+			//Cargando el mapa
+			let map = L.map('map-shop'+shop.cif);
+			L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+				attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+				maxZoom: 18
+			}).addTo(map);
+
+			let mapShop = L.marker([shop.coords.latitude, shop.coords.longitude]).addTo(map);
+			mapShop.bindPopup(shop.name);
+
+			map.on('click', function (event) {
+				L.marker([event.latlng.lat, event.latlng.lng]).addTo(map);
+			});
+			map.on('contextmenu', function (event) {
+				marker.setLatLng([event.latlng.lat, event.latlng.lng]);
+			});*/
 		}
 		this.main.append(`<h1 class="text-center">Tiendas</h1>`);
 		this.main.append(container);
@@ -532,8 +554,6 @@ class ManagerView {
 			}
 			//Al no quedar ninguna ventana abierta, se vuelve a quitar la opcion del menú
 			this.close.css("display", "none");
-			this.search.css("width", "50%");
-			this.search2.css("width", "25%");
 			this.shopping.css("width", "50%");
 		});
 	}
@@ -1527,14 +1547,8 @@ class ManagerView {
 		if (link.length === 1) {
 			$('#selectRemoveProductShop').remove();
 			$('#selectRemoveProductShopI').remove();
-			/*$('#typeRemProductShopP').remove();
-			$('#typeRemProductShopL').remove();
-			$('#typeRemProductShopB').remove();
-			$('#typeRemProductShop > input').remove();
-			$('#typeRemProductShop > label').remove();*/
-			$('#typeRemProductShopDiv').remove();
 		}
-		
+
 		let container = $(`		
 			<div class="modal fade" id="remove-product-shop" data-backdrop="static" data-keyboard="false" tabindex="1"
 						aria-labelledby="staticBackdropLabel" aria-hidden="true">
@@ -1551,7 +1565,7 @@ class ManagerView {
 										<div class="form-row">
 											<div class="col-md-12 mb-3">
 												<label for="ncShop">Tiendas *</label>
-												<div class="input-group" id="colRemShop">
+												<div class="input-group" id="colRemProductShop">
 													<div class="valid-feedback">Correcta.</div>
 												</div>
 											</div>
@@ -1576,7 +1590,7 @@ class ManagerView {
 				</div>
 				<select class="form-control" id="selectRemoveProductShop" name="selectRemoveProductShop"> required>			
 				</select>`);
-		$('#colRemShop').append(select);
+		$('#colRemProductShop').append(select);
 
 		for (let shop of shops) {
 			let option = $(`<option value="${shop.cif}">${shop.name}</option>`);
@@ -1589,8 +1603,10 @@ class ManagerView {
 	}
 
 	showRemoveProductShopForm(products) {
+		$('#typeRemProductShopDiv').remove();
+		$('#typeRemProductShopL').remove();
 		let div = $(`
-			<div class="modal-body text-body text-justify" id="typeRemProductShopDiv">
+			<div class="modal-body text-body text-justify"  id="typeRemProductShopDiv">
 				<div class="form-row">
 					<label for="typeRemProductShop" id="typeRemProductShopL">Selecciona algún producto *</label>
 					<div class="col-md-12 mb-3" id="typeRemProductShop">
@@ -1671,11 +1687,11 @@ class ManagerView {
 	}
 
 	showAddStockProShopForm(shops) {
-		//AddStockProShop
-		let link = $('#fAddStockProShop');
+		let link = $('#colAddStockProShop');
 		if (link.length === 1) {
 			$('#selectAddStockProShop').remove();
 			$('#selectAddStockProShopI').remove();
+			$('#addStockProInShopDiv2').remove();
 		}
 		let container = $(`		
 			<div class="modal fade" id="stock-product-shop" data-backdrop="static" data-keyboard="false" tabindex="1"
@@ -1693,7 +1709,7 @@ class ManagerView {
 										<div class="form-row">
 											<div class="col-md-12 mb-3">
 												<label for="ncShop">Tiendas *</label>
-												<div class="input-group" id="colRemShop">
+												<div class="input-group" id="colAddStockProShop">
 													<div class="valid-feedback">Correcta.</div>
 												</div>
 											</div>
@@ -1718,7 +1734,7 @@ class ManagerView {
 				</div>
 				<select class="form-control" id="selectAddStockProShop" name="selectAddStockProShop"> required>			
 				</select>`);
-		$('#colRemShop').append(select);
+		$('#colAddStockProShop').append(select);
 
 		for (let shop of shops) {
 			let option = $(`<option value="${shop.cif}">${shop.name}</option>`);
@@ -1731,9 +1747,9 @@ class ManagerView {
 	}
 
 	showAddStockProShopForm2(products) {
-		$('#addStockProInShopDiv').remove();
+		$('#addStockProInShopDiv2').remove();
 		let div = $(`
-			<div class="modal-body text-body text-justify">
+			<div class="modal-body text-body text-justify" id="addStockProInShopDiv2">
 				<div class="form-row">
 					<div class="col-md-12 mb-3">
 						<label for="typeRemProductShop">Selecciona algún producto *</label>
@@ -1814,6 +1830,43 @@ class ManagerView {
 			let product = products[0];
 			$('#stockProductShopModal').prepend(`<div class="error text-danger p-3"><i class="icon-exclamation-sign"></i> El producto <strong>${product.name}</strong> no se la ha podido asignar el stock.</div>`);
 		}
+	}
+
+	showLocationStores(shops) {
+		$('#map-stores').click((event) => {
+			let main = $('main');
+			//Contenedor del mapa
+			main.append($('<div class="container"><div class="m-4" id="mapid"></div></div>'));
+			let mapContainer = $('#mapid');
+			mapContainer.css({
+				height: '350px',
+				border: '2px solid #faa541'
+			});
+
+			//Cargando el mapa
+			let map = L.map('mapid')
+				.setView([38.999532, -3.921055], 15);
+			L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+				attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+				maxZoom: 18
+			}).addTo(map);
+
+			for (let store of shops) {
+				let shop = L.marker([store.coords.latitude, store.coords.longitude]).addTo(map);
+				shop.bindPopup(store.name);
+				console.log(store.name);
+			}
+
+			let marker = L.marker([38.999532, -3.921055]).addTo(map);
+			marker.bindPopup('<strong>Almacen</strong><br>').openPopup();
+
+			map.on('click', function (event) {
+				L.marker([event.latlng.lat, event.latlng.lng]).addTo(map);
+			});
+			map.on('contextmenu', function (event) {
+				marker.setLatLng([event.latlng.lat, event.latlng.lng]);
+			});
+		});
 	}
 }
 

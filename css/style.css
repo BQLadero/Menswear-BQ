@@ -235,10 +235,12 @@ body {
     margin-left: 15%;
 }
 
-a, a:link, a:visited {
+a, a:link, a:visited{
     color: black;
     text-decoration: none;
 }
+
+#map-stores {text-decoration: none;}
 
 .dropdown-menu, .btn-group {
     border-radius: 15px;

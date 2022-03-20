@@ -9,10 +9,13 @@ import { Category } from '../entities/category.js';
 import { Store } from '../entities/store.js';
 import { Coords } from '../entities/coords.js';
 import { StoreHouse } from './manager.js';
+import {User} from '../entities/user.js'
 
 class ManagerController {
     #storeHouse;
     #storeHouseView;
+    #auth;
+	#user;
 
     #loadManagerObjects() { //Creacion de las categorias, productos y tiendas
         let storeHouse = this.#storeHouse;
@@ -148,9 +151,11 @@ class ManagerController {
         storeHouse.addProductInShop(product20, store1, 70);
     }
 
-    constructor(model, view) {
+    constructor(model, view, auth) {
         this.#storeHouse = model;
         this.#storeHouseView = view;
+        this.#auth = auth;
+		this.#user = null;
 
         this.onLoad();
         this.onInit();
@@ -163,18 +168,19 @@ class ManagerController {
         this.#loadManagerObjects(); //Llamada a la funcion de creación de objectos
         this.onAddCategory();
         this.onAddShop();
-        this.#storeHouseView.bindAdminMenu(
-            this.handleNewShopForm,
-            this.handleRemoveShopForm,
-            this.handleNewCategoryForm,
-            this.handleRemoveCategoryForm,
-            this.handleNewProductForm,
-            this.handleRemoveProductForm,
-            this.handleRemoveProductShopForm,
-            this.handleAddStockProShopForm
-        );
         this.handleChangeBackgroundColor();
         this.handleLocationStores();
+
+		let userCookie = getCookie('userAdmin');
+		if (userCookie){
+			let user = this.#auth.getUser(userCookie);
+			if (user){
+				this.#user = this.#auth.getUser(userCookie);
+				this.onOpenSession();
+			}
+		} else {
+			this.onCloseSession();
+		}
     }
 
     onInit = () => {
@@ -450,9 +456,57 @@ class ManagerController {
     }
 
     handleLocationStores = () => {
-        this.#storeHouseView.showLocationStores(this.#storeHouse.getShops());
+        this.#storeHouseView.showLocationStores();
     }
 
+    /* Cookies */
+    handleLoginForm = () => {
+		this.#storeHouseView.showLogin();
+		this.#storeHouseView.bindLogin(this.handleLogin);
+	}
+
+	handleLogin = (username, password, remember) => {
+		if (this.#auth.validateUser(username, password)){
+			this.#user = this.#auth.getUser(username);
+			this.onOpenSession();
+			this.onInit();
+			if (remember) {
+				this.#storeHouseView.setUserCookie(this.#user);
+			}
+		} else {
+			this.#storeHouseView.showInvalidUserMessage();
+		}
+	}
+
+	onOpenSession(){
+		this.#storeHouseView.showAuthUserProfile(this.#user);
+		this.#storeHouseView.showValidUserMessage(this.#user);
+		this.#storeHouseView.bindCloseSession(this.handleCloseSession);
+		this.#storeHouseView.showAdminMenu();
+		this.#storeHouseView.bindAdminMenu(
+            this.handleNewShopForm,
+            this.handleRemoveShopForm,
+            this.handleNewCategoryForm,
+            this.handleRemoveCategoryForm,
+            this.handleNewProductForm,
+            this.handleRemoveProductForm,
+            this.handleRemoveProductShopForm,
+            this.handleAddStockProShopForm
+        );
+		this.#storeHouseView.initHistory();
+	}
+
+	onCloseSession(){
+		this.#user = null;
+		this.#storeHouseView.deleteUserCookie();
+		this.#storeHouseView.showIdentificationLink();
+		this.#storeHouseView.bindIdentificationLink(this.handleLoginForm);
+		this.#storeHouseView.removeAdminMenu();
+	}
+
+	handleCloseSession = () => {
+		this.onCloseSession();
+	}
 }
 
 export default ManagerController;

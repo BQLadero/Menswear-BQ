@@ -352,7 +352,7 @@ select>option {
 
 .dropdown-menu {
     background-color: rgba(61, 147, 197, 0.699);
-    font-size: 22px;
+    font-size: 18px;
 }
 
 .minijuego {
@@ -613,10 +613,6 @@ select>option {
     width: 25%;
 }
 
-.img__carrito {
-    margin-left: 2%;
-}
-
 .img__carrito>img {
     width: 50%;
 }
@@ -627,7 +623,7 @@ hr {
 
 @media screen and (min-width:1201px) {
     .nav-link {
-        font-size: 22px;
+        font-size: 20px;
     }
 
     .cuerpo__espe {

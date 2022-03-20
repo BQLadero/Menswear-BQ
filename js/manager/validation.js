@@ -723,4 +723,61 @@ function selectProductShopForm2Validation(handler) {
     $(form.selectAddStockProShop).change(defaultCheckElement);
 }
 
-export { showFeedBack, defaultCheckElement, ocultForm, newCategoryValidation, removeCategoryValidation, newShopValidation, removeShopValidation, newProductValidation, selectTypeValidation, removeProductTypeForm, removeProductShopValidation, removeProductShopForm, selectProductShopFormValidation, selectProductShopForm2Validation };
+function logInFormValidation(handler) {
+    /*let form = document.forms.fLogin;
+    $(form).submit((event) => {
+        handler(form.nameIniSesion.value, form.passIniSesion.value, form.remember.checked);
+        event.preventDefault();
+    });*/
+    let form = document.forms.fLogin;
+    $(form).attr('novalidate', true);
+
+    $(form).submit(function (event) {
+
+        let isValid = true;
+        let firstInvalidElement = null;
+        if (!this.nameIniSesion.checkValidity()) {
+            isValid = false;
+            showFeedBack($(this.nameIniSesion), false);
+            firstInvalidElement = this.nameIniSesion;
+        } else {
+            if(this.nameIniSesion.value!=="admin"){
+                $('.invalid-user').css('display', 'block');
+                isValid = false;
+                showFeedBack($(this.nameIniSesion), false);
+                firstInvalidElement = this.nameIniSesion;
+            }else{
+                $('.invalid-user').css('display', 'none');
+                showFeedBack($(this.nameIniSesion), true);
+            }
+        }
+
+        if (!this.passIniSesion.checkValidity()) {
+            isValid = false;
+            showFeedBack($(this.passIniSesion), false);
+            firstInvalidElement = this.passIniSesion;
+        } else {
+            if(this.passIniSesion.value!=="admin"){
+                $('.invalid-password').css('display', 'block');
+                isValid = false;
+                firstInvalidElement = this.passIniSesion;
+                showFeedBack($(this.passIniSesion), false);
+            }else{
+                $('.invalid-password').css('display', 'none');
+                showFeedBack($(this.passIniSesion), true);
+            }
+        }
+
+        if (!isValid) {
+            firstInvalidElement.focus();
+        } else {
+            handler(this.nameIniSesion.value, this.passIniSesion.value, form.remember.checked);
+        }
+        event.preventDefault();
+        event.stopPropagation();
+    });
+    $(form.nameIniSesion).change(defaultCheckElement);
+    $(form.passIniSesion).change(defaultCheckElement);
+}
+
+export { showFeedBack, defaultCheckElement, ocultForm, newCategoryValidation, removeCategoryValidation, newShopValidation, removeShopValidation, newProductValidation, selectTypeValidation, removeProductTypeForm, removeProductShopValidation, removeProductShopForm, selectProductShopFormValidation, selectProductShopForm2Validation, logInFormValidation };

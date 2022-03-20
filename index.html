@@ -39,15 +39,13 @@
                                 <i class="icon-home"></i>&nbsp;Inicio
                             </a>
                         </li>
-                        <li class="nav-item" id="inicioSesion">
-                            <a role="button" name="inicio" class="nav-link active" onclick="showDialog()">
-                                <i class="icon-signin"></i>&nbsp;Iniciar Sesi&oacute;n
-                            </a>
+                        <li class="nav-item" id="userArea"><!--Iniciar Sesion-->
+
                         </li>
-                        <li class="nav-item" id="cerrarSesion">
-                            <a role="button" name="inicio" class="nav-link active" onclick="cerrarSesion()">
+                        <!--<li class="nav-item" id="cerrarSesion">
+                            <a role="button" class="nav-link active" id="cerrarSesionUser">
                                 <i class="icon-signout"></i>&nbsp;Cerrar Sesi&oacute;n</a>
-                        </li>
+                        </li>-->
                         <li class="nav-item" id="profile">
                             <a class="nav-link active" aria-current="page" href="./profile.html">Perfil</a>
                         </li>
@@ -56,7 +54,7 @@
                                 <i class="icon-remove"></i>&nbsp;Cerrar ventanas
                             </a>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown" id="administration">
                             <a class="nav-link dropdown-toggle" href="#" id="navAdmin" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="icon-cog"></i>&nbsp;Administraci&oacute;n
@@ -87,12 +85,12 @@
                                     data-target="#remove-product" href="#new-category">
                                     Borrar Productos
                                 </a>
-                                <a data-category="delProd" class="dropdown-item" id="laddStock" data-toggle="modal"
+                                <a data-category="addStock" class="dropdown-item" id="laddStock" data-toggle="modal"
                                     data-target="#stock-product-shop" href="#new-category">
                                     Añadir Stock a una Tienda
                                 </a>
-                                <a data-category="delProd" class="dropdown-item" id="ldelProductShop" data-toggle="modal"
-                                    data-target="#remove-product-shop" href="#new-category">
+                                <a data-category="delProdShop" class="dropdown-item" id="ldelProductShop"
+                                    data-toggle="modal" data-target="#remove-product-shop" href="#new-category">
                                     Eliminar Productos de una Tienda
                                 </a>
                             </div>
@@ -110,7 +108,7 @@
                             </div>
                         </li>
                     </ul>
-                    <a href="./shopping.html" id="carrito" class="img__carrito text-right">
+                    <a href="./shopping.html" id="carrito" class="img__carrito">
                         <img src="./img/carrito.png" alt="Carrito de Compra">
                     </a>
                     <!--<form class="d-flex ms-2 busqueda">
@@ -337,7 +335,8 @@
                         </a>
                     </li>
                     <li>
-                        <a class="text" id="map-stores" data-toggle="modal" data-target="#ocation-stores" href="#location-stores">
+                        <a class="text" id="map-stores" data-toggle="modal" data-target="#ocation-stores"
+                            href="#location-stores">
                             <i class="icon-map-marker"></i>&nbsp;Ubicación de nuestras tiendas
                         </a>
                     </li>
@@ -356,10 +355,13 @@
                             </div>
                             <div class="modal-body text-body">
                                 <p>Menswear-BQ considerará como dueño de una Cuenta de Usuario, Plataforma de Usuario o
-                                Contenido de Usuario creado o subido a los Servicios de Menswear-BQ correspondientes,
-                                a la persona o entidad que tiene acceso a la dirección de correo electrónico consignada
-                                en los registros de Menswear-BQ para dicha Cuenta de Usuario bajo la cual se ha creado
-                                dicha Plataforma de Usuario o Contenido de Usuario.</p>
+                                    Contenido de Usuario creado o subido a los Servicios de Menswear-BQ
+                                    correspondientes,
+                                    a la persona o entidad que tiene acceso a la dirección de correo electrónico
+                                    consignada
+                                    en los registros de Menswear-BQ para dicha Cuenta de Usuario bajo la cual se ha
+                                    creado
+                                    dicha Plataforma de Usuario o Contenido de Usuario.</p>
 
                                 <audio controls>
                                     <source src="./audio/terminos-uso-es.mp3" type="audio/mp3">
@@ -385,16 +387,21 @@
                             </div>
                             <div class="modal-body text-body">
                                 <p>La Política de Privacidad establece los términos en que usa y protege la
-                                información que es proporcionada por sus usuarios al momento de utilizar su sitio web.
-                                Esta compañía está comprometida con la seguridad de los datos de sus usuarios. Cuando le
-                                pedimos llenar los campos de información personal con la cual usted pueda ser
-                                identificado, lo
-                                hacemos asegurando que sólo se empleará de acuerdo con los términos de este documento.
-                                Sin embargo esta Política de Privacidad puede cambiar con el tiempo o ser actualizada
-                                por lo
-                                que le recomendamos y enfatizamos revisar continuamente esta página para asegurarse que
-                                está
-                                de acuerdo con dichos cambios.</p>
+                                    información que es proporcionada por sus usuarios al momento de utilizar su sitio
+                                    web.
+                                    Esta compañía está comprometida con la seguridad de los datos de sus usuarios.
+                                    Cuando le
+                                    pedimos llenar los campos de información personal con la cual usted pueda ser
+                                    identificado, lo
+                                    hacemos asegurando que sólo se empleará de acuerdo con los términos de este
+                                    documento.
+                                    Sin embargo esta Política de Privacidad puede cambiar con el tiempo o ser
+                                    actualizada
+                                    por lo
+                                    que le recomendamos y enfatizamos revisar continuamente esta página para asegurarse
+                                    que
+                                    está
+                                    de acuerdo con dichos cambios.</p>
                                 <audio controls>
                                     <source src="./audio/politica-privacidad-es.mp3" type="audio/mp3">
                                 </audio>
@@ -419,17 +426,17 @@
                             </div>
                             <div class="modal-body text-body">
                                 <p> Nuestro sitio web emplea las cookies para poder identificar las
-                                páginas que son visitadas y su frecuencia. Esta información es empleada únicamente
-                                para análisis estadístico y después la información se elimina de forma permanente.
-                                Usted puede eliminar las cookies en cualquier momento desde su ordenador. Sin
-                                embargo las
-                                cookies ayudan a proporcionar un mejor servicio de los sitios web, estás no dan
-                                acceso a información de su ordenador ni de usted, a menos de que usted así lo quiera
-                                y la proporcione directamente noticias. Usted puede aceptar o negar el uso de
-                                cookies, sin embargo la mayoría de navegadores aceptan cookies automáticamente pues
-                                sirve para tener un mejor servicio web. También usted puede cambiar la configuración
-                                de su ordenador para declinar las cookies. Si se declinan es posible que no pueda
-                                utilizar algunos de nuestros servicios.</p>
+                                    páginas que son visitadas y su frecuencia. Esta información es empleada únicamente
+                                    para análisis estadístico y después la información se elimina de forma permanente.
+                                    Usted puede eliminar las cookies en cualquier momento desde su ordenador. Sin
+                                    embargo las
+                                    cookies ayudan a proporcionar un mejor servicio de los sitios web, estás no dan
+                                    acceso a información de su ordenador ni de usted, a menos de que usted así lo quiera
+                                    y la proporcione directamente noticias. Usted puede aceptar o negar el uso de
+                                    cookies, sin embargo la mayoría de navegadores aceptan cookies automáticamente pues
+                                    sirve para tener un mejor servicio web. También usted puede cambiar la configuración
+                                    de su ordenador para declinar las cookies. Si se declinan es posible que no pueda
+                                    utilizar algunos de nuestros servicios.</p>
 
                                 <audio controls>
                                     <source src="./audio/politica-cookies-es.mp3" type="audio/mp3">
@@ -569,8 +576,8 @@
     <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
         integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
         crossorigin=""></script>
-    <script src="./js/shop.js" type="module"></script>
     <script src="./js/index.js"></script>
+    <script src="./js/shop.js" type="module"></script>
     <script src="./js/translate.js"></script>
     <script type="text/javascript"
         src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>

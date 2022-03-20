@@ -1,6 +1,6 @@
 import { StoreHouse } from './manager.js';
 //, newProductValidation
-import { ocultForm, newCategoryValidation, removeCategoryValidation, newShopValidation, removeShopValidation, newProductValidation, selectTypeValidation, removeProductTypeForm, removeProductShopValidation, removeProductShopForm, selectProductShopFormValidation, selectProductShopForm2Validation } from './validation.js';
+import { ocultForm, newCategoryValidation, removeCategoryValidation, newShopValidation, removeShopValidation, newProductValidation, selectTypeValidation, removeProductTypeForm, removeProductShopValidation, removeProductShopForm, selectProductShopFormValidation, selectProductShopForm2Validation, logInFormValidation } from './validation.js';
 class ManagerView {
 
 	//Objecto History
@@ -124,6 +124,7 @@ class ManagerView {
 	}
 
 	showShops(shops) {
+		$('#mapid').css('display', 'none');
 		this.main.empty();
 		let container = $('<div id="shops-products" class="row"></div>');
 		for (let shop of shops) {
@@ -197,6 +198,7 @@ class ManagerView {
 	}
 
 	listShopProducts(products, shop) {
+		$('#mapid').css('display', 'none');
 		this.main.empty();
 		let container = $(`<div id="shop-list" class="container">
 								<div class="row"> </div>
@@ -286,6 +288,7 @@ class ManagerView {
 	}
 
 	listCategoriesProducts(products, title) {
+		$('#mapid').css('display', 'none');
 		this.main.empty();
 		let container = $(`<div id="product-list" class="container my-3 w-100">
 								<div class="row"> </div>
@@ -332,6 +335,7 @@ class ManagerView {
 	}
 
 	listTypeProducts(products, type) {
+		$('#mapid').css('display', 'none');
 		this.main.empty();
 		let container = $(`<div id="type-list" class="container my-3 w-100">
 								<div class="row"> </div>
@@ -1832,7 +1836,7 @@ class ManagerView {
 		}
 	}
 
-	showLocationStores(shops) {
+	showLocationStores() {
 		$('#map-stores').click((event) => {
 			let main = $('main');
 			//Contenedor del mapa
@@ -1851,14 +1855,14 @@ class ManagerView {
 				maxZoom: 18
 			}).addTo(map);
 
-			for (let store of shops) {
+			for (let store of this.storeHouse.getShops()) {
 				let shop = L.marker([store.coords.latitude, store.coords.longitude]).addTo(map);
 				shop.bindPopup(store.name);
 				console.log(store.name);
 			}
 
 			let marker = L.marker([38.999532, -3.921055]).addTo(map);
-			marker.bindPopup('<strong>Almacen</strong><br>').openPopup();
+			marker.bindPopup('<strong>Almacen</strong>').openPopup();
 
 			map.on('click', function (event) {
 				L.marker([event.latlng.lat, event.latlng.lng]).addTo(map);
@@ -1866,6 +1870,161 @@ class ManagerView {
 			map.on('contextmenu', function (event) {
 				marker.setLatLng([event.latlng.lat, event.latlng.lng]);
 			});
+		});
+	}
+
+	showLogin(){
+		$('#mapid').css('display', 'none');
+		let container = $(`
+			<div class="container h-100">
+				<div class="d-flex justify-content-center h-100">
+					<div class="user_card">
+						<h5 class="text-center">Iniciar Sesión</h5>
+						<div class="d-flex justify-content-center form_container">
+							<form name="fLogin" role="form" novalidate>
+								<div class="form-row">
+									<div class="col-md-12 mb-3">
+										<label for="nameIniSesion">Usuario *</label>
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text" id="nameIniSesionI"><i class="icon-user"></i></span>
+											</div>
+											<input type="text" class="form-control" id="nameIniSesion" name="nameIniSesion" placeholder="Usuario"
+												aria-describedby="nameIniSesion" value="" required>
+											<div class="invalid-feedback">El Usuario es obligatorio.</div>
+											<div class="valid-feedback">Correcto.</div>
+											<p class="invalid-user text-danger">El usuario no es válido.</p>
+										</div>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-md-12 mb-3">
+										<label for="passIniSesion">Contrase&ntilde;a *</label>
+										<div class="input-group">
+											<div class="input-group-prepend">
+												<span class="input-group-text" id="passwordI"><i class="icon-key"></i></span>
+											</div>
+											<input type="password" class="form-control" id="passIniSesion" name="passIniSesion"
+												aria-describedby="passIniSesion" value="" placeholder="Contraseña" required>
+											<div class="invalid-feedback">La contrase&ntilde;a es obligatoria.</div>
+											<div class="valid-feedback">Correcta.</div>
+											<p class="invalid-password text-danger">La contrase&ntilde;a es incorrecta.</p>
+										</div>
+									</div>
+								</div>
+								<div class="form-row">
+									<div class="col-md-12 mb-3">
+										<div class="custom-control custom-checkbox">
+											<input name="remember" type="checkbox" class="custom-control-input" id="customControlInline">
+											<label class="custom-control-label" for="customControlInline">Recuerdame</label>
+										</div>
+									</div>
+								</div>
+								<div class="form-row justify-content-center">
+									<div class="col-auto text-center">
+										<button class="btn btn-primary" type="submit">Iniciar Sesi&oacute;n</button>
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div><br><br>
+		`);
+		this.main.prepend(container);
+		$('.invalid-password').css('display', 'none');
+		$('.invalid-user').css('display', 'none');
+	}
+
+	bindLogin(handler){
+		logInFormValidation(handler);
+	}
+
+	showInvalidUserMessage(){
+		this.main.empty();
+		this.main.append(`<div class="container my-3"><div class="alert alert-warning" role="alert">
+			<strong>El usuario y la contraseña no son válidos. Inténtelo nuevamente.</strong>
+		</div></div>`);
+	}
+
+	showAuthUserProfile(user){
+		let userArea = $('#userArea');
+		userArea.empty();
+		userArea.append(`<a role="button" class="nav-link active" id="aCloseSession">
+							<i class="icon-signout"></i>&nbsp;Cerrar Sesi&oacute;n</a>`);
+	}
+
+	showValidUserMessage(user) {
+		let modal = $(`<div class="modal fade" id="authUserMessageModal" tabindex="-1"
+			data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="authUserMessageModal" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content text-body">
+					<div class="modal-header">
+						<h3 class="modal-title text-center" id="newCategoryModalLabel"> <strong>¡Bienvenido ${user.username}!</strong></h3>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						¡<strong>Bienvenido ${user.username}</strong> a la administraci&oacute;n de la página!
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+					</div>
+				</div>
+			</div>
+		</div>`);
+		$('body').append(modal);
+		let authUserMessageModal = $('#authUserMessageModal');
+		authUserMessageModal.modal('show');
+		authUserMessageModal.find('button').click(() => {
+			authUserMessageModal.on('hidden.bs.modal', function (event) {
+				this.remove();
+			});
+			authUserMessageModal.modal('hide');
+		})
+	}
+
+	initHistory(){
+		history.replaceState({action: 'init'}, null);
+	}
+
+	setUserCookie(user){
+		setCookie('userAdmin',user.username,1);
+	}
+
+	deleteUserCookie(){
+		setCookie('userAdmin','',0);
+	}
+
+	bindCloseSession(handler){
+		$('#aCloseSession').click((event) => {
+			handler();
+			event.preventDefault();
+		})
+	}
+
+	showAdminMenu(){
+		$('#administration').css('display', 'block');
+		$('#profile').css('display', 'block');
+    	$('#carrito').css('display', 'block');
+	}
+
+	removeAdminMenu(){
+		$('#administration').css('display', 'none');
+		$('#profile').css('display', 'none');
+    	$('#carrito').css('display', 'none');
+	}
+
+	showIdentificationLink(){
+		let userArea = $('#userArea');
+		userArea.empty();
+		userArea.append(`<a role="button" class="nav-link active" id="login"><i class="icon-signin"></i>&nbsp;Iniciar Sesi&oacute;n</a>`);
+	}
+
+	bindIdentificationLink(handler){
+		$('#login').click((event) => {
+			this.#excecuteHandler(handler, [], 'main', {action: 'login'}, '#', event);
 		});
 	}
 }

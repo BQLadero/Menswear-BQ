@@ -249,6 +249,9 @@ class ManagerController {
         this.handleChangeBackgroundColor();
         this.handleLocationStores();
         this.handleShowBackup();
+        this.#storeHouseView.bindFavs(this.handleFav);
+        this.#storeHouseView.bindshowFavs(this.handleShowFavs);
+
 
         let userCookie = getCookie('userAdmin');
         if (userCookie) {
@@ -299,7 +302,7 @@ class ManagerController {
         this.#storeHouseView.listShopProducts((this.#storeHouse.getProductinShops(shop)), shop);
         this.#storeHouseView.bindshowProductInNewWindow();
         this.#storeHouseView.showNewShopForm();
-        this.#storeHouseView.showFavs();
+        //this.#storeHouseView.showFavs();
     }
 
     handleTypeProductsList = (type) => {
@@ -309,7 +312,7 @@ class ManagerController {
 
     handleShowProduct = (serial) => {
         try {
-            let product = this.#storeHouse.getProduct(Number.parseInt(serial));
+            let product = this.#storeHouse.getProduct(storeHouseView);
             this.#storeHouseView.bindshowProductInNewWindow(product);
         } catch (error) {
             this.#storeHouseView.showProduct(null, 'No existe este producto en la página.');
@@ -572,7 +575,6 @@ class ManagerController {
             this.handleAddStockProShopForm
         );
         this.#storeHouseView.initHistory();
-        //this.#storeHouseView.showFavs();
     }
 
     onCloseSession() {
@@ -594,19 +596,47 @@ class ManagerController {
     handleShowInfoStoreHouse = () => {
         let string;
         for (const tiendas of this.#storeHouse.shops) {
-            string+=JSON.stringify(tiendas);
+            string += JSON.stringify(tiendas);
         }
         for (const categorias of this.#storeHouse.categories) {
-            string+=JSON.stringify(categorias);
+            string += JSON.stringify(categorias);
         }
         for (const product of this.#storeHouse.products) {
-            string+=JSON.stringify(product);
+            string += JSON.stringify(product);
         }
         this.#storeHouseView.showDataStoreHouse(string);
     }
 
     bindshowProductInNewWindow = () => {
         this.#storeHouseView.showFavs();
+    }
+
+    handleFav = (serialNumber) => {
+        let fav = new Array();
+        if (localStorage.getItem('fav') !== null) {
+            fav = JSON.parse(localStorage.getItem('fav'));
+            if (!fav.includes(parseInt(serialNumber))) {
+                console.log("hola");
+                fav.push(parseInt(serialNumber));
+                localStorage.setItem('fav', JSON.stringify(fav));
+            }
+        } else {
+            fav.push(parseInt(serialNumber));
+            localStorage.setItem('fav', JSON.stringify(fav));
+        }
+    }
+
+    handleShowFavs = () => {
+        if (localStorage.getItem('fav') !== null) {
+            let favs = JSON.parse(localStorage.getItem('fav'));
+            let arr = new Array();
+
+            for (let serialNumber of favs) {
+                let product = this.#storeHouse.getProduct(serialNumber);
+                if (product instanceof Product) arr.push(product);
+            }
+            this.#storeHouseView.showFavs(arr);
+        }
     }
 }
 

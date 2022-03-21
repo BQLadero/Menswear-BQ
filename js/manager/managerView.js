@@ -220,14 +220,13 @@ class ManagerView {
 							<p class="price h5 text-danger">${product.price} €</p> 
 							<p class="text-success">Producto rebajado de precio</p>
 						</div>
-						<div>
-							
+						<div>	
 						</div>
 						<a id="comprar" data-serial="${product.serialNumber}" class="btn btn-primary">
 							<i class="icon-plus"></i>&nbsp;Comprar 
 						</a><br><br>
-						<a id="newFav" data-serial="${product.serialNumber}" class="btn btn-primary">
-							hola
+						<a id="newFav" data-serial="${product.serialNumber}" value="${product.serialNumber}" 
+							class="btn btn-primary"><i class="icon-star"></i>
 						</a>
 					</div>
 				</figure>
@@ -315,6 +314,9 @@ class ManagerView {
 						</div>
 						<a href="#" data-serial="${product.serialNumber}" class="btn btn-primary">
 							<i class="icon-plus"></i>&nbsp;Comprar 
+						</a><br><br>
+						<a id="newFav" value="${product.serialNumber}" class="btn btn-primary">
+							<i class="icon-star"></i> 
 						</a> 
 					</div>
 				</figure>
@@ -362,7 +364,10 @@ class ManagerView {
 						</div>
 						<a href="#" data-serial="${product.serialNumber}" class="btn btn-primary">
 							<i class="icon-plus"></i>&nbsp;Comprar 
-					</a> 
+						</a><br><br>
+						<a id="newFav" value="${product.serialNumber}" class="btn btn-primary">
+							<i class="icon-star"></i> 
+						</a> 
 					</div>
 				</figure>
 			</div>`);
@@ -2071,15 +2076,56 @@ class ManagerView {
 		$('#backup').val(string);
 	}
 
-	showFavs(){
-		console.log("hola");
-		//$('#lbackup').click((event) => {
-		$('#newFav').click((event) =>{ 
-            console.log("hola");
-        });
-		$('#comprar').click((event) =>{ 
-            console.log("hola");
-        });
+	bindFavs(handler){
+		this.main.on('click','#newFav', function () { //Al ser dinamico, se le introduce el on
+			handler($(this).attr('value'));
+		});
+	}
+
+	showFavs(products){
+		$('#mapid').css('display', 'none');
+		this.main.empty();
+		let container = $(`<div id="products-favs" class="container">
+								<div class="row"> </div>
+							</div>`);
+		for (let product of products) {
+			let div = $(`
+			<div class="col ajustar">
+				<figure class="card text-center">
+					<a data-serial="${product.serialNumber}" href="#single-product" class="img-wrap text-center">
+						<img class="w-75" id="${product.serialNumber}" alt="${product.name}"  src="${product.images2[0]}">
+					</a>					
+					<figcaption class="info-wrap mt-3">
+							<a data-serial="${product.serialNumber}" href="#single-product" class="text-info h4">
+								${product.name}
+							</a>
+					</figcaption>
+					<div  class="text-center"> 
+						<div> 
+							<p class="price h5 text-danger">${product.price} €</p> 
+							<p class="text-success">Producto rebajado de precio</p>
+						</div>
+						<div>	
+						</div>
+						<a id="comprar" data-serial="${product.serialNumber}" class="btn btn-primary">
+							<i class="icon-plus"></i>&nbsp;Comprar 
+						</a><br><br>
+						<a id="newFav" data-serial="${product.serialNumber}" class="btn btn-primary">
+							<i class="icon-star"></i> 
+						</a>
+					</div>
+				</figure>
+			</div>`);
+			container.children().first().append(div);
+		}
+		container.prepend(`<h2 class="text-center">Productos favoritos</h2>`);
+		this.main.append(container);
+	}
+
+	bindshowFavs(handler){
+		$('#favoritos').click((event) => {
+			handler();
+		});
 	}
 }
 

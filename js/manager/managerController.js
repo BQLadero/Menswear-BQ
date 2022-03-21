@@ -224,8 +224,6 @@ class ManagerController {
                 }
             })
 
-        }).fail(function (res) {
-            console.log(res)
         });
     }
 
@@ -612,16 +610,15 @@ class ManagerController {
     }
 
     handleFav = (serialNumber) => {
-        let fav = new Array();
+        let favs = new Array();
         if (localStorage.getItem('fav') !== null) {
-            fav = JSON.parse(localStorage.getItem('fav'));
-            if (!fav.includes(parseInt(serialNumber))) {
-                console.log("hola");
-                fav.push(parseInt(serialNumber));
+            favs = JSON.parse(localStorage.getItem('fav'));
+            if (!favs.includes(parseInt(serialNumber))) {
+                favs.push(parseInt(serialNumber));
                 localStorage.setItem('fav', JSON.stringify(fav));
             }
         } else {
-            fav.push(parseInt(serialNumber));
+            favs.push(parseInt(serialNumber));
             localStorage.setItem('fav', JSON.stringify(fav));
         }
     }

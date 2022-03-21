@@ -94,7 +94,6 @@ let StoreHouse = (function () {
             addProduct(product, category) {
                 if (!(product instanceof Product)) throw new EmptyValueException("producto");
                 let arr = new Array();
-                //console.log(category);
                 //Comprobamos que la categoría sea un array, si no lo fuera se le añade a un array nuevo
                 if (!(Array.isArray(category))) { arr.push(category) } else { arr = category };
                 //Si el producto no estaba introcido se le añade al mapa
@@ -135,7 +134,6 @@ let StoreHouse = (function () {
             }
 
             addProductInShop(product, shop, units) {//Añade al producto con x unidades a la tienda
-                //console.log(product);
                 if (!(this.#products.has(product))) throw new Error("El producto no está introducido en el almacen");
                 //if (!this.#shops.has(shop)) throw new Error("La tienda no está introducida en el almacen");
                 if (units <= 0) throw new InvalidValueException("unidad", units);
@@ -181,9 +179,6 @@ let StoreHouse = (function () {
                     //Si la categoría está en el producto, se añade el producto al array
                     if (value.includes(category)) arrProd.push(key);
                 });
-                for (let iterator of arrProd) {
-                    console.log(iterator);
-                }
                 return arrProd[Symbol.iterator]();
             }
 

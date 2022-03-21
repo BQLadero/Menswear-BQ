@@ -1866,7 +1866,6 @@ class ManagerView {
 			for (let store of this.storeHouse.getShops()) {
 				let shop = L.marker([store.coords.latitude, store.coords.longitude]).addTo(map);
 				shop.bindPopup(store.name);
-				console.log(store.name);
 			}
 
 			let marker = L.marker([38.999532, -3.921055]).addTo(map);

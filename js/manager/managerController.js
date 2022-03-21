@@ -615,11 +615,11 @@ class ManagerController {
             favs = JSON.parse(localStorage.getItem('fav'));
             if (!favs.includes(parseInt(serialNumber))) {
                 favs.push(parseInt(serialNumber));
-                localStorage.setItem('fav', JSON.stringify(fav));
+                localStorage.setItem('fav', JSON.stringify(favs));
             }
         } else {
             favs.push(parseInt(serialNumber));
-            localStorage.setItem('fav', JSON.stringify(fav));
+            localStorage.setItem('fav', JSON.stringify(favs));
         }
     }
 

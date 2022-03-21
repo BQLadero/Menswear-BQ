@@ -9,13 +9,15 @@ import { Category } from '../entities/category.js';
 import { Store } from '../entities/store.js';
 import { Coords } from '../entities/coords.js';
 import { StoreHouse } from './manager.js';
-import {User} from '../entities/user.js'
+import { User } from '../entities/user.js';
+//import {categoryParsed, shopParsed, productParsed} from './ejemplo.js';
+//import { categories } from './ejemplo.js';
 
 class ManagerController {
     #storeHouse;
     #storeHouseView;
     #auth;
-	#user;
+    #user;
 
     #loadManagerObjects() { //Creacion de las categorias, productos y tiendas
         let storeHouse = this.#storeHouse;
@@ -151,36 +153,113 @@ class ManagerController {
         storeHouse.addProductInShop(product20, store1, 70);
     }
 
+    #cargaDatos() {
+        let categories;
+        let traje;
+        let bota;
+        let pantalon;
+        let calcetin;
+        let shop;
+
+        $.ajax({
+            url: "./js/manager/objects.json",
+            method: 'GET',
+            async: false,
+        }).done((data) => {
+            categories = data.category;
+            categories.forEach(elem => {
+                let tmp = new Category(elem.title, elem.description);
+                this.#storeHouse.addCategory(tmp);
+            });
+
+            shop = data.shops;
+            shop.forEach(elem => {
+                let tmp = new Store(elem.cif, elem.name, elem.address, elem.phone, new Coords(elem.coords.latitude, elem.coords.longitude));
+                this.#storeHouse.addShop(tmp);
+            });
+
+            traje = data.products.trajes;
+            traje.forEach(elem => {
+                let tmp = new Traje(elem.serialNumber, elem.name, elem.price, elem.altura, elem.cierre, elem.cuidados, elem.description,
+                    elem.detalles, elem.tax, elem.images);
+                let category1 = new Category('Pull & Bear', 'Categoria de Pull & Bear');
+                let category2 = new Category('Zara', 'Categoria de Zara');
+                this.#storeHouse.addProduct(tmp, [category1, category2]);
+                this.#storeHouse.addProductInShop(tmp, data.shops[2], 5);
+            })
+
+            bota = data.products.botas;
+            bota.forEach(elem => {
+                let tmp = new Bota(elem.serialNumber, elem.name, elem.price, elem.talla, elem.cierre, elem.suela, elem.description,
+                    elem.plantilla, elem.tax, elem.images);
+                for (let cat of this.#storeHouse.categories) {
+                    if (cat.title === "Zara") {
+                        this.#storeHouse.addProduct(tmp, cat.category)
+                        this.#storeHouse.addProductInShop(tmp, data.shops[0], 5)
+                    }
+                }
+            })
+
+            pantalon = data.products.pantalones;
+            pantalon.forEach(elem => {
+                let tmp = new Pantalon(elem.serialNumber, elem.name, elem.price, elem.cintura, elem.cierre, elem.bolsillos, elem.description,
+                    elem.material, elem.tax, elem.images);
+                for (let cat of this.#storeHouse.categories) {
+                    if (cat.title === "C&A") {
+                        this.#storeHouse.addProduct(tmp, cat.category)
+                        this.#storeHouse.addProductInShop(tmp, data.shops[1], 5)
+                    }
+                }
+            })
+
+            calcetin = data.products.calcetines;
+            calcetin.forEach(elem => {
+                let tmp = new Calcetin(elem.serialNumber, elem.name, elem.price, elem.diseño, elem.tipo, elem.material, elem.description,
+                    elem.pack, elem.tax, elem.images);
+                for (let cat of this.#storeHouse.categories) {
+                    if (cat.title === "Zalando") {
+                        this.#storeHouse.addProduct(tmp, cat.category)
+                        this.#storeHouse.addProductInShop(tmp, data.shops[2], 5)
+                    }
+                }
+            })
+
+        }).fail(function (res) {
+            console.log(res)
+        });
+    }
+
     constructor(model, view, auth) {
         this.#storeHouse = model;
         this.#storeHouseView = view;
         this.#auth = auth;
-		this.#user = null;
+        this.#user = null;
 
         this.onLoad();
         this.onInit();
         this.#storeHouseView.bindInit(this.handleInit);
         this.#storeHouseView.closeWindows();
-
     }
 
     onLoad = () => {
+        //this.#cargaDatos();
         this.#loadManagerObjects(); //Llamada a la funcion de creación de objectos
         this.onAddCategory();
         this.onAddShop();
         this.handleChangeBackgroundColor();
         this.handleLocationStores();
+        this.handleShowBackup();
 
-		let userCookie = getCookie('userAdmin');
-		if (userCookie){
-			let user = this.#auth.getUser(userCookie);
-			if (user){
-				this.#user = this.#auth.getUser(userCookie);
-				this.onOpenSession();
-			}
-		} else {
-			this.onCloseSession();
-		}
+        let userCookie = getCookie('userAdmin');
+        if (userCookie) {
+            let user = this.#auth.getUser(userCookie);
+            if (user) {
+                this.#user = this.#auth.getUser(userCookie);
+                this.onOpenSession();
+            }
+        } else {
+            this.onCloseSession();
+        }
     }
 
     onInit = () => {
@@ -220,6 +299,7 @@ class ManagerController {
         this.#storeHouseView.listShopProducts((this.#storeHouse.getProductinShops(shop)), shop);
         this.#storeHouseView.bindshowProductInNewWindow();
         this.#storeHouseView.showNewShopForm();
+        this.#storeHouseView.showFavs();
     }
 
     handleTypeProductsList = (type) => {
@@ -461,29 +541,27 @@ class ManagerController {
 
     /* Cookies */
     handleLoginForm = () => {
-		this.#storeHouseView.showLogin();
-		this.#storeHouseView.bindLogin(this.handleLogin);
-	}
+        this.#storeHouseView.showLogin();
+        this.#storeHouseView.bindLogin(this.handleLogin);
+    }
 
-	handleLogin = (username, password, remember) => {
-		if (this.#auth.validateUser(username, password)){
-			this.#user = this.#auth.getUser(username);
-			this.onOpenSession();
-			this.onInit();
-			if (remember) {
-				this.#storeHouseView.setUserCookie(this.#user);
-			}
-		} else {
-			this.#storeHouseView.showInvalidUserMessage();
-		}
-	}
+    handleLogin = (username, password, remember) => {
+        if (this.#auth.validateUser(username, password)) {
+            this.#user = this.#auth.getUser(username);
+            this.onOpenSession();
+            this.onInit();
+            if (remember) {
+                this.#storeHouseView.setUserCookie(this.#user);
+            }
+        }
+    }
 
-	onOpenSession(){
-		this.#storeHouseView.showAuthUserProfile(this.#user);
-		this.#storeHouseView.showValidUserMessage(this.#user);
-		this.#storeHouseView.bindCloseSession(this.handleCloseSession);
-		this.#storeHouseView.showAdminMenu();
-		this.#storeHouseView.bindAdminMenu(
+    onOpenSession() {
+        this.#storeHouseView.showAuthUserProfile(this.#user);
+        this.#storeHouseView.showValidUserMessage(this.#user);
+        this.#storeHouseView.bindCloseSession(this.handleCloseSession);
+        this.#storeHouseView.showAdminMenu();
+        this.#storeHouseView.bindAdminMenu(
             this.handleNewShopForm,
             this.handleRemoveShopForm,
             this.handleNewCategoryForm,
@@ -493,20 +571,43 @@ class ManagerController {
             this.handleRemoveProductShopForm,
             this.handleAddStockProShopForm
         );
-		this.#storeHouseView.initHistory();
-	}
+        this.#storeHouseView.initHistory();
+        //this.#storeHouseView.showFavs();
+    }
 
-	onCloseSession(){
-		this.#user = null;
-		this.#storeHouseView.deleteUserCookie();
-		this.#storeHouseView.showIdentificationLink();
-		this.#storeHouseView.bindIdentificationLink(this.handleLoginForm);
-		this.#storeHouseView.removeAdminMenu();
-	}
+    onCloseSession() {
+        this.#user = null;
+        this.#storeHouseView.deleteUserCookie();
+        this.#storeHouseView.showIdentificationLink();
+        this.#storeHouseView.bindIdentificationLink(this.handleLoginForm);
+        this.#storeHouseView.removeAdminMenu();
+    }
 
-	handleCloseSession = () => {
-		this.onCloseSession();
-	}
+    handleCloseSession = () => {
+        this.onCloseSession();
+    }
+
+    handleShowBackup = () => {
+        this.#storeHouseView.showBackupModal();
+    }
+
+    handleShowInfoStoreHouse = () => {
+        let string;
+        for (const tiendas of this.#storeHouse.shops) {
+            string+=JSON.stringify(tiendas);
+        }
+        for (const categorias of this.#storeHouse.categories) {
+            string+=JSON.stringify(categorias);
+        }
+        for (const product of this.#storeHouse.products) {
+            string+=JSON.stringify(product);
+        }
+        this.#storeHouseView.showDataStoreHouse(string);
+    }
+
+    bindshowProductInNewWindow = () => {
+        this.#storeHouseView.showFavs();
+    }
 }
 
 export default ManagerController;

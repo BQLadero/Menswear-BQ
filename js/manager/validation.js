@@ -733,7 +733,6 @@ function logInFormValidation(handler) {
     $(form).attr('novalidate', true);
 
     $(form).submit(function (event) {
-
         let isValid = true;
         let firstInvalidElement = null;
         if (!this.nameIniSesion.checkValidity()) {
@@ -744,7 +743,7 @@ function logInFormValidation(handler) {
             if(this.nameIniSesion.value!=="admin"){
                 $('.invalid-user').css('display', 'block');
                 isValid = false;
-                showFeedBack($(this.nameIniSesion), false);
+                //showFeedBack($(this.nameIniSesion), false);
                 firstInvalidElement = this.nameIniSesion;
             }else{
                 $('.invalid-user').css('display', 'none');
@@ -761,7 +760,7 @@ function logInFormValidation(handler) {
                 $('.invalid-password').css('display', 'block');
                 isValid = false;
                 firstInvalidElement = this.passIniSesion;
-                showFeedBack($(this.passIniSesion), false);
+                //showFeedBack($(this.passIniSesion), false);
             }else{
                 $('.invalid-password').css('display', 'none');
                 showFeedBack($(this.passIniSesion), true);
@@ -776,8 +775,8 @@ function logInFormValidation(handler) {
         event.preventDefault();
         event.stopPropagation();
     });
-    $(form.nameIniSesion).change(defaultCheckElement);
-    $(form.passIniSesion).change(defaultCheckElement);
+    //$(form.nameIniSesion).change(defaultCheckElement);
+    //$(form.passIniSesion).change(defaultCheckElement);
 }
 
 export { showFeedBack, defaultCheckElement, ocultForm, newCategoryValidation, removeCategoryValidation, newShopValidation, removeShopValidation, newProductValidation, selectTypeValidation, removeProductTypeForm, removeProductShopValidation, removeProductShopForm, selectProductShopFormValidation, selectProductShopForm2Validation, logInFormValidation };

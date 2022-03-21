@@ -223,9 +223,12 @@ class ManagerView {
 						<div>
 							
 						</div>
-						<a href="#" data-serial="${product.serialNumber}" class="btn btn-primary">
-						<i class="icon-plus"></i>&nbsp;Comprar 
-						</a> 
+						<a id="comprar" data-serial="${product.serialNumber}" class="btn btn-primary">
+							<i class="icon-plus"></i>&nbsp;Comprar 
+						</a><br><br>
+						<a id="newFav" data-serial="${product.serialNumber}" class="btn btn-primary">
+							hola
+						</a>
 					</div>
 				</figure>
 			</div>`);
@@ -1876,11 +1879,11 @@ class ManagerView {
 	showLogin(){
 		$('#mapid').css('display', 'none');
 		let container = $(`
-			<div class="container h-100">
-				<div class="d-flex justify-content-center h-100">
+			<div class="container w-50">
+				<div class="justify-content-center">
 					<div class="user_card">
 						<h5 class="text-center">Iniciar Sesión</h5>
-						<div class="d-flex justify-content-center form_container">
+						<div class="justify-content-center form_container">
 							<form name="fLogin" role="form" novalidate>
 								<div class="form-row">
 									<div class="col-md-12 mb-3">
@@ -1893,7 +1896,7 @@ class ManagerView {
 												aria-describedby="nameIniSesion" value="" required>
 											<div class="invalid-feedback">El Usuario es obligatorio.</div>
 											<div class="valid-feedback">Correcto.</div>
-											<p class="invalid-user text-danger">El usuario no es válido.</p>
+											<br><p class="invalid-user text-danger">El usuario no es válido.</p>
 										</div>
 									</div>
 								</div>
@@ -1908,7 +1911,7 @@ class ManagerView {
 												aria-describedby="passIniSesion" value="" placeholder="Contraseña" required>
 											<div class="invalid-feedback">La contrase&ntilde;a es obligatoria.</div>
 											<div class="valid-feedback">Correcta.</div>
-											<p class="invalid-password text-danger">La contrase&ntilde;a es incorrecta.</p>
+											<br><p class="invalid-password text-danger">La contrase&ntilde;a es incorrecta.</p>
 										</div>
 									</div>
 								</div>
@@ -1940,13 +1943,6 @@ class ManagerView {
 		logInFormValidation(handler);
 	}
 
-	showInvalidUserMessage(){
-		this.main.empty();
-		this.main.append(`<div class="container my-3"><div class="alert alert-warning" role="alert">
-			<strong>El usuario y la contraseña no son válidos. Inténtelo nuevamente.</strong>
-		</div></div>`);
-	}
-
 	showAuthUserProfile(user){
 		let userArea = $('#userArea');
 		userArea.empty();
@@ -1966,7 +1962,7 @@ class ManagerView {
 						</button>
 					</div>
 					<div class="modal-body">
-						¡<strong>Bienvenido ${user.username}</strong> a la administraci&oacute;n de la página!
+						¡Bienvenido <strong>${user.username}</strong> a la administraci&oacute;n de la página!
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
@@ -2008,12 +2004,14 @@ class ManagerView {
 		$('#administration').css('display', 'block');
 		$('#profile').css('display', 'block');
     	$('#carrito').css('display', 'block');
+		$('#favoritos').css('display', 'block');
 	}
 
 	removeAdminMenu(){
 		$('#administration').css('display', 'none');
 		$('#profile').css('display', 'none');
     	$('#carrito').css('display', 'none');
+		$('#favoritos').css('display', 'none');
 	}
 
 	showIdentificationLink(){
@@ -2026,6 +2024,62 @@ class ManagerView {
 		$('#login').click((event) => {
 			this.#excecuteHandler(handler, [], 'main', {action: 'login'}, '#', event);
 		});
+	}
+
+	showBackupModal(){
+		$('#lbackup').click((event) => {
+			let modal = $(`<div class="modal fade" id="create-backup" tabindex="-1"
+			data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="create-backupModal" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content text-body">
+					<div class="modal-header">
+						<h3 class="modal-title text-center" id="create-backupLabel"><strong>Grabado de datos</strong></h3>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<form method="post" action="./grabado-datos.php" name="fBackUp" role="form">
+						<div class="modal-body">
+							<div class="form-row justify-content-center">
+							<div class="col-auto text-center">
+								<input type="hidden" id="backup" value="" name="backup">
+								<button class="btn btn-primary" type="submit" name="grabar">Grabar</button>
+							</div>
+						</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-primary" data-dismiss="modal">Cerrar</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>`);
+		$('body').append(modal);
+		let backup = $('#create-backup');
+		backup.modal('show');
+		backup.find('button').click(() => {
+			backup.on('hidden.bs.modal', function (event) {
+				this.remove();
+			});
+			backup.modal('hide');
+		})
+		});
+
+	}
+
+	showDataStoreHouse(string){
+		$('#backup').val(string);
+	}
+
+	showFavs(){
+		console.log("hola");
+		//$('#lbackup').click((event) => {
+		$('#newFav').click((event) =>{ 
+            console.log("hola");
+        });
+		$('#comprar').click((event) =>{ 
+            console.log("hola");
+        });
 	}
 }
 
